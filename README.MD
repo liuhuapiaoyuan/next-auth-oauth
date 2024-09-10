@@ -5,10 +5,11 @@
 
 ## 特性
 
-- **增强的登录函数**：自动处理绑定场景和登录验证。
+- **增强的`signIn`登录函数**：自动处理绑定场景和登录验证,将验证逻辑转发给`UserService`。
+- **增加Session**：自动处理`jwt`/`databse`下不同情况的`user.id`的填充。
 - **多种授权操作**：包括登录、登出、注册、解绑第三方账号等。
 - **支持多种第三方登录提供商**：如 GitHub 和 Wechat。
-- **自定义绑定授权页面**：支持自定义授权绑定页面。
+- **自定义绑定授权页面UI，配置`bindPage`**：支持自定义授权绑定页面。
 
 ## 安装
 
@@ -138,11 +139,22 @@ export interface IUserService {
 
 ## 示例
 
-你可以通过以下代码来实现用户登录和绑定第三方账号：
+你可以在任何`服务端组件/ServerAction`中通过以下代码来实现用户登录和绑定第三方账号：
 
 ```typescript
-import { signIn, signOut, listAccount, unBindOauthAccountInfo } from 'next-auth-oauth';
 
+
+export default function UserProfilePage(){
+    // 获得账户信息
+    const session = await auth() 
+    // 获得绑定信息
+    const bindListAccount = await listAccount()
+
+    return <div>
+    {JSON.stringify(session)}
+    {JSON.stringify(bindListAccount)}
+    </div>
+}
 // 用户登录示例
 signIn('github', { callbackUrl: '/' }).then(() => {
   console.log('登录成功');
@@ -153,13 +165,13 @@ signOut().then(() => {
   console.log('已登出');
 });
 
-// 列出绑定的第三方账号
-listAccount('user-id').then(accounts => {
+// 列出绑定的第三方账号,自动判断授权信息
+listAccount().then(accounts => {
   console.log('绑定的第三方账号：', accounts);
 });
 
 // 解绑第三方账号
-unBindOauthAccountInfo('account-id').then(() => {
+unBindOauthAccountInfo().then(() => {
   console.log('解绑成功');
 });
 ```
