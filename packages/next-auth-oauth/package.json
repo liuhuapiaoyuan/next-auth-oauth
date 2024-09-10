@@ -1,6 +1,5 @@
 {
   "name": "next-auth-oauth",
-  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
