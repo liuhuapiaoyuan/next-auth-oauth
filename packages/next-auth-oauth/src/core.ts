@@ -72,7 +72,7 @@ export class CredentialsOauth {
             await this.authAdapter.linkAccount?.({
               ...account,
               userId: user.id,
-              type: "oauth",
+              type: account.type as "oauth",
             });
             cleanBindAccountInfo();
           }
@@ -85,8 +85,8 @@ export class CredentialsOauth {
   
   
   private async signInCallback(params: Parameters<CallbackSignInFunction>[0]) {
-    const { user, account, profile } = params;
-    if (account?.type !== "oauth") {
+    const { user, account, profile:_ } = params;
+    if (account?.type !== "oauth" && account?.type!=='oidc') {
       return true;
     }
     if (account) {
