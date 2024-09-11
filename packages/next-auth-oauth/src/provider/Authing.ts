@@ -133,7 +133,7 @@ export default function Authing<P extends AuthingProfile>(
   } = options;
 
   return {
-    id: "authing",
+    id: "authing", 
     name: "Authing",
     type: "oidc",
     style: { logo: "/providers/Authing.jpg", bg: "#fff", text: "#000" },
@@ -143,13 +143,17 @@ export default function Authing<P extends AuthingProfile>(
     idToken: true,
     issuer: domain + "/oidc", 
     jwks_endpoint: domain + "/oidc/.well-known/jwks.json",
+    authorization:{
+      params: {
+        scope:"openid email username profile phone"
+      }
+    },
     wellKnown:
       domain + "/oidc/.well-known/openid-configuration",
     profile: (profile) => {
-      console.log("获得到的账号信息：",profile)
       return {
         id: profile.sub + "",
-        name: profile.sub,
+        name: profile.nickname??profile.sub,
         email: profile.email,
         image: profile.picture,
       };
