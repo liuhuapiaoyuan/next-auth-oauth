@@ -102,7 +102,10 @@ export default function Gitee<P extends GiteeProfile>(
     },
     token: {
       url: "https://gitee.com/oauth/token",
-      
+      async conform(resp:Response){
+        const {created_at:_,...json}  = await resp.json();
+        return Response.json(json)
+      }
     },
     profile: (profile) => {
       return {
