@@ -190,11 +190,10 @@ unBindOauthAccountInfo().then(() => {
 ```
 
 ## 案例: 打造基于`nextjs`、`prisma`和`next-auth-oauth`的完整授权系统
-![登录](docs/nextjs-uaa-login.png)
-
-![账户登录绑定](docs/nextjs-uaa-oauth-login.png)
-
-
+![登录](assets/nextjs-uaa-login-pc.png)
+![移动端兼容](assets/nextjs-uaa-login.png)
+![注册](assets/nextjs-uaa-regist.png)
+![账户登录绑定](assets/nextjs-uaa-oauth-login.png)
 
 
 ## 贡献
