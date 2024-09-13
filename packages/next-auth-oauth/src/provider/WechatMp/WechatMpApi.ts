@@ -187,6 +187,13 @@ export class WechatMpApi {
     return `https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=${ticket}`;
   }
 
+  createSignature(datas:string[]){  
+    let tmpArr=[this.token , ...datas]
+    tmpArr.sort();
+    const tmpStr = tmpArr.join("");
+    return crypto.createHash("sha1").update(tmpStr).digest("hex");
+  }
+
   /**
    * 验证签名
    * 按照 加密方式,如果encrypt_type是aes，会通过msg_signature自动验签

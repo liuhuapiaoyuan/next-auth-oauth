@@ -61,7 +61,7 @@ export type WechatMpProfile = {
 async function handler(req: NextRequest, wechatMpApi: WechatMpApi) {
   const searchParams = req.nextUrl.searchParams;
   const echostr = searchParams.get("echostr");
-  const encrypt_type = searchParams.get("encrypt_type");
+  const nonce = searchParams.get("nonce");
 
   if (req.method == "GET") {
     if (wechatMpApi.checkSignature(searchParams)) {
@@ -101,10 +101,11 @@ async function handler(req: NextRequest, wechatMpApi: WechatMpApi) {
     const status = await wechatMpCaptchaManager.complted(code, {
       openid: message.FromUserName,
     });
+    const timestamp = Math.floor(Date.now() / 1000)
     let content = `<xml>
   <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
   <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
-  <CreateTime>${Math.floor(Date.now() / 1000)}</CreateTime>
+  <CreateTime>${ timestamp}</CreateTime>
   <MsgType><![CDATA[text]]></MsgType>
   <Content><![CDATA[${
     status ? "登录成功" : "登录失败,请重新获得验证码"
@@ -112,9 +113,12 @@ async function handler(req: NextRequest, wechatMpApi: WechatMpApi) {
 </xml>`
     if (isEncrypt) {
       content = wechatMpApi.encryptMessage(content);
+      let msg_signature= wechatMpApi.createSignature([ timestamp+"", nonce! , content])
       content = `<xml>
   <Encrypt><![CDATA[${content}]]></Encrypt>
-  <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
+   <MsgSignature><![CDATA[${msg_signature}$]]></MsgSignature>
+    <TimeStamp>${timestamp}$</TimeStamp>
+    <Nonce><![CDATA[${nonce}$]]></Nonce>
 </xml>`
     }
 
