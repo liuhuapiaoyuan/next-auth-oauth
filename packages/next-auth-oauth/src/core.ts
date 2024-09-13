@@ -2,17 +2,20 @@
 
 import NextAuth, {
   Account,
-  CredentialsSignin
+  CredentialsSignin,
 } from "next-auth";
 import { Adapter, AdapterUser } from "next-auth/adapters";
+import { OAuthProviderButtonStyles, Provider } from "next-auth/providers";
 import credentials from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
-import { BindoAuthAccountInfo, CallbackSessionInFunction, CallbackSignInFunction, IUserService, NextAuthConfig, NextAuthResultType } from "./type";
+import { BindoAuthAccountInfo, CallbackJwtFunction, CallbackSessionInFunction, CallbackSignInFunction, IUserService, NextAuthConfig, NextAuthResultType } from "./type";
+
 function cleanBindAccountInfo() {
   const cookie = cookies();
   cookie.delete("nextauth.bind.account");
   cookie.delete("nextauth.bind.user");
 }
+ 
 /**
  * 从cookie获得绑定账号信息
  * @returns
@@ -32,6 +35,7 @@ export async function loadBindAccountInfo() :Promise<BindoAuthAccountInfo>{
     return { user: null, bindAccount: false, account: null };
   }
 }
+
 
 
 
@@ -72,7 +76,7 @@ export class CredentialsOauth {
             await this.authAdapter.linkAccount?.({
               ...account,
               userId: user.id,
-              type: account.type as "oauth",
+              type: (account.type ?? "oauth") as "oauth",
             });
             cleanBindAccountInfo();
           }
@@ -85,7 +89,7 @@ export class CredentialsOauth {
   
   
   private async signInCallback(params: Parameters<CallbackSignInFunction>[0]) {
-    const { user, account, profile:_ } = params;
+    const { user, account } = params;
     if (account?.type !== "oauth" && account?.type!=='oidc') {
       return true;
     }
@@ -115,6 +119,17 @@ export class CredentialsOauth {
     }
     return newSession
   }
+  private async jwtCallback(params:Parameters<CallbackJwtFunction>[0]) {
+    const { token, user, trigger } = params
+    if(trigger==='signIn') {
+      /* @ts-ignore */
+      token.name = user?.nickname??user?.name 
+      token.sub = user?.id
+      token.email = user?.email
+      token.picture = user?.image
+    }
+    return token
+  }
   
 
   /**
@@ -122,7 +137,7 @@ export class CredentialsOauth {
    * @param config
    * @returns
    */
-  public nextAuth(config: NextAuthConfig):NextAuthResultType {
+  public nextAuth(config: NextAuthConfig) :NextAuthResultType{
     const nextAuthInstance = NextAuth({
       ...config,
       providers: (config.providers ?? []).concat(this.getCredentialsProvider()),
@@ -141,14 +156,21 @@ export class CredentialsOauth {
           }
           return session
         },
-
+        jwt: async (params) => {
+          let token  =await this.jwtCallback(params)
+          if (typeof config.callbacks?.jwt==='function') {
+            return  config.callbacks?.jwt({...params, token})
+          }
+          return token
+        }
       },
     });
-     const oauthProviders = config.providers?.map((provider) => {
+     const oauthProviders = config.providers?.map((provider :Provider) => {
     if (typeof provider === "function") {
       provider = provider();
     }
-    return { id: provider.id, name: provider.name };
+    /* @ts-ignore */
+    return { id: provider.id, name: provider.name , style:provider.style  as OAuthProviderButtonStyles};
   })
   .filter((provider) => provider.id !== "credentials");
     /**
@@ -208,7 +230,6 @@ export class CredentialsOauth {
   }
 }
 
-
 /**
  * 封装好的支持授权绑定的服务
  * 1. 分装好regist注册`ServerAction`
@@ -230,7 +251,7 @@ export function AdavanceNextAuth(
     adapter: Adapter;
   }
 ) {
-  const {bindPage,   userService, pages , ...nextAuthConfig } = config;
+  const {bindPage,   userService,  ...nextAuthConfig } = config;
   const credentialsProvider = new CredentialsOauth(
     userService,
     config.adapter   , 

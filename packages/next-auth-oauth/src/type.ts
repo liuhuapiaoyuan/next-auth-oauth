@@ -1,7 +1,15 @@
+ 
+
+
+
+
 import type { Account, NextAuthConfig, NextAuthResult } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 
 type CallbacksType = NonNullable<NextAuthConfig["callbacks"]>;
+export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
+export type CallbackSessionInFunction = NonNullable<CallbacksType["session"]>
+export type CallbackJwtFunction = NonNullable<CallbacksType["jwt"]>
 
 export { NextAuthConfig };
 
@@ -30,8 +38,6 @@ export type NextAuthResultType = NextAuthResult & {
   unBindOauthAccountInfo: () => Promise<BindoAuthAccountInfo>;
 
 };
-export type CallbackSignInFunction = NonNullable<CallbacksType["signIn"]>;
-export type CallbackSessionInFunction = NonNullable<CallbacksType["session"]>;
 
 export interface DBAdapterUser extends Omit<AdapterUser, "email"> {
   /**
