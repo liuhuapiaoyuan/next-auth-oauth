@@ -1,5 +1,5 @@
 
-type WechatMpCaptchaManagerConfig = {
+export type WechatMpCaptchaManagerConfig = {
   /**
    * 过期时间
    * @default 60000 (1min)
