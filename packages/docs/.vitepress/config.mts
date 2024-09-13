@@ -26,8 +26,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/liuhuapiaoyuan/next-auth-oauth' },
-      { ariaLabel:"Auth.js",icon: 'https://authjs.dev/img/etc/logo-sm.webp', link: 'https://authjs.dev/' }
+      { icon: 'github', link: 'https://github.com/liuhuapiaoyuan/next-auth-oauth' }
     ]
   }
 })
