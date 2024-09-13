@@ -167,7 +167,7 @@ unBindOauthAccountInfo().then(() => {
 
 ## 许可证
 
-该项目采用 [MIT 许可证](LICENSE) 进行授权。
+该项目采用 [MIT 许可证] 进行授权。
 
 ---
 

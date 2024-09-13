@@ -5,6 +5,7 @@ export default defineConfig({
   cacheDir: './.vitepress/.vite' , 
   srcDir: '.',
   title: "🚀next-auth-oauth",
+  lastUpdated: true ,
   description: "next-auth-oauth，一款符合中国国情的第三方登录集成方案",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -13,6 +14,10 @@ export default defineConfig({
       { text: '快速启动', link: '/quickstart' },
       { text: '文档', link: '/markdown-examples' }
     ],
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2024-present Nextjs.Boy'
+    },
 
     sidebar: [
       {

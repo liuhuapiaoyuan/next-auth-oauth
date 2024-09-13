@@ -10,7 +10,7 @@ hero:
   actions:
     - theme: brand
       text: 快速启动
-      link: /markdown-examples
+      link: /quickstart
     - theme: alt
       text: Github访问
       link: https://github.com/liuhuapiaoyuan/next-auth-oauth
@@ -28,6 +28,10 @@ features:
     details: 配置 `bindPage` 支持自定义授权绑定页面 🎨
   - title: 国产化第三方登录集成
     details: 支持 `微信公众号登录` 🐉、`微信网页登录` 🌐、`Gitee` 登录 📚
+  - title: 微信公众关注登录
+    details: 支持 `非认证公众号验证码登录`，`支持认证账号场景二维码`登录 
+  - title: 适配国产OIDC服务商
+    details: 支持 `Authing`一键配置 📚
 ---
 
 
