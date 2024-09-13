@@ -10,7 +10,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },
-      { text: '快速启动', link: '/markdown-examples' },
+      { text: '快速启动', link: '/quickstart' },
       { text: '文档', link: '/markdown-examples' }
     ],
 
@@ -18,6 +18,7 @@ export default defineConfig({
       {
         text: '快速启动',
         items: [
+          { text: '使用', link: '/quickstart' },
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
@@ -25,7 +26,8 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/liuhuapiaoyuan/next-auth-oauth' }
+      { icon: 'github', link: 'https://github.com/liuhuapiaoyuan/next-auth-oauth' },
+      { ariaLabel:"Auth.js",icon: 'https://authjs.dev/img/etc/logo-sm.webp', link: 'https://authjs.dev/' }
     ]
   }
 })
