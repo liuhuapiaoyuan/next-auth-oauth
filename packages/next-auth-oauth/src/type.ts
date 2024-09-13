@@ -5,6 +5,7 @@
 
 import type { Account, NextAuthConfig, NextAuthResult } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
+import { OAuthProviderButtonStyles } from "next-auth/providers";
 
 type CallbacksType = NonNullable<NextAuthConfig["callbacks"]>;
 export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
@@ -24,6 +25,7 @@ export type NextAuthResultType = NextAuthResult & {
   oauthProviders: Array<{
     id: string;
     name: string;
+    style:OAuthProviderButtonStyles
   }>;
   listAccount: () => Promise<
     Array<{
