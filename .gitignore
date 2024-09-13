@@ -3,5 +3,5 @@ dist/
 .next/
 .env
 .env.local
-docs/.vitepress/dist
-docs/.vitepress/cache
+.vitepress/dist
+/**/.vitepress/.vite
