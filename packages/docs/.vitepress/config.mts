@@ -4,18 +4,19 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   cacheDir: './.vitepress/.vite' , 
   srcDir: '.',
-  title: "next-auth-oauth让你的Nextjs应用快速集成三方登录",
+  title: "🚀next-auth-oauth",
   description: "next-auth-oauth，一款符合中国国情的第三方登录集成方案",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '主页', link: '/' },
+      { text: '快速启动', link: '/markdown-examples' },
+      { text: '文档', link: '/markdown-examples' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '快速启动',
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
@@ -24,7 +25,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/liuhuapiaoyuan/next-auth-oauth' }
     ]
   }
 })

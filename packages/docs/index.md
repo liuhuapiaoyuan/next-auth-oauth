@@ -3,23 +3,46 @@
 layout: home
 
 hero:
-  name: "next-auth-oauth让你的Nextjs应用快速集成三方登录"
-  text: "next-auth-oauth，一款符合中国国情的第三方登录集成方案"
-  tagline: My great project tagline
+  name: "🚀next-auth-oauth"
+  text: "简化和增强你的Nextjs授权登录的处理 🔐"
+  image: "static/main.jpg"
+  tagline: "为国人🚩提供更爽的集成，支持微信登国内常用平台，规范短信验证码集成"
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 快速启动
       link: /markdown-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Github访问
+      link: https://github.com/liuhuapiaoyuan/next-auth-oauth
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 增强的 `signIn` 登录函数
+    details: 自动处理绑定场景和登录验证，将验证逻辑转发给 `UserService` 🔄
+  - title: 增加 Session
+    details: 自动处理 `jwt`/`database` 下不同情况的 `user.id` 填充 🗃️
+  - title: 多种授权操作
+    details: 支持登录、登出、注册、解绑第三方账号等 🔑
+  - title: 支持多种第三方登录提供商
+    details: 如 GitHub 和 WeChat 🌐
+  - title: 自定义绑定授权页面 UI
+    details: 配置 `bindPage` 支持自定义授权绑定页面 🎨
+  - title: 国产化第三方登录集成
+    details: 支持 `微信公众号登录` 🐉、`微信网页登录` 🌐、`Gitee` 登录 📚
 ---
 
+
+
+## 使用基本函数 🛠️
+
+1. **实现 `IUserService` 接口**: 用于处理用户相关操作 👤
+2. **配置授权适配器**: 根据需求设置授权适配器 🔧
+3. **导出如下字段**:
+
+   - **`signIn`**: 登录函数，增强后可以自动判断绑定场景/登录验证 🔑
+   - **`signOut`**: 登出函数 🚪
+   - **`auth`**: 授权函数 🛡️
+   - **`listAccount`**: 获得绑定的第三方数据 📊
+   - **`unBindOauthAccountInfo`**: 解绑第三方账号 🔓
+   - **`handlers`**: 授权函数的中间件 ⚙️
+   - **`regist`**: 账户注册函数 📝
+   - **`oauthProviders`**: 列出第三方登录提供商 🌐
