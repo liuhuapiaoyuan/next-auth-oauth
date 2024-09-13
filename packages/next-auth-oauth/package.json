@@ -1,6 +1,6 @@
 {
   "name": "next-auth-oauth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "`next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，用于简化和增强授权登录的处理。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，使得授权流程更加高效和灵活。",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -10,9 +10,15 @@
     "docs"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "release": "npm version patch && rollup -c && npm publish"
   },
-  "keywords": ["nextjs","next-auth","oauth","授权绑定"],
+  "keywords": [
+    "nextjs",
+    "next-auth",
+    "oauth",
+    "授权绑定"
+  ],
   "author": "liuhuapiaoyuan",
   "repository": {
     "type": "git",

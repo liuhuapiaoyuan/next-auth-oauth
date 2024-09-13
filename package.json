@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "pnpm -F ./packages/docs docs:dev",
     "docs:build": "pnpm -F ./packages/docs docs:build",
-    "docs:preview": "pnpm -F ./packages/docs docs:preview "
+    "docs:preview": "pnpm -F ./packages/docs docs:preview ",
+    "release": "pnpm -F ./packages/next-auth-oauth release "
   },
   "keywords": [],
   "author": "",
