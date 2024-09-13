@@ -25,8 +25,11 @@ export default defineConfig({
         text: '快速启动',
         items: [
           { text: '使用', link: '/quickstart' },
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '微信公众号网页登录', link: '/wechat-mp-h5' },
+          { text: '微信网页登录', link: '/wehcat-web' },
+          { text: '公众号-验证码登录', link: '/wechatmp-captcha' },
+          { text: '公众号-场景二维码登录', link: '/wechatmp-qrcode' },
+          { text: 'Gitee登录', link: '/gitee' }
         ]
       }
     ],
