@@ -9,5 +9,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.5.0",
+    "commitlint": "^19.5.0"
+  }
 }
