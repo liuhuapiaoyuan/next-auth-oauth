@@ -31,7 +31,14 @@ export default defineConfig({
           { text: '公众号-场景二维码登录', link: '/wechatmp-qrcode' },
           { text: 'Gitee登录', link: '/gitee' }
         ]
-      }
+      },
+      {
+        text: '其他',
+        items: [
+          { text: 'Next.js 我该怎么爱你？', link: '/nextjs-fuck' },
+          { text: '适合中国宝宝体质的第三方登录流程', link: '/chinese-third-party-login-flow' },
+        ]
+      },
     ],
 
     socialLinks: [
