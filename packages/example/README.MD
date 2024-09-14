@@ -1,4 +1,4 @@
-# Next.js 账户中心 启动模板（SQLite、Stripe、Tailwind、shadcn/ui）
+# next-auth-oauth应用案例
 
 
 

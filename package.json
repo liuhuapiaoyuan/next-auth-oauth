@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "example:dev": "pnpm -F ./packages/example dev",
     "docs:dev": "pnpm -F ./packages/docs docs:dev",
     "docs:build": "pnpm -F ./packages/docs docs:build",
     "docs:preview": "pnpm -F ./packages/docs docs:preview ",
