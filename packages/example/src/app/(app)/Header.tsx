@@ -33,15 +33,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <header className="sticky bg-white shadow top-0 z-30 flex py-2 items-center gap-4 border-b  px-4  sm:h-auto sm:border-0 sm:px-6 sm:shadow-none border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="icon" variant="outline" className="sm:hidden">
+          <Button size="icon" variant="outline" className="sm:hidden ">
             <PanelLeft className="h-5 w-5" />
             <span className="sr-only">切换菜单</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
+        <SheetContent side="left" className="sm:max-w-xs  bg-white">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               href="#"
@@ -123,7 +123,7 @@ export function Header() {
             className="overflow-hidden rounded-full"
           >
             <Image
-              src="/placeholder-user.jpg"
+              src="/logo.png"
               width={36}
               height={36}
               alt="头像"
@@ -132,10 +132,10 @@ export function Header() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuSeparator />
           <Link href="/profile">
             <DropdownMenuLabel>我的账户</DropdownMenuLabel>
           </Link>
+          <DropdownMenuSeparator />
           <Link href="/profile">
             <DropdownMenuLabel>设置</DropdownMenuLabel>
           </Link>

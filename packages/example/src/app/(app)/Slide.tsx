@@ -16,11 +16,26 @@ import {
   Users2,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export function Slide() {
   const [isOpen, setIsOpen] = useState(true);
-
+  const pathname = usePathname();
+  const menus = [
+    {
+      title: "工作台",
+      href: "/dashboard",
+      icon: <ShoppingCart className="h-5 w-5" />,
+    },
+    { title: "产品", href: "#", icon: <Package className="h-5 w-5" /> },
+    { title: "客户", href: "#", icon: <Users2 className="h-5 w-5" /> },
+    {
+      title: "分析",
+      href: "/analytics",
+      icon: <LineChart className="h-5 w-5" />,
+    },
+  ];
   return (
     <aside
       className={cn(
@@ -41,31 +56,19 @@ export function Slide() {
           <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className={isOpen ? "" : "sr-only"}>Acme Inc</span>
         </Link>
-        <AppMenuItem
-          href="#"
-          icon={<ShoppingCart className="h-5 w-5" />}
-          label="订单"
-          isOpen={isOpen}
-          className="bg-accent text-accent-foreground"
-        />
-        <AppMenuItem
-          href="#"
-          icon={<Package className="h-5 w-5" />}
-          label="产品"
-          isOpen={isOpen}
-        />
-        <AppMenuItem
-          href="#"
-          icon={<Users2 className="h-5 w-5" />}
-          label="客户"
-          isOpen={isOpen}
-        />
-        <AppMenuItem
-          href="#"
-          icon={<LineChart className="h-5 w-5" />}
-          label="分析"
-          isOpen={isOpen}
-        />
+
+        {menus.map((menu, index) => (
+          <AppMenuItem
+            key={index}
+            href={menu.href}
+            icon={menu.icon}
+            label={menu.title}
+            isOpen={isOpen}
+            className={
+              menu.href === pathname ? "bg-accent text-accent-foreground" : ""
+            }
+          />
+        ))}
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
         <Tooltip>

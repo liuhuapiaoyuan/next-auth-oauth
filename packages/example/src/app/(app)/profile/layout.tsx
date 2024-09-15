@@ -22,13 +22,6 @@ export default function ProfileLayout(props: PropsWithChildren) {
 
         <div className="flex">
           <nav className="flex  flex-col w-56 gap-4 text-sm text-muted-foreground">
-            {/* <Link href="#" className="font-semibold text-primary">
-            基本
-          </Link>
-          <Link href="#">密码</Link>
-          <Link href="#">集成</Link>
-          <Link href="#">组织</Link>
-          <Link href="#">高级</Link> */}
             {menus.map((menu) => (
               <Link
                 key={menu.href}
