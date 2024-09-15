@@ -6,36 +6,16 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  LineChart,
-  Package,
-  Package2,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, Package2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AppMenus } from "./Menus";
 
 export function Slide() {
   const [isOpen, setIsOpen] = useState(true);
   const pathname = usePathname();
-  const menus = [
-    {
-      title: "工作台",
-      href: "/dashboard",
-      icon: <ShoppingCart className="h-5 w-5" />,
-    },
-    { title: "产品", href: "#", icon: <Package className="h-5 w-5" /> },
-    { title: "客户", href: "#", icon: <Users2 className="h-5 w-5" /> },
-    {
-      title: "分析",
-      href: "/analytics",
-      icon: <LineChart className="h-5 w-5" />,
-    },
-  ];
+
   return (
     <aside
       className={cn(
@@ -57,7 +37,7 @@ export function Slide() {
           <span className={isOpen ? "" : "sr-only"}>Acme Inc</span>
         </Link>
 
-        {menus.map((menu, index) => (
+        {AppMenus.map((menu, index) => (
           <AppMenuItem
             key={index}
             href={menu.href}
