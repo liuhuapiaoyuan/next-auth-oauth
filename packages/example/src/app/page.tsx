@@ -1,18 +1,22 @@
-import Link from "next/link";
+import { Feature } from "./Fetaure";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { Hero } from "./Hero";
+import { Pricing } from "./Pricing";
 
 export default function Page() {
   return (
     <div>
-      这是一个langdingpage
-      <div>
-        <Link href="/auth/signin">登录系统</Link>
+      <div className="bg-white">
+        <Header />
+
+        <Hero />
       </div>
-      <div>
-        <Link href="/dashboard" className="hover:text-blue-300 underline">
-          工作台
-        </Link>
-      </div>
-      !
+      {/* Pricing */}
+      <Pricing />
+      <Feature />
+      {/* 页脚 */}
+      <Footer />
     </div>
   );
 }

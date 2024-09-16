@@ -104,7 +104,9 @@ export function Header() {
           </Link>
           <DropdownMenuItem>支持</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>登出</DropdownMenuItem>
+          <Link href="/">
+            <DropdownMenuItem>登出</DropdownMenuItem>
+          </Link>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
