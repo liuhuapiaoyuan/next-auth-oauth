@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
+import { UserCard } from "./UserCard";
 
 export default function ProfileLayout(props: PropsWithChildren) {
   const pathname = usePathname();
@@ -20,8 +21,9 @@ export default function ProfileLayout(props: PropsWithChildren) {
           <h1 className="text-3xl font-semibold">设置</h1>
         </div>
 
-        <div className="flex">
+        <div className="flex gap-5">
           <nav className="flex  flex-col w-56 gap-4 text-sm text-muted-foreground">
+            <UserCard/>
             {menus.map((menu) => (
               <Link
                 key={menu.href}
