@@ -20,8 +20,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { AppMenus } from "./Menus";
 import { QuickMenuButton } from "./QuickMenuButton";
+import { MobileMenus } from "./MobileMenus";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function Header() {
   return (
@@ -34,23 +35,7 @@ export function Header() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="sm:max-w-xs  bg-white">
-          <nav className="grid gap-6 text-lg font-medium">
-            <Link
-              href="#"
-              className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-            >
-              <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-              <span className="sr-only">Acme Inc</span>
-            </Link>
-
-            {AppMenus.map((menu, index) => {
-              return (
-                <Link key={index} href={menu.href}>
-                  {menu.title}
-                </Link>
-              );
-            })}
-          </nav>
+          <MobileMenus/>
         </SheetContent>
       </Sheet>
       <Breadcrumb className="hidden md:flex">
@@ -74,6 +59,9 @@ export function Header() {
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">
         <QuickMenuButton />
+      </div>
+      <div>
+        <ThemeSwitcher/>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

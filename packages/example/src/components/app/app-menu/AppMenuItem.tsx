@@ -23,7 +23,7 @@ export function AppMenuItem({
   className,
 }: AppMenuItemProps) {
   return (
-    <Tooltip>
+    <Tooltip delayDuration={0} >
       <TooltipTrigger asChild>
         <Link
           href={href}
