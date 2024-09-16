@@ -25,4 +25,21 @@
 - zod 用于数据教研
 
 
+# 实现功能：
+
+- [x] 登录页面
+- [x] 注册页面
+- [x] 微信公众号二维码扫描登录页面
+- [x] 第三方账号绑定页面
+- [x] Sass LandingPage
+- [x] Sass Dashboard
+- [ ] UserProfile （info/security/social/logout）
+- [x] 菜单栏/侧边栏(移动端兼容)
+- [x] 页面切换动画
+- [ ] 分页表格/列表的演示页面
+- [ ] 图表演示页面
+- [ ] 表单提交演示页面
+
+
+
 
