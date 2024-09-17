@@ -1,8 +1,9 @@
-import { Feature } from "./Fetaure";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
-import { Hero } from "./Hero";
-import { Pricing } from "./Pricing";
+import { Feature } from "./_components/Fetaure";
+import { Footer } from "./_components/Footer";
+import { Header } from "./_components/Header";
+import { Hero } from "./_components/Hero";
+import { Pricing } from "./_components/Pricing";
+import { Stack } from "./_components/Stack";
 
 export default function Page() {
   return (
@@ -12,6 +13,7 @@ export default function Page() {
 
         <Hero />
       </div>
+      <Stack/>
       {/* Pricing */}
       <Pricing />
       <Feature />

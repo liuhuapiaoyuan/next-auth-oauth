@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
-import { Header } from "./Header";
-import { Slide } from "./Slide";
+import { Header } from "./_components/Header";
+import { Slide } from "./_components/Slide";
 export const description = "SAAS工作台服务页面";
 
 export default function AppLayout(props: PropsWithChildren) {
