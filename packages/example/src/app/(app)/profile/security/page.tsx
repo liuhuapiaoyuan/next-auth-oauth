@@ -26,7 +26,10 @@ export default async function ProfileSecurityPage() {
           </form>
         </CardContent>
         <CardFooter className="border-t px-6 py-4">
-          <Button>提交修改</Button>
+          <Button
+          >
+更新密码
+          </Button>
         </CardFooter>
       </Card>
       <Card>
@@ -50,6 +53,20 @@ export default async function ProfileSecurityPage() {
         </CardContent>
         <CardFooter className="border-t px-6 py-4">
           <Button>Save</Button>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>账户删除</CardTitle>
+          <CardDescription>删除账户后无法恢复，请您谨慎处理！</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="flex flex-col gap-4">
+            <Input placeholder="输入操作密码"  />
+          </form>
+        </CardContent>
+        <CardFooter className="border-t px-6 py-4">
+          <Button className="bg-red-800">删除账户</Button>
         </CardFooter>
       </Card>
     </div>

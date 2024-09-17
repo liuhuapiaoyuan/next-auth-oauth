@@ -9,6 +9,20 @@ import {
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Combobox } from "./Combobox";
+ 
+const languages = [
+  { label: "English", value: "en" },
+  { label: "French", value: "fr" },
+  { label: "German", value: "de" },
+  { label: "Spanish", value: "es" },
+  { label: "Portuguese", value: "pt" },
+  { label: "Russian", value: "ru" },
+  { label: "Japanese", value: "ja" },
+  { label: "Korean", value: "ko" },
+  { label: "Chinese", value: "zh" },
+] 
 
 export default function ProfilePage() {
   return (
@@ -24,7 +38,7 @@ export default function ProfilePage() {
           </form>
         </CardContent>
         <CardFooter className="border-t px-6 py-4">
-          <Button>Save</Button>
+          <Button>保存</Button>
         </CardFooter>
       </Card>
       <Card>
@@ -38,6 +52,21 @@ export default function ProfilePage() {
         <CardContent>
           <form className="flex flex-col gap-4">
             <Input placeholder="Project Name" defaultValue="/content/plugins" />
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="email">邮箱</Label>
+              <Input type="email" id="email" placeholder="Email" />
+            </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="email">职业</Label>
+              <Input type="email" id="email" placeholder="Email" />
+            </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="email">兴趣</Label>
+             <Combobox
+             mode="multiple"
+             value={["en", "fr","ko","zh"]}
+             options={languages}/>
+            </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="include" defaultChecked />
               <label
@@ -50,7 +79,7 @@ export default function ProfilePage() {
           </form>
         </CardContent>
         <CardFooter className="border-t px-6 py-4">
-          <Button>Save</Button>
+          <Button>更新资料</Button>
         </CardFooter>
       </Card>
     </div>

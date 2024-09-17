@@ -4,15 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 import { UserCard } from "./UserCard";
+import { cn } from "@/lib/utils";
 
 export default function ProfileLayout(props: PropsWithChildren) {
   const pathname = usePathname();
   const menus = [
     { name: "基本", href: "/profile" },
+    { name: "活动", href: "/profile/activity" },
+    { name: "订阅", href: "/profile/subscript" },
     { name: "安全", href: "/profile/security" },
-    { name: "集成", href: "/profile/integration" },
-    { name: "组织", href: "/profile/organization" },
-    { name: "高级", href: "/profile/advanced" },
   ];
   return (
     <AnimatePresence>
@@ -23,14 +23,15 @@ export default function ProfileLayout(props: PropsWithChildren) {
 
         <div className="flex gap-5">
           <nav className="flex  flex-col w-56 gap-4 text-sm text-muted-foreground">
-            <UserCard/>
+            <UserCard />
             {menus.map((menu) => (
               <Link
                 key={menu.href}
                 href={menu.href}
-                className={`font-semibold ${
-                  pathname === menu.href ? "text-primary" : ""
-                }`}
+                className={cn(`font-semibold ${pathname === menu.href ? "text-primary" : ""
+                  }`,
+                  "hover:translate-x-4 transition-transform"
+                )}
               >
                 {menu.name}
               </Link>
