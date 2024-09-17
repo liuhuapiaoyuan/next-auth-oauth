@@ -19,7 +19,7 @@ export const AppMenus: Array<{
   },
   {
     title: "客户",
-    href: "#",
+    href: "/customer",
     icon: <Users2 className="h-5 w-5" />,
     keywords: ["customer", "客户"],
   },
