@@ -13,7 +13,7 @@ export const AppMenus: Array<{
   },
   {
     title: "产品",
-    href: "#",
+    href: "/product",
     icon: <Package className="h-5 w-5" />,
     keywords: ["product", "产品"],
   },

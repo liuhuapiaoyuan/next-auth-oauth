@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
-import { UserCard } from "./UserCard";
+import { UserCard } from "./_components/UserCard";
 import { cn } from "@/lib/utils";
 
 export default function ProfileLayout(props: PropsWithChildren) {
@@ -14,11 +14,12 @@ export default function ProfileLayout(props: PropsWithChildren) {
     { name: "订阅", href: "/profile/subscript" },
     { name: "安全", href: "/profile/security" },
   ];
+  const currentMenu = menus.find((menu) => menu.href === pathname);
   return (
     <AnimatePresence>
       <div className="w-full h-full flex flex-col gap-5">
         <div className="">
-          <h1 className="text-3xl font-semibold">设置</h1>
+          <h1 className="text-3xl font-semibold">{currentMenu?.name}</h1>
         </div>
 
         <div className="flex gap-5">
