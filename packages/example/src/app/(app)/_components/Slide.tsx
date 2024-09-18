@@ -6,7 +6,12 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  PanelRightClose,
+  PanelRightOpen,
+} from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { SlideHeader } from './SlideHeader'
@@ -14,6 +19,7 @@ import { SlideUserProfile } from './SlideUserProfile'
 import { SlideMenuItem } from './SlideMenuItem'
 import Link from 'next/link'
 import { UserCard } from './UserCard'
+import { Button } from '@/components/ui/button'
 
 export function Slide(props: {
   menus: Array<{
@@ -31,6 +37,7 @@ export function Slide(props: {
     <aside
       data-slide-state={isOpen ? 'open' : 'closed'}
       className={cn(
+        'relative',
         'inset-y-0 group left-0 transition-all z-10 hidden w-16 flex-col border-r bg-background sm:flex',
         isOpen && 'w-[260px]'
       )}
@@ -61,25 +68,25 @@ export function Slide(props: {
       <div className='px-2 sm:py-2 '>
         <UserCard />
       </div>
-      <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-2 '>
+      <div className='absolute right-0 translate-x-[50%] z-10 top-10'>
         <Tooltip>
           <TooltipTrigger asChild>
-            <div
+            <Button
               onClick={() => setIsOpen(!isOpen)}
-              className='flex  items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground'
+              className='flex  items-center justify-center w-10 h-10 p-0 rounded-full bg-white border text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground  '
             >
               {isOpen ? (
-                <ArrowLeftIcon className='h-5 w-5' />
+                <PanelRightOpen className='h-5 w-5' />
               ) : (
-                <ArrowRightIcon className='h-5 w-5' />
+                <PanelRightClose className='h-5 w-5' />
               )}
               <span className='sr-only'>设置</span>
-            </div>
+            </Button>
           </TooltipTrigger>
           <TooltipContent side='right'>切换菜单</TooltipContent>
         </Tooltip>
         {/* <SlideUserProfile simple={!isOpen} /> */}
-      </nav>
+      </div>
     </aside>
   )
 }

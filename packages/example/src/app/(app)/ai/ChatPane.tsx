@@ -2,7 +2,7 @@ import { Plus, TextSearch } from 'lucide-react'
 
 export function ChatPane() {
   return (
-    <div className='max-w-xl flex flex-col rounded-lg border border-slate-300  py-8 dark:border-slate-200/10 dark:bg-slate-900'>
+    <div className='max-w-xl h-full flex flex-col rounded-lg border border-slate-300  py-8 dark:border-slate-200/10 dark:bg-slate-900'>
       <div className='flex items-start'>
         <h2 className='inline px-5 text-lg font-medium text-slate-800 dark:text-slate-200'>
           对话
@@ -33,7 +33,7 @@ export function ChatPane() {
         </div>
       </form>
 
-      <div className='my-4 flex-1 space-y-4 overflow-y-auto px-2'>
+      <div className='my-4 flex-1  h-1 space-y-4 overflow-y-auto px-2'>
         <button className='flex w-full flex-col gap-y-2 rounded-lg px-3 py-2 text-left transition-colors duration-200 hover:bg-slate-200 focus:outline-none dark:hover:bg-slate-800'>
           <h1 className='text-sm font-medium capitalize text-slate-700 dark:text-slate-200'>
             Tailwind Classes
@@ -74,20 +74,6 @@ export function ChatPane() {
       <div className='mx-2 mt-8'>
         <button className='flex w-full flex-row-reverse justify-between rounded-lg bg-slate-600 p-4 text-sm font-medium text-slate-200 transition-colors duration-200 hover:bg-primary-600 focus:outline-none dark:bg-slate-800 dark:hover:bg-primary-600'>
           <Plus className='size-5' />
-          {/* <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-5 w-5'
-            viewBox='0 0 24 24'
-            stroke-width='2'
-            stroke='currentColor'
-            fill='none'
-            stroke-linecap='round'
-            strokeLinejoin='round'
-          >
-            <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-            <path d='M12 5l0 14' />
-            <path d='M5 12l14 0' />
-          </svg> */}
           <span>New Chat</span>
         </button>
       </div>
