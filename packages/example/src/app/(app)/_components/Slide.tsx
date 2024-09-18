@@ -65,9 +65,11 @@ export function Slide(props: {
           ))}
         </div>
       </nav>
-      <div className='px-2 sm:py-2 '>
-        <UserCard />
-      </div>
+      {isOpen && (
+        <div className='px-2 sm:py-2  '>
+          <UserCard />
+        </div>
+      )}
       <div className='absolute right-0 translate-x-[50%] z-10 top-10'>
         <Tooltip>
           <TooltipTrigger asChild>

@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { UserAvatar } from './UserAvatar'
+import { UserCard } from './UserCard'
 export function UserProfile(props: PropsWithChildren<{}>) {
   const { children } = props
   return (
@@ -19,7 +19,9 @@ export function UserProfile(props: PropsWithChildren<{}>) {
       <DropdownMenuContent align='end'>
         <Link href='/profile'>
           <DropdownMenuLabel>
-            <UserAvatar />
+            <div className='w-[250px]'>
+              <UserCard />
+            </div>
           </DropdownMenuLabel>
         </Link>
         <DropdownMenuSeparator />
