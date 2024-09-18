@@ -42,7 +42,10 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "rc",
+    "eslint-config-prettier": "^9.1.0",
     "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
