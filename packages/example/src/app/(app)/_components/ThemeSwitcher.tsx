@@ -15,9 +15,7 @@ export function ThemeSwitcher() {
           size='icon'
           className='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground size-8'
         >
-          <div>
-            <Sun width={15} />
-          </div>
+          <Sun width='50%' />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>

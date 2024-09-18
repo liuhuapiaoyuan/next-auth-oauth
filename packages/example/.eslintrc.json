@@ -1,9 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
-    "react/self-closing-comp": "warn"
+    "react/self-closing-comp": "error"
   }
 }
