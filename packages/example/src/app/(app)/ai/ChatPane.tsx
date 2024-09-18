@@ -1,11 +1,13 @@
+import { Plus, TextSearch } from 'lucide-react'
+
 export function ChatPane() {
   return (
-    <div className='max-w-xl flex flex-col rounded-lg border border-slate-300 bg-slate-50 py-8 dark:border-slate-200/10 dark:bg-slate-900'>
+    <div className='max-w-xl flex flex-col rounded-lg border border-slate-300  py-8 dark:border-slate-200/10 dark:bg-slate-900'>
       <div className='flex items-start'>
         <h2 className='inline px-5 text-lg font-medium text-slate-800 dark:text-slate-200'>
-          Chats
+          对话
         </h2>
-        <span className='rounded-full bg-blue-600 px-2 py-1 text-xs text-slate-200'>
+        <span className='rounded-full bg-primary px-2 py-1 text-xs text-slate-200'>
           24
         </span>
       </div>
@@ -17,32 +19,15 @@ export function ChatPane() {
           <input
             id='search-chats'
             type='text'
-            className='w-full rounded-lg border border-slate-300 bg-slate-50 p-3 pr-10 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200'
+            className='w-full rounded-lg border border-slate-300 bg-slate-50 p-3 pr-10 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200'
             placeholder='Search chats'
             required
           />
           <button
             type='button'
-            className='absolute bottom-2 right-2.5 rounded-lg p-2 text-sm text-slate-500 hover:text-blue-700 focus:outline-none sm:text-base'
+            className='absolute bottom-2 right-2.5 rounded-lg p-2 text-sm text-slate-500 hover:text-primary focus:outline-none sm:text-base'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-5 w-5'
-              aria-hidden='true'
-              viewBox='0 0 24 24'
-              stroke-width='2'
-              stroke='currentColor'
-              fill='none'
-              stroke-linecap='round'
-              strokeLinejoin='round'
-            >
-              <path stroke='none' d='M0 0h24v24H0z' fill='none' />
-              <path d='M8 9h8' />
-              <path d='M8 13h5' />
-              <path d='M11.008 19.195l-3.008 1.805v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v4.5' />
-              <path d='M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0' />
-              <path d='M20.2 20.2l1.8 1.8' />
-            </svg>
+            <TextSearch className='size-5' />
             <span className='sr-only'>Search chats</span>
           </button>
         </div>
@@ -87,8 +72,9 @@ export function ChatPane() {
         </button>
       </div>
       <div className='mx-2 mt-8'>
-        <button className='flex w-full flex-row-reverse justify-between rounded-lg bg-slate-600 p-4 text-sm font-medium text-slate-200 transition-colors duration-200 hover:bg-blue-600 focus:outline-none dark:bg-slate-800 dark:hover:bg-blue-600'>
-          <svg
+        <button className='flex w-full flex-row-reverse justify-between rounded-lg bg-slate-600 p-4 text-sm font-medium text-slate-200 transition-colors duration-200 hover:bg-primary-600 focus:outline-none dark:bg-slate-800 dark:hover:bg-primary-600'>
+          <Plus className='size-5' />
+          {/* <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-5 w-5'
             viewBox='0 0 24 24'
@@ -101,7 +87,7 @@ export function ChatPane() {
             <path stroke='none' d='M0 0h24v24H0z' fill='none' />
             <path d='M12 5l0 14' />
             <path d='M5 12l14 0' />
-          </svg>
+          </svg> */}
           <span>New Chat</span>
         </button>
       </div>

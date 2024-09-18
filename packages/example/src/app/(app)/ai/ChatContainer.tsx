@@ -17,7 +17,7 @@ export function ChatContainer() {
           </div>
         </div>
         <div className='mb-2 flex w-full flex-row justify-end gap-x-2 text-slate-500'>
-          <button className='hover:text-blue-600'>
+          <button className='hover:text-primary-600'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -32,7 +32,7 @@ export function ChatContainer() {
               <path d='M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3' />
             </svg>
           </button>
-          <button className='hover:text-blue-600' type='button'>
+          <button className='hover:text-primary-600' type='button'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -47,7 +47,7 @@ export function ChatContainer() {
               <path d='M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3' />
             </svg>
           </button>
-          <button className='hover:text-blue-600' type='button'>
+          <button className='hover:text-primary-600' type='button'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -99,7 +99,7 @@ export function ChatContainer() {
           </div>
         </div>
         <div className='mb-2 flex w-full flex-row justify-end gap-x-2 text-slate-500'>
-          <button className='hover:text-blue-600'>
+          <button className='hover:text-primary-600'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -114,7 +114,7 @@ export function ChatContainer() {
               <path d='M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3' />
             </svg>
           </button>
-          <button className='hover:text-blue-600' type='button'>
+          <button className='hover:text-primary-600' type='button'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -129,7 +129,7 @@ export function ChatContainer() {
               <path d='M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3' />
             </svg>
           </button>
-          <button className='hover:text-blue-600' type='button'>
+          <button className='hover:text-primary-600' type='button'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -162,13 +162,13 @@ export function ChatContainer() {
       </div>
 
       <div className='mt-4 flex w-full gap-x-2 overflow-x-auto whitespace-nowrap text-xs text-slate-600 dark:text-slate-300 sm:text-sm'>
-        <button className='rounded-lg bg-slate-200 p-2 hover:bg-blue-600 hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-blue-600 dark:hover:text-slate-50'>
+        <button className='rounded-lg bg-slate-200 p-2 hover:bg-primary hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-primary dark:hover:text-slate-50'>
           Regenerate response
         </button>
-        <button className='rounded-lg bg-slate-200 p-2 hover:bg-blue-600 hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-blue-600 dark:hover:text-slate-50'>
+        <button className='rounded-lg bg-slate-200 p-2 hover:bg-primary hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-primary dark:hover:text-slate-50'>
           Use prompt suggestions
         </button>
-        <button className='rounded-lg bg-slate-200 p-2 hover:bg-blue-600 hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-blue-600 dark:hover:text-slate-50'>
+        <button className='rounded-lg bg-slate-200 p-2 hover:bg-primary hover:text-slate-200 dark:bg-slate-800 dark:hover:bg-primary dark:hover:text-slate-50'>
           Toggle web search
         </button>
       </div>

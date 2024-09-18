@@ -19,7 +19,7 @@ export function ChatContainerInput() {
     <form
       action={async () => {
         await submit()
-        alert('提交成功')
+        alert('submit success')
       }}
     >
       <label htmlFor='chat-input' className='sr-only'>
@@ -34,7 +34,7 @@ export function ChatContainerInput() {
         </Button>
         <textarea
           id='chat-input'
-          className='block w-full resize-none rounded-xl border-none bg-slate-200 p-4 pl-10 pr-20 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-slate-200 dark:placeholder-slate-400 dark:focus:ring-blue-500 sm:text-base'
+          className='block w-full resize-none rounded-xl border-none bg-slate-200 p-4 pl-10 pr-20 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary dark:bg-slate-800 dark:text-slate-200 dark:placeholder-slate-400 dark:focus:ring-blue-500 sm:text-base'
           placeholder='Enter your prompt'
           rows={1}
           required
