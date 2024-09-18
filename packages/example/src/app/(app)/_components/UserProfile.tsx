@@ -29,7 +29,9 @@ export function UserProfile(props: PropsWithChildren<{}>) {
         <Link href='/profile/security'>
           <DropdownMenuItem>安全</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>支持</DropdownMenuItem>
+        <Link href='/pricing'>
+          <DropdownMenuItem>订阅</DropdownMenuItem>
+        </Link>
         <DropdownMenuSeparator />
         <Link href='/'>
           <DropdownMenuItem>登出</DropdownMenuItem>

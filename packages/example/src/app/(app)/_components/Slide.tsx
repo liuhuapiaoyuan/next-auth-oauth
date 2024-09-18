@@ -12,6 +12,8 @@ import { useState } from 'react'
 import { SlideHeader } from './SlideHeader'
 import { SlideUserProfile } from './SlideUserProfile'
 import { SlideMenuItem } from './SlideMenuItem'
+import Link from 'next/link'
+import { UserCard } from './UserCard'
 
 export function Slide(props: {
   menus: Array<{
@@ -33,7 +35,7 @@ export function Slide(props: {
         isOpen && 'w-[260px]'
       )}
     >
-      <nav>
+      <nav className='flex-1'>
         <SlideHeader />
         <div
           className='flex
@@ -56,7 +58,10 @@ export function Slide(props: {
           ))}
         </div>
       </nav>
-      <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-2'>
+      <div className='px-2 sm:py-2 '>
+        <UserCard />
+      </div>
+      <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-2 '>
         <Tooltip>
           <TooltipTrigger asChild>
             <div
@@ -73,7 +78,7 @@ export function Slide(props: {
           </TooltipTrigger>
           <TooltipContent side='right'>切换菜单</TooltipContent>
         </Tooltip>
-        <SlideUserProfile simple={!isOpen} />
+        {/* <SlideUserProfile simple={!isOpen} /> */}
       </nav>
     </aside>
   )
