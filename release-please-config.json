@@ -12,6 +12,7 @@
   },
   "plugins": [
     {
+      "type": "node-workspace",
       "name": "node-workspace",
       "updateAllPackages": true
     }
