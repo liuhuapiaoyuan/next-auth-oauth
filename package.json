@@ -4,13 +4,12 @@
   "version": "1.0.5",
   "description": "",
   "main": "index.js",
-  "workspaces": ["packages/*","app"],
+  "workspaces": ["packages/*","apps/*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "pnpm -F ./packages/docs docs:dev",
-    "docs:build": "pnpm -F ./packages/docs docs:build",
-    "docs:preview": "pnpm -F ./packages/docs docs:preview ",
-    "release": "pnpm -F ./packages/next-auth-oauth release "
+    "docs:dev":"bun --filter 'docs' docs:dev",
+    "docs:build":"bun --filter 'docs' docs:build",
+    "release": "bun --filter 'next-auth-oauth' release",
+    "dev": "bun --filter 'next-auth-oauth' dev"
   },
   "keywords": [],
   "author": "",

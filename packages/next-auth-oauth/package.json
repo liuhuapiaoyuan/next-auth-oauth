@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "dev": "rollup -c -w",
     "release": "rollup -c && npm publish"
   },
   "keywords": [

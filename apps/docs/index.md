@@ -5,7 +5,8 @@ layout: home
 hero:
   name: "🚀next-auth-oauth"
   text: "一键启动完善登录套件的Nextjs应用 🔐"
-  image: "static/main.jpg"
+  image: 
+    src: ./static/main.jpg
   tagline: "为国人🚩提供更爽的集成，支持微信登国内常用平台，规范短信验证码集成"
   actions:
     - theme: brand
