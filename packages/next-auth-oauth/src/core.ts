@@ -231,6 +231,18 @@ export class CredentialsOauth {
   }
 }
 
+
+export type AdavanceNextAuthConfig = NextAuthConfig & {
+  /**
+   * 第三方账号首次登录绑定页面
+   */
+  bindPage?:string
+  /**
+   * 配置用户数据库服务
+   */
+  userService: IUserService;
+  adapter: Adapter;
+}
 /**
  * 封装好的支持授权绑定的服务
  * 1. 分装好regist注册`ServerAction`
@@ -239,19 +251,7 @@ export class CredentialsOauth {
  * @param config
  * @returns
  */
-export function AdavanceNextAuth(
-  config: NextAuthConfig & {
-    /**
-     * 第三方账号首次登录绑定页面
-     */
-    bindPage?:string
-    /**
-     * 配置用户数据库服务
-     */
-    userService: IUserService;
-    adapter: Adapter;
-  }
-) {
+export function AdavanceNextAuth(config:AdavanceNextAuthConfig) {
   const {bindPage,   userService,  ...nextAuthConfig } = config;
   const credentialsProvider = new CredentialsOauth(
     userService,

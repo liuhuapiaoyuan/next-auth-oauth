@@ -6,22 +6,27 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
-    "react": "rc",
-    "react-dom": "rc",
+    "@auth/prisma-adapter": "^2.7.0",
+    "@prisma/client": "^5.20.0",
     "next": "canary",
-    "next-auth-oauth":"workspace:*"
+    "next-auth": "^5.0.0-beta.22",
+    "next-auth-oauth": "workspace:*",
+    "react": "rc",
+    "react-dom": "rc"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^8",
-    "eslint-config-next": "canary"
+    "eslint-config-next": "canary",
+    "postcss": "^8",
+    "prisma": "^5.20.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

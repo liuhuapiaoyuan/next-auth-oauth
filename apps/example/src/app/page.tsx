@@ -1,101 +1,62 @@
+import { auth } from "@/lib/auth/auth";
+import { SignInButton } from "@/components/SignInButton";
+import { SignOutButton } from "@/components/SignOutButton";
+import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "一起学习Next-auth",
+  description: "一起学习Next-auth",
+};
+
+export default async function Home() {
+  const session = await auth();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
+          src="/logo.png"
+          alt="Next.js Boy"
           width={180}
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
+        <div>当前账号信息 ：{session?.user?.name ?? "未登录"}</div>
+        {session?.user && (
+          <>
+            {session.user.image && (
+              <Image
+                className="dark:invert"
+                src={session.user.image}
+                alt="Next.js Boy"
+                width={180}
+                height={38}
+                priority
+              />
+            )}
+            <div>userId/email：{session?.user?.email}</div>
+            <div>昵称：{session?.user?.name}</div>
+            <code className="text-xs p-2 bg-gray-100 rounded-md shadow">
+              {JSON.stringify(session.user, null, 2)}
             </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+          </>
+        )}
+        <div className="flex gap-4">
+          <SignInButton />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-[#2933c2] text-background gap-2 hover:bg-[#175d86] dark:hover:bg-[#175d86] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            type="submit"
+            href="/protected"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            个人信息(如未登录则会跳转到登录页面)
+          </Link>
+
+          {session?.user && <SignOutButton />}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
