@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "release": "npm version patch && rollup -c && npm publish"
+    "release": "rollup -c && npm publish"
   },
   "keywords": [
     "nextjs",

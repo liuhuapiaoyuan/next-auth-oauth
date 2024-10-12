@@ -1,0 +1,20 @@
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+name: publish-npm
+
+jobs:
+  publish-npm:
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
+      - name: install app dependencies and build it
+        run: bun i && bun release
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
