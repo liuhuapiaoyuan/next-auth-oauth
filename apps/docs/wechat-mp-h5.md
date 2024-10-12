@@ -2,10 +2,7 @@
 outline: deep
 ---
 
-
 # 使用微信公众号网页登录
-
-
 
 ## 1. 注册微信公众号
 
@@ -22,13 +19,15 @@ outline: deep
 
 ```typescript
 import NextAuth from 'next-auth'
-import {Wechat} from 'next-auth-oauth'
+import { Wechat } from 'next-auth-oauth'
 
 export default NextAuth({
-  providers: [ Wechat]
-  })
+  providers: [Wechat],
+})
 ```
+
 ## 3. 配置`Wechat`的环境变量,修改`.env`文件
+
 ```
 AUTH_WECHAT_APP_ID=your_app_id
 AUTH_WECHAT_APP_SECRET=your_app_secret

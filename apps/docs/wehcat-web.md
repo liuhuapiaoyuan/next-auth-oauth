@@ -2,9 +2,7 @@
 outline: deep
 ---
 
-
 # 使用微信开放平台网页登录
-
 
 ## 1. 注册微信开放平台
 
@@ -20,12 +18,13 @@ outline: deep
 
 ```typescript
 import NextAuth from 'next-auth'
-import {Wechat} from 'next-auth-oauth'
+import { Wechat } from 'next-auth-oauth'
 
 export default NextAuth({
-    providers: [ Wechat],
+  providers: [Wechat],
 })
 ```
+
 ## 4. 配置环境变量
 
 在 `.env` 文件中添加以下内容：
@@ -36,4 +35,3 @@ WECHAT_SECRET=your_app_secret
 AUTH_WECHAT_PLATFORM_TYPE=WebsiteApp # 开放平台网页登录
 
 ```
-

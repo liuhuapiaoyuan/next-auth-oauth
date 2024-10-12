@@ -1,110 +1,110 @@
-import type { OAuthUserConfig, OIDCConfig } from "next-auth/providers";
+import type { OAuthUserConfig, OIDCConfig } from 'next-auth/providers'
 
 export interface AuthingProfile {
   /**
    * 订阅标识符
    */
-  sub: string;
+  sub: string
 
   /**
    * 受众标识符
    */
-  aud: string;
+  aud: string
 
   /**
    * 签发时间，UNIX时间戳
    */
-  iat: number;
+  iat: number
 
   /**
    * 过期时间，UNIX时间戳
    */
-  exp: number;
+  exp: number
 
   /**
    * 签发者 URL
    */
-  iss: string;
+  iss: string
 
   /**
    * 名字
    */
-  name: string | null;
+  name: string | null
 
   /**
    * 名
    */
-  given_name: string | null;
+  given_name: string | null
 
   /**
    * 中间名
    */
-  middle_name: string | null;
+  middle_name: string | null
 
   /**
    * 姓氏
    */
-  family_name: string | null;
+  family_name: string | null
 
   /**
    * 昵称
    */
-  nickname: string | null;
+  nickname: string | null
 
   /**
    * 首选用户名
    */
-  preferred_username: string | null;
+  preferred_username: string | null
 
   /**
    * 个人资料 URL
    */
-  profile: string | null;
+  profile: string | null
 
   /**
    * 头像 URL
    */
-  picture: string;
+  picture: string
 
   /**
    * 个人网站 URL
    */
-  website: string | null;
+  website: string | null
 
   /**
    * 出生日期
    */
-  birthdate: string | null;
+  birthdate: string | null
 
   /**
    * 性别
    */
-  gender: string;
+  gender: string
 
   /**
    * 时区信息
    */
-  zoneinfo: string | null;
+  zoneinfo: string | null
 
   /**
    * 语言区域
    */
-  locale: string | null;
+  locale: string | null
 
   /**
    * 更新日期和时间
    */
-  updated_at: string;
+  updated_at: string
 
   /**
    * 电子邮件地址
    */
-  email: string | null;
+  email: string | null
 
   /**
    * 电子邮件是否已验证
    */
-  email_verified: boolean;
+  email_verified: boolean
 }
 
 /**
@@ -121,43 +121,42 @@ export default function Authing<P extends AuthingProfile>(
      * 查看应用-配置信息-认证配置-认证地址(点击复制)
      * @example https://demo.authing.cn/oidc/auth
      */
-    domain?: string;
-  } = {}
+    domain?: string
+  } = {},
 ): OIDCConfig<P> {
   const {
     clientId = process.env.AUTH_AUTHING_ID!,
     clientSecret = process.env.AUTH_AUTHING_SECRET!,
-    checks = ["state"],
+    checks = ['state'],
     domain = process.env.AUTH_AUTHING_DOMAIN!,
     ...rest
-  } = options;
+  } = options
 
   return {
-    id: "authing", 
-    name: "Authing",
-    type: "oidc",
-    style: { logo: "/providers/Authing.jpg", bg: "#fff", text: "#000" },
-    checks: ["state"],
+    id: 'authing',
+    name: 'Authing',
+    type: 'oidc',
+    style: { logo: '/providers/Authing.jpg', bg: '#fff', text: '#000' },
+    checks: ['state'],
     clientId,
     clientSecret,
     idToken: true,
-    issuer: domain + "/oidc", 
-    jwks_endpoint: domain + "/oidc/.well-known/jwks.json",
-    authorization:{
+    issuer: domain + '/oidc',
+    jwks_endpoint: domain + '/oidc/.well-known/jwks.json',
+    authorization: {
       params: {
-        scope:"openid email username profile phone"
-      }
+        scope: 'openid email username profile phone',
+      },
     },
-    wellKnown:
-      domain + "/oidc/.well-known/openid-configuration",
+    wellKnown: domain + '/oidc/.well-known/openid-configuration',
     profile: (profile) => {
       return {
-        id: profile.sub + "",
-        name: profile.nickname??profile.sub,
+        id: profile.sub + '',
+        name: profile.nickname ?? profile.sub,
         email: profile.email,
         image: profile.picture,
-      };
+      }
     },
     ...rest,
-  } satisfies OIDCConfig<P>;
+  } satisfies OIDCConfig<P>
 }

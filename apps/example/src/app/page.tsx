@@ -1,17 +1,17 @@
-import { auth } from "@/lib/auth/auth";
-import { SignInButton } from "@/components/SignInButton";
-import { SignOutButton } from "@/components/SignOutButton";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import { auth } from '@/lib/auth/auth'
+import { SignInButton } from '@/components/SignInButton'
+import { SignOutButton } from '@/components/SignOutButton'
+import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: "一起学习Next-auth",
-  description: "一起学习Next-auth",
-};
+  title: '一起学习Next-auth',
+  description: '一起学习Next-auth',
+}
 
 export default async function Home() {
-  const session = await auth();
+  const session = await auth()
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -23,7 +23,7 @@ export default async function Home() {
           height={38}
           priority
         />
-        <div>当前账号信息 ：{session?.user?.name ?? "未登录"}</div>
+        <div>当前账号信息 ：{session?.user?.name ?? '未登录'}</div>
         {session?.user && (
           <>
             {session.user.image && (
@@ -58,5 +58,5 @@ export default async function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }

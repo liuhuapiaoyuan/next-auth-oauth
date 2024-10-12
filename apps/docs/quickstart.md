@@ -1,4 +1,3 @@
-
 ## 项目介绍
 
 大部分介绍Nextjs的课程都在使用第三方OIDC平台，比如`Clerk`,`Auth0`,但是如果我的项目只是一个简单的小项目，我期待用`Nextjs`的全栈能力降低我的部署成本，我不希望依赖一些第三方的登录平台，那该怎么办？
@@ -7,11 +6,10 @@
 
 为了解决这个问题，我开发了`next-auth-oauth`插件，它可以帮助你快速集成第三方平台登录，并且可以绑定第三方账号，并且可以快速的集成到你的`Nextjs`项目中。
 
-
-
 ## 快速开始 🚀
 
 ### 安装插件：
+
 在你的 Next.js 项目中，首先需要安装 `next-auth-oauth` 及其相关依赖：
 
 ```bash
@@ -24,24 +22,20 @@ npm install next-auth-oauth @auth/prisma-adapter next-auth@beta
 yarn add next-auth-oauth @auth/prisma-adapter next-auth@beta
 ```
 
-
-
-
-
 ### 配置授权适配器
 
 首先，配置你的授权适配器。下面的代码示例展示了如何将 `PrismaAdapter` 与 `next-auth-oauth` 配合使用：
 
 ```typescript
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { AdavanceNextAuth } from 'next-auth-oauth';
-import { GitHub, Wechat } from 'next-auth/providers';
-import { UserService } from './userService'; // 实现 IUserService 接口的服务类
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { AdavanceNextAuth } from 'next-auth-oauth'
+import { GitHub, Wechat } from 'next-auth/providers'
+import { UserService } from './userService' // 实现 IUserService 接口的服务类
 
 /**
  * 授权适配器
  */
-export const authAdapter = PrismaAdapter(prisma);
+export const authAdapter = PrismaAdapter(prisma)
 
 /**
  * 导出如下字段：
@@ -54,26 +48,23 @@ export const authAdapter = PrismaAdapter(prisma);
  * regist: 账户注册函数
  * oauthProviders: 列出第三方登录提供商
  */
-export const { 
-  signIn, 
+export const {
+  signIn,
   signOut,
-  listAccount, 
+  listAccount,
   unBindOauthAccountInfo,
-  auth, 
+  auth,
   handlers,
   regist,
-  oauthProviders 
+  oauthProviders,
 } = AdavanceNextAuth({
   ...AuthConfig,
-  providers: [
-    GitHub,
-    Wechat, 
-  ],
+  providers: [GitHub, Wechat],
   /* 自定义绑定授权页面 */
-  bindPage: "/auth/bind",
-  adapter: authAdapter, 
-  userService: new UserService()
-});
+  bindPage: '/auth/bind',
+  adapter: authAdapter,
+  userService: new UserService(),
+})
 ```
 
 ### 实现 `IUserService` 接口
@@ -91,36 +82,38 @@ export interface IUserService {
   login(
     username: string,
     password: string,
-    type?: "password" | "mobile"
-  ): Promise<DBAdapterUser>;
+    type?: 'password' | 'mobile',
+  ): Promise<DBAdapterUser>
 
   /**
    * 注册账号
-   * @param user 
+   * @param user
    */
   registUser(user: {
-    username: string;
-    password: string;
+    username: string
+    password: string
     /**
      * 表单提交的数据，比如：
      * @param nickname:string, // 昵称
      * @param email:string, // 邮箱
      * @param mobile:string, // 手机
      */
-    formData: Record<string, string>;
+    formData: Record<string, string>
     /* 支持其他参数 */
-  }): Promise<DBAdapterUser>;
+  }): Promise<DBAdapterUser>
 
   /**
    * 绑定的第三方授权信息
-   * @param userId 
+   * @param userId
    */
-  listAccount(userId: string): Promise<Array<{
-    type: string;
-    id: string;
-    provider: string;
-    providerAccountId: string;
-  }>>;
+  listAccount(userId: string): Promise<
+    Array<{
+      type: string
+      id: string
+      provider: string
+      providerAccountId: string
+    }>
+  >
 }
 ```
 
@@ -133,7 +126,7 @@ export interface IUserService {
 
 export default function UserProfilePage(){
     // 获得账户信息
-    const session = await auth() 
+    const session = await auth()
     // 获得绑定信息
     const bindListAccount = await listAccount()
 
@@ -164,11 +157,11 @@ unBindOauthAccountInfo().then(() => {
 ```
 
 ## 案例: 打造基于`nextjs`、`prisma`和`next-auth-oauth`的完整授权系统
+
 ![登录](static/nextjs-uaa-login-pc.png)
 ![移动端兼容](static/nextjs-uaa-login.png)
 ![注册](static/nextjs-uaa-regist.png)
 ![账户登录绑定](static/nextjs-uaa-oauth-login.png)
-
 
 ## 贡献
 
@@ -180,4 +173,4 @@ unBindOauthAccountInfo().then(() => {
 
 ---
 
-如需更多信息，请参阅 [NextAuth 官方文档](https://next-auth.js.org/) 以了解如何集成授权功能。 
+如需更多信息，请参阅 [NextAuth 官方文档](https://next-auth.js.org/) 以了解如何集成授权功能。

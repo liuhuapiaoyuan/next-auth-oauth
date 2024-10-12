@@ -1,17 +1,23 @@
-import { AuthError } from "next-auth"
-import type { AuthorizationEndpointHandler, OAuth2Config, OAuthUserConfig, TokenEndpointHandler, UserinfoEndpointHandler } from "next-auth/providers"
-
+import { AuthError } from 'next-auth'
+import type {
+  AuthorizationEndpointHandler,
+  OAuth2Config,
+  OAuthUserConfig,
+  TokenEndpointHandler,
+  UserinfoEndpointHandler,
+} from 'next-auth/providers'
 
 type WechatPlatform = {
-  platformType?: "OfficialAccount" | "WebsiteApp"
+  platformType?: 'OfficialAccount' | 'WebsiteApp'
 }
 
 const WEHCAT_PLATFORM_AuthorizationEndpointUrl = {
-  OfficialAccount: "https://open.weixin.qq.com/connect/oauth2/authorize",
-  WebsiteApp: "https://open.weixin.qq.com/connect/qrconnect",
+  OfficialAccount: 'https://open.weixin.qq.com/connect/oauth2/authorize',
+  WebsiteApp: 'https://open.weixin.qq.com/connect/qrconnect',
 }
 
-const Wehcat_TokenEndpointUrl = "https://api.weixin.qq.com/sns/oauth2/access_token"
+const Wehcat_TokenEndpointUrl =
+  'https://api.weixin.qq.com/sns/oauth2/access_token'
 
 export interface WeChatProfile {
   /** 用户在公众号下的唯一标识 */
@@ -36,38 +42,38 @@ export interface WeChatProfile {
   [claim: string]: unknown
 }
 
-
-
-const Wechat_UserinfoEndPoint = "https://api.weixin.qq.com/sns/userinfo"
+const Wechat_UserinfoEndPoint = 'https://api.weixin.qq.com/sns/userinfo'
 /**
  * 微信公众号/微信网页应用 授权登录服务
- * 
+ *
  * [体验账号申请](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login)
- * 
- * @param options 
- * @returns 
+ *
+ * @param options
+ * @returns
  */
 export default function WeChat<P extends WeChatProfile>(
-  options: OAuthUserConfig<P> & WechatPlatform
+  options: OAuthUserConfig<P> & WechatPlatform,
 ): OAuth2Config<P> & { options: OAuthUserConfig<P> & WechatPlatform } {
   const {
     clientId = process.env.AUTH_WECHAT_APP_ID!,
     clientSecret = process.env.AUTH_WECHAT_APP_SECRET!,
-    platformType = process.env.AUTH_WECHAT_PLATFORM_TYPE ?? "OfficialAccount",
+    platformType = process.env.AUTH_WECHAT_PLATFORM_TYPE ?? 'OfficialAccount',
   } = options ?? {}
 
-  if (platformType !== "OfficialAccount" && platformType !== "WebsiteApp") {
-    throw new AuthError("Invalid WehcatPlatformType")
+  if (platformType !== 'OfficialAccount' && platformType !== 'WebsiteApp') {
+    throw new AuthError('Invalid WehcatPlatformType')
   }
 
-  const authorizationEndpointUrl = WEHCAT_PLATFORM_AuthorizationEndpointUrl[platformType]
-  const authorizationScope = platformType === "OfficialAccount" ? "snsapi_userinfo" : "snsapi_login"
+  const authorizationEndpointUrl =
+    WEHCAT_PLATFORM_AuthorizationEndpointUrl[platformType]
+  const authorizationScope =
+    platformType === 'OfficialAccount' ? 'snsapi_userinfo' : 'snsapi_login'
 
   const authorization: AuthorizationEndpointHandler = {
     url: authorizationEndpointUrl,
     params: {
       appid: clientId,
-      response_type: "code",
+      response_type: 'code',
       scope: authorizationScope,
       state: Math.random(),
     },
@@ -78,17 +84,17 @@ export default function WeChat<P extends WeChatProfile>(
     params: {
       appid: clientId,
       secret: clientSecret,
-      code: "CODE",
-      grant_type: "authorization_code",
+      code: 'CODE',
+      grant_type: 'authorization_code',
     },
     conform: async (response: Response) => {
       const data = await response.json()
       response = new Response(
         JSON.stringify({
           ...data,
-          token_type: "bearer",
+          token_type: 'bearer',
         }),
-        response
+        response,
       )
       return response
     },
@@ -99,9 +105,9 @@ export default function WeChat<P extends WeChatProfile>(
     // 由于微信不是标准的 OAuth2 协议，所以需要手动设置 access_token 和 openid 参数
     async request({ tokens, provider }: any) {
       const url = new URL(provider.userinfo?.url!)
-      url.searchParams.set("access_token", tokens.access_token!)
-      url.searchParams.set("openid", String(tokens.openid))
-      url.searchParams.set("lang", "zh_CN")
+      url.searchParams.set('access_token', tokens.access_token!)
+      url.searchParams.set('openid', String(tokens.openid))
+      url.searchParams.set('lang', 'zh_CN')
       const response = await fetch(url)
       return response.json()
     },
@@ -112,18 +118,18 @@ export default function WeChat<P extends WeChatProfile>(
     return {
       id: openid,
       name: profile.nickname,
-      email: openid + "@wechat.com",
+      email: openid + '@wechat.com',
       image: profile.headimgurl,
       raw: profile,
     }
   }
 
   return {
-    id: "wechat",
-    name: "微信",
-    type: "oauth",
-    style: { logo: "/providers/wechat.png", bg: "#fff", text: "#000" },
-    checks: ["pkce", "state"],
+    id: 'wechat',
+    name: '微信',
+    type: 'oauth',
+    style: { logo: '/providers/wechat.png', bg: '#fff', text: '#000' },
+    checks: ['pkce', 'state'],
     clientId,
     clientSecret,
     authorization,

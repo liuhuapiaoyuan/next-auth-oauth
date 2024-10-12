@@ -1,59 +1,52 @@
- 
+import type { Account, NextAuthConfig, NextAuthResult } from 'next-auth'
+import type { AdapterUser } from 'next-auth/adapters'
+import type { OAuthProviderButtonStyles } from 'next-auth/providers'
 
-
-
-
-import type { Account, NextAuthConfig, NextAuthResult } from "next-auth";
-import type { AdapterUser } from "next-auth/adapters";
-import type { OAuthProviderButtonStyles } from "next-auth/providers";
-
-type CallbacksType = NonNullable<NextAuthConfig["callbacks"]>;
+type CallbacksType = NonNullable<NextAuthConfig['callbacks']>
 export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
-export type CallbackSessionInFunction = NonNullable<CallbacksType["session"]>
-export type CallbackJwtFunction = NonNullable<CallbacksType["jwt"]>
+export type CallbackSessionInFunction = NonNullable<CallbacksType['session']>
+export type CallbackJwtFunction = NonNullable<CallbacksType['jwt']>
 
-export type { NextAuthConfig };
+export type { NextAuthConfig }
 
 export type BindoAuthAccountInfo = {
-  user: AdapterUser | null;
-  bindAccount: boolean;
-  account: Account | null;
-};
+  user: AdapterUser | null
+  bindAccount: boolean
+  account: Account | null
+}
 
 export type NextAuthResultType = NextAuthResult & {
-  
   oauthProviders: Array<{
-    id: string;
-    name: string;
-    style:OAuthProviderButtonStyles
-  }>;
+    id: string
+    name: string
+    style: OAuthProviderButtonStyles
+  }>
   listAccount: () => Promise<
     Array<{
-      type: string;
-      id: string;
-      provider: string;
-      providerAccountId: string;
+      type: string
+      id: string
+      provider: string
+      providerAccountId: string
     }>
-  >;
-  regist: (formData: FormData) => Promise<any>;
+  >
+  regist: (formData: FormData) => Promise<any>
   // user: null, bindAccount: false, account: null
-  unBindOauthAccountInfo: () => Promise<BindoAuthAccountInfo>;
+  unBindOauthAccountInfo: () => Promise<BindoAuthAccountInfo>
+}
 
-};
-
-export interface DBAdapterUser extends Omit<AdapterUser, "email"> {
+export interface DBAdapterUser extends Omit<AdapterUser, 'email'> {
   /**
    * 邮箱
    */
-  email?: string;
+  email?: string
   /**
    *  手机
    */
-  mobile?: string;
+  mobile?: string
   /**
    * 账号名
    */
-  username: string;
+  username: string
 }
 
 // 账号登录
@@ -67,24 +60,24 @@ export interface IUserService {
   login(
     username: string,
     password: string,
-    type?: "password" | "mobile"
-  ): Promise<DBAdapterUser>;
+    type?: 'password' | 'mobile',
+  ): Promise<DBAdapterUser>
   /**
    * 注册账号
    * @param user
    */
   registUser(user: {
-    username: string;
-    password: string;
+    username: string
+    password: string
     /**
      * 表单提交的数据，比如：
      * @param nickname:string, //昵称
      * @param email:string, //邮箱
      * @param mobile:string, //手机
      */
-    formData: Record<string, string>;
+    formData: Record<string, string>
     /* 支持其他参数 */
-  }): Promise<DBAdapterUser>;
+  }): Promise<DBAdapterUser>
 
   /**
    * 绑定的第三方授权信息
@@ -92,10 +85,10 @@ export interface IUserService {
    */
   listAccount(userId: string): Promise<
     Array<{
-      type: string;
-      id: string;
-      provider: string;
-      providerAccountId: string;
+      type: string
+      id: string
+      provider: string
+      providerAccountId: string
     }>
-  >;
+  >
 }

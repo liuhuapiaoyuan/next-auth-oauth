@@ -1,14 +1,14 @@
-import { auth, listAccount, signIn } from "@/lib/auth/auth";
-import Image from "next/image";
+import { auth, listAccount, signIn } from '@/lib/auth/auth'
+import Image from 'next/image'
 
 export default async function ProtectedPage() {
-  const session = await auth();
-  const user = session?.user;
+  const session = await auth()
+  const user = session?.user
 
   if (!user) {
-    return signIn();
+    return signIn()
   }
-  const accounts = await listAccount();
+  const accounts = await listAccount()
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
@@ -47,5 +47,5 @@ export default async function ProtectedPage() {
         <div>如果没有登录直接访问，则会被跳转到登录页面</div>
       </main>
     </div>
-  );
+  )
 }
