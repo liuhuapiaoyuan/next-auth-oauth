@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.1.1](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.0...v1.1.1) (2024-10-12)
+
+
+### Bug Fixes
+
+* build命令调整 ([e7facd1](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/e7facd1a5d5f389e3cd17bde0307c859ba5dcd05))
+* fix missing type ([9e2dc53](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/9e2dc532b2c28d0e942c3f0c4a0d5b8805a9f2e3))
+* 修改发布流程 ([d62e831](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/d62e83171ac753573e095160cc7488947ea45f99))
+* 改成release ([db68239](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/db6823978638ea07d011b03aabcc1b2544da3e17))
+* 改用npm发布 ([3888b18](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/3888b1807f2ad5bcb4cd851b39f334176b285d4d))
+* 调整npmtoken变量 ([5292ee7](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/5292ee7a858f2e7cd405c02b37ed9b1e212e66e2))
+* 调整release关联 ([b3bb25e](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/b3bb25ef0470482dd5b0f5aa34eb372229506694))
+* 调整release命令 ([852869b](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/852869bf7cf44d51c041ff93ea44549a95d8e702))
+* 调整工作流 ([11a211a](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/11a211a5f965c9c1787cae0d50b564af932e7419))
+* 调试release ([05a67a8](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/05a67a83d086c41d31c0e60f9216cd2a093c474c))
+
 ## [1.1.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.0.5...v1.1.0) (2024-10-12)
 
 
