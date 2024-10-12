@@ -11,7 +11,7 @@
   "scripts": {
     "docs:dev": "bun --filter 'docs' docs:dev",
     "docs:build": "bun --filter 'docs' docs:build",
-    "release": "bun --filter 'next-auth-oauth' release",
+    "build": "bun --filter 'next-auth-oauth' build",
     "dev": "bun --filter '{next-auth-oauth,example}' dev"
   },
   "keywords": [],
