@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "release": "npm publish"
+    "release": "npm publish --loglevel verbose"
   },
   "keywords": [
     "nextjs",
