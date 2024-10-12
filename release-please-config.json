@@ -6,18 +6,14 @@
   "packages": {
     ".": {
       "extra-files": [ 
-        "package.json",
-        {
-          "type": "json",
-          "path": "packages/next-auth-oauth",
-          "jsonpath": "$.version"
-        },
-        {
-          "type": "json",
-          "path": "packages/wechat-provider",
-          "jsonpath": "$.version"
-        }
+        "package.json"
       ]
     }
-  }
+  },
+  "plugins": [
+    {
+      "name": "node-workspace",
+      "updateAllPackages": true
+    }
+  ]
 }
