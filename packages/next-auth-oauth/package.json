@@ -31,11 +31,7 @@
     "next-auth": "beta"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/node": "^20.16.2",
-    "rollup": "^4.21.2",
-    "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.5.4"
   }
 }
