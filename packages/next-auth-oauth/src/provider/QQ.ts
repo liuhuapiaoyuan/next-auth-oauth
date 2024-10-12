@@ -1,4 +1,4 @@
-import { OAuth2Config, OAuthUserConfig } from "next-auth/providers";
+import type { OAuth2Config, OAuthUserConfig } from "next-auth/providers";
 
 export interface QQProfile {
   /*   ret	返回码

@@ -1,5 +1,5 @@
 {
-  "name": "next-auth-oauth",
+  "name": "@next-auth-oauth/wechat-provider",
   "version": "1.0.5",
   "description": "`next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，用于简化和增强授权登录的处理。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，使得授权流程更加高效和灵活。",
   "main": "dist/index.esm.js",
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "dev": "tsc -w",
+    "dev": "rollup -c -w",
     "release": "rollup -c && npm publish"
   },
   "keywords": [
@@ -26,16 +26,6 @@
     "url": "https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
   },
   "license": "MIC",
-  "peerDependencies": {
-    "next": "canary",
-    "next-auth": "beta"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@types/node": "^20.16.2",
-    "rollup": "^4.21.2",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.5.4"
-  }
+  "peerDependencies": { },
+  "devDependencies": { }
 }

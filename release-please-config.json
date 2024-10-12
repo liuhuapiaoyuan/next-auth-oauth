@@ -11,6 +11,11 @@
           "type": "json",
           "path": "packages/next-auth-oauth",
           "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "packages/wechat-provider",
+          "jsonpath": "$.version"
         }
       ]
     }

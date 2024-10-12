@@ -1,11 +1,11 @@
-import {
+import type {
   AuthorizationEndpointHandler,
   OAuth2Config,
   OAuthUserConfig,
   UserinfoEndpointHandler,
 } from "next-auth/providers";
 import { NextRequest } from "next/server";
-import { COMMON_WECHATMP_MESSAGE, parseWehcatMessageXML, WechatMpApi } from "./WechatMpApi";
+import { type COMMON_WECHATMP_MESSAGE, parseWehcatMessageXML, WechatMpApi } from "./WechatMpApi";
 import { WechatMpCaptchaManager } from "./WechatMpCaptchaManagerConfig";
 
 const globalForPrisma = globalThis as unknown as {

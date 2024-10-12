@@ -1,17 +1,17 @@
 // 账号注册
 
 import NextAuth, {
-  Account,
+  type Account,
   CredentialsSignin,
 } from "next-auth";
-import { Adapter, AdapterUser } from "next-auth/adapters";
-import { OAuthProviderButtonStyles, Provider } from "next-auth/providers";
+import type { Adapter, AdapterUser } from "next-auth/adapters";
+import type { OAuthProviderButtonStyles, Provider } from "next-auth/providers";
 import credentials from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
-import { BindoAuthAccountInfo, CallbackJwtFunction, CallbackSessionInFunction, CallbackSignInFunction, IUserService, NextAuthConfig, NextAuthResultType } from "./type";
+import type { BindoAuthAccountInfo, CallbackJwtFunction, CallbackSessionInFunction, CallbackSignInFunction, IUserService, NextAuthConfig, NextAuthResultType } from "./type";
 
-function cleanBindAccountInfo() {
-  const cookie = cookies();
+async function cleanBindAccountInfo() {
+  const cookie = await cookies();
   cookie.delete("nextauth.bind.account");
   cookie.delete("nextauth.bind.user");
 }
@@ -21,7 +21,7 @@ function cleanBindAccountInfo() {
  * @returns
  */
 export async function loadBindAccountInfo() :Promise<BindoAuthAccountInfo>{
-  const cookie = cookies();
+  const cookie = await cookies();
   try {
     const account = JSON.parse(
       cookie.get("nextauth.bind.account")?.value ?? "null"
@@ -102,7 +102,7 @@ export class CredentialsOauth {
         return true;
       }
     }
-    const cookie = cookies();
+    const cookie = await cookies();
     cookie.set("nextauth.bind.account", JSON.stringify(account));
     cookie.set("nextauth.bind.user", JSON.stringify(user));
     return this.bindPage;
@@ -182,6 +182,7 @@ export class CredentialsOauth {
       const { user, bindAccount, account } = await loadBindAccountInfo();
       // 获得账号密码
       const { username, password, redirectTo, ...formUser } =
+        // @ts-expect-error
         Object.fromEntries(formData);
       // 创建账号
       const adapterUser = await this.userService.registUser({

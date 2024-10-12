@@ -12,6 +12,10 @@ export default {
     }
   ],
   external: ['next-auth','next'],
+  watch: {
+    include: 'src/**', // 指定要监视的文件
+    clearScreen: false, // 在重建时是否清屏
+  },
   plugins: [
     resolve(), // 解析 node_modules 中的模块
     commonjs(),

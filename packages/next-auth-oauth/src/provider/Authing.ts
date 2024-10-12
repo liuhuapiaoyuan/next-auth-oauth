@@ -1,4 +1,4 @@
-import { OAuthUserConfig, OIDCConfig } from "next-auth/providers";
+import type { OAuthUserConfig, OIDCConfig } from "next-auth/providers";
 
 export interface AuthingProfile {
   /**

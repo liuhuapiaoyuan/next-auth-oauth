@@ -4,15 +4,15 @@
 
 
 import type { Account, NextAuthConfig, NextAuthResult } from "next-auth";
-import { AdapterUser } from "next-auth/adapters";
-import { OAuthProviderButtonStyles } from "next-auth/providers";
+import type { AdapterUser } from "next-auth/adapters";
+import type { OAuthProviderButtonStyles } from "next-auth/providers";
 
 type CallbacksType = NonNullable<NextAuthConfig["callbacks"]>;
 export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
 export type CallbackSessionInFunction = NonNullable<CallbacksType["session"]>
 export type CallbackJwtFunction = NonNullable<CallbacksType["jwt"]>
 
-export { NextAuthConfig };
+export type { NextAuthConfig };
 
 export type BindoAuthAccountInfo = {
   user: AdapterUser | null;

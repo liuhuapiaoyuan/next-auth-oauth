@@ -1,5 +1,5 @@
 import { AuthError } from "next-auth"
-import { AuthorizationEndpointHandler, OAuth2Config, OAuthUserConfig, TokenEndpointHandler, UserinfoEndpointHandler } from "next-auth/providers"
+import type { AuthorizationEndpointHandler, OAuth2Config, OAuthUserConfig, TokenEndpointHandler, UserinfoEndpointHandler } from "next-auth/providers"
 
 
 type WechatPlatform = {
