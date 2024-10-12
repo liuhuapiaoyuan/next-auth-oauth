@@ -10,7 +10,7 @@
     "docs"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsc",
     "dev": "tsc -w",
     "release": "rollup -c && npm publish"
   },

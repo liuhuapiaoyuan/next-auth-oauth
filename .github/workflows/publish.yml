@@ -18,6 +18,9 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: install app dependencies and build it
-        run: bun i && bun release
+        run: bun i && bun build
+
+      - name: publish to npm
+        run: bun --filter 'next-auth-oauth' publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
