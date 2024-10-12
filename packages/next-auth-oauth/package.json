@@ -23,7 +23,7 @@
   "author": "liuhuapiaoyuan",
   "repository": {
     "type": "git",
-    "url": "https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
+    "url": "git+https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
   },
   "license": "MIC",
   "peerDependencies": {
