@@ -21,6 +21,6 @@ jobs:
         run: bun i && bun run build
 
       - name: publish to npm
-        run: bun --filter 'next-auth-oauth' publish
+        run: bun run release
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
