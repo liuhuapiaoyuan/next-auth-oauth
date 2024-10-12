@@ -1,9 +1,10 @@
 {
   "name": "next-auth-oauth",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
+  "workspaces": ["packages/*","app"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "pnpm -F ./packages/docs docs:dev",
