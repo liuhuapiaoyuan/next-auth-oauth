@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.2](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.1...v1.1.2) (2024-10-12)
+
+
+### Bug Fixes
+
+* ... ([7495e47](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/7495e4743526e8ceec17fd4a7a678fe78df8b958))
+* 增加npmrc来发布 ([ac94bef](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/ac94beffb3588537b70866bfced9eaab3bf991f4))
+* 调试 ([84b8328](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/84b8328599787ed807185202c6904d44b339cb88))
+
 ## [1.1.1](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.0...v1.1.1) (2024-10-12)
 
 
