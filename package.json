@@ -12,7 +12,7 @@
     "docs:dev": "bun --filter 'docs' docs:dev",
     "docs:build": "bun --filter 'docs' docs:build",
     "build": "bun --filter 'next-auth-oauth' build",
-    "release": "bun --filter 'next-auth-oauth' publish",
+    "release": "bun --filter 'next-auth-oauth' release",
     "dev": "bun --filter '{next-auth-oauth,example}' dev"
   },
   "keywords": [],

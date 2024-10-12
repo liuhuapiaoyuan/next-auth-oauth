@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "release": "rollup -c && npm publish"
+    "release": "bun publish"
   },
   "keywords": [
     "nextjs",
