@@ -12,8 +12,8 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.0",
     "@prisma/client": "^5.20.0",
-    "next": "canary",
-    "next-auth": "^5.0.0-beta.22",
+    "next": "15.0.0-canary.170",
+    "next-auth": "beta",
     "next-auth-oauth": "workspace:*",
     "react": "rc",
     "react-dom": "rc"

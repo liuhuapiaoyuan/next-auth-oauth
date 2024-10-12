@@ -1,6 +1,10 @@
 import type { DBAdapterUser, IUserService } from "next-auth-oauth";
 import { prisma } from "@/lib/db";
 import crypto from 'crypto'
+import {
+    CredentialsSignin,
+} from "next-auth";
+
 
 function randomString(length: number) {
     let result = '';
@@ -36,8 +40,9 @@ export class AuthService implements IUserService {
         });
 
         const isMatch = user ? await this.comparePassword(password, user.password ?? "", user.salt ?? "") : false;
+        console.log("sadasd")
         if (!user || !isMatch) {
-            throw new Error("账号或者密码错误");
+            throw new CredentialsSignin("账号或者密码错误");
         }
         return {
             id: user.id,
