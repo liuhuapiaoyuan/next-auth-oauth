@@ -14,7 +14,7 @@
     "@prisma/client": "^5.20.0",
     "next": "15.0.0-canary.170",
     "next-auth": "beta",
-    "next-auth-oauth": "workspace:*",
+    "next-auth-oauth": "^1",
     "react": "rc",
     "react-dom": "rc"
   },
