@@ -36,7 +36,7 @@ export async function loadBindAccountInfo(): Promise<BindoAuthAccountInfo> {
     ) as AdapterUser | null
     const bindAccount = !!(account && user)
     return { user, bindAccount, account }
-  } catch (error) {
+  } catch (_error) {
     return { user: null, bindAccount: false, account: null }
   }
 }
@@ -128,7 +128,7 @@ export class CredentialsOauth {
   private async jwtCallback(params: Parameters<CallbackJwtFunction>[0]) {
     const { token, user, trigger } = params
     if (trigger === 'signIn') {
-      /* @ts-ignore */
+      // @ts-expect-error token is JWT
       token.name = user?.nickname ?? user?.name
       token.sub = user?.id
       token.email = user?.email
@@ -158,14 +158,14 @@ export class CredentialsOauth {
           return reuslt
         },
         session: async (params) => {
-          let session = await this.sessionCallback(params)
+          const session = await this.sessionCallback(params)
           if (typeof config.callbacks?.session === 'function') {
             return config.callbacks?.session({ ...params, session })
           }
           return session
         },
         jwt: async (params) => {
-          let token = await this.jwtCallback(params)
+          const token = await this.jwtCallback(params)
           if (typeof config.callbacks?.jwt === 'function') {
             return config.callbacks?.jwt({ ...params, token })
           }
@@ -178,10 +178,10 @@ export class CredentialsOauth {
         if (typeof provider === 'function') {
           provider = provider()
         }
-        /* @ts-ignore */
         return {
           id: provider.id,
           name: provider.name,
+          // @ts-expect-error provider.type is undefined
           style: provider.style as OAuthProviderButtonStyles,
         }
       })
@@ -195,7 +195,7 @@ export class CredentialsOauth {
       const { user, bindAccount, account } = await loadBindAccountInfo()
       // 获得账号密码
       const { username, password, redirectTo, ...formUser } =
-        // @ts-expect-error
+        // @ts-expect-error formData is FormData
         Object.fromEntries(formData)
       // 创建账号
       const adapterUser = await this.userService.registUser({
