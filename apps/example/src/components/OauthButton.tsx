@@ -1,4 +1,4 @@
-import { signIn } from '@/auth'
+import { signIn } from '@/lib/auth/auth'
 import { AuthError } from 'next-auth'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
@@ -29,7 +29,9 @@ export function OauthButton(props: OauthButtonProps) {
             const params = new URLSearchParams()
             params.append('error', error.type)
             params.append('message', encodeURIComponent(error.message))
-            callbackUrl && params.append('callbackUrl', callbackUrl)
+            if (callbackUrl) {
+              params.append('callbackUrl', callbackUrl)
+            }
             return redirect(`/signin?${params.toString()}`)
           }
           // 否则，如果发生重定向，Next.js 可以处理它

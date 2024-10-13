@@ -13,7 +13,8 @@
     "docs:build": "bun --filter 'docs' docs:build",
     "build": "bun --filter 'next-auth-oauth' build",
     "release": "bun --filter 'next-auth-oauth' release",
-    "dev": "bun --filter '{next-auth-oauth,example}' dev"
+    "dev": "bun --filter '{next-auth-oauth,example}' dev",
+    "example:build": "bun --filter '{next-auth-oauth,example}' build"
   },
   "keywords": [],
   "author": "",
