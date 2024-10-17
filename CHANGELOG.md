@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.3](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.2...v1.1.3) (2024-10-13)
+
+
+### Bug Fixes
+
+* remove config ([fa9e323](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/fa9e3239de53aba675053bd1e0dcd7c53fa76fc6))
+* test... ([86e4513](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/86e45137d1e4ad8cd0c3e5b3df00a37e862b8a3e))
+* 修复bun版本错误 ([adf978c](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/adf978c8ef562ff7704060c1637b23313363d415))
+* 调整eslint配置，调整ts编译错误 ([7a67bc6](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/7a67bc60c382a690b144878b584c001934f133ec))
+* 调整example:build ([69596e4](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/69596e4167d295ea689d02b39cc6104da8b5138e))
+* 调整版本 ([f785b8e](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/f785b8e2e51ec9ccf15ff3e63318e8965347bfb6))
+* 降级next版本 ([3ed2969](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/3ed29698aff0e64f39212b80cdbf5d676baa63ae))
+
+
+### Performance Improvements
+
+* 引入prettier 统一配置 ([0c7c389](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/0c7c389151fb4211f4d700bfffa17cdf0ef9f766))
+* 移除rollup ([ff8c155](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/ff8c1550b1943381556a53a551866394a610804b))
+
 ## [1.1.2](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.1...v1.1.2) (2024-10-12)
 
 ### Bug Fixes
