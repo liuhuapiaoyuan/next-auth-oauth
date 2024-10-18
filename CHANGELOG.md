@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.3...v1.2.0) (2024-10-18)
+
+
+### Features
+
+* add Gitee as an authentication provider ([9f24ebb](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/9f24ebbe3fca6ed735cd8a1f431e612d623057f4))
+* 增加微博登录功能 ([d1f0e24](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/d1f0e247aa918c5fdfaaadaf67c7978163a2ca00))
+
 ## [1.1.3](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.2...v1.1.3) (2024-10-13)
 
 
