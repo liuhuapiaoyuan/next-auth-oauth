@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.2.0...v1.3.0) (2024-10-21)
+
+
+### Features
+
+* **doc:** update authing doc/weibo doc ([5e473ee](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/5e473ee88a35fe8cbad4dd155bb6301a10460885))
+
+
+### Bug Fixes
+
+* rename wechat package name ([bf0288f](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/bf0288fe99a3a97f4834466eebde2410d6ad79bb))
+
 ## [1.2.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.1.3...v1.2.0) (2024-10-18)
 
 
