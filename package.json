@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bun": "latest",
     "@commitlint/config-conventional": "^19.5.0",
     "commitlint": "^19.5.0",
     "prettier": "3.3.3",
