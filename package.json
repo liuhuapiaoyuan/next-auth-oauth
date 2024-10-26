@@ -14,7 +14,8 @@
     "build": "bun --filter 'next-auth-oauth' build",
     "release": "bun --filter 'next-auth-oauth' release",
     "dev": "bun --filter '{next-auth-oauth,example}' dev",
-    "example:build": "bun --filter '{example}' build"
+    "example:build": "bun --filter '{example}' build",
+    "release:wechatmp-kit": "bun run --filter 'wechatmp-kit' release "
   },
   "keywords": [],
   "author": "",

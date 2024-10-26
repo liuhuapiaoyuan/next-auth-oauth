@@ -51,80 +51,6 @@ export type WechatMpProfile = {
   unionid: string
 }
 
-/**
- * 处理Nextjs的GET/POST请求
- */
-async function handler(req: NextRequest, token: string) {
-  const searchParams = req.nextUrl.searchParams
-  const signature = searchParams.get('signature')
-  const echostr = searchParams.get('echostr')
-  const timestamp = searchParams.get('timestamp')
-  const nonce = searchParams.get('nonce')
-  if (req.method == 'GET') {
-    if (
-      signature &&
-      echostr &&
-      timestamp &&
-      nonce &&
-      checkSignature(signature, timestamp, nonce, token)
-    ) {
-      return new Response(echostr, { status: 200 })
-    }
-    return new Response('Invalid signature', { status: 401 })
-  }
-  const isFormData = req.headers.get('Content-Type')?.includes('form')
-  if (isFormData) {
-    const formData = await req.formData()
-    const code = formData.get('code')?.toString()
-    const data = code ? await wechatMpCaptchaManager.data(code) : undefined
-    if (!data) {
-      return new Response('Invalid state', { status: 401 })
-    }
-    return Response.json({
-      scope: 'openid',
-      access_token: data.openid,
-      token_type: 'bearer',
-    })
-  } else {
-    if (
-      !(
-        signature &&
-        timestamp &&
-        nonce &&
-        checkSignature(signature, timestamp, nonce, token)
-      )
-    ) {
-      return new Response('Invalid signature', { status: 401 })
-    }
-    const xml = await req.text()
-    // 文本消息
-    const message = parseWehcatMessageXML<{
-      FromUserName: string
-      ToUserName: string
-      MsgType: string
-      Content: string
-      MsgId: string
-      EventKey?: string
-    }>(xml)
-    // 如果有 Ticket 优先使用 Ticket 验证
-    const code = message.EventKey ?? message.Content
-    const status = await wechatMpCaptchaManager.complted(code, {
-      openid: message.FromUserName,
-    })
-    return new Response(
-      `<xml>
-  <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
-  <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
-  <CreateTime>${Math.floor(Date.now() / 1000)}</CreateTime>
-  <MsgType><![CDATA[text]]></MsgType>
-  <Content><![CDATA[${status ? '登录成功' : '登录失败,请重新获得验证码'}]]></Content>
-</xml>
-`,
-      { status: 200, headers: { 'Content-Type': 'text/xml' } },
-    )
-  }
-}
-
 type WeChatMpResp<P extends WechatMpProfile> = OAuth2Config<P> & {
   handler: {
     GET: (req: NextRequest) => Promise<Response>
@@ -251,8 +177,8 @@ export default function WeChatMp<P extends WechatMpProfile>(
     userinfo,
     profile,
     handler: {
-      GET: (req: NextRequest) => handler(req, token),
-      POST: (req: NextRequest) => handler(req, token),
+      GET: handler,
+      POST: handler,
     },
     async getScanUrl() {
       const code = await wechatMpCaptchaManager.generate()

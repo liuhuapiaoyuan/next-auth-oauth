@@ -6,14 +6,18 @@
 export function parseWehcatMessageXML<T>(xml: string) {
   const result: Record<string, string> = {}
   // 匹配 XML 标签及其内容
-  const regex = /<(\w+)>(.*?)<\/\1>/g
+  const regex = /<(\w+)>([\s\S]*?)<\/\1>/g
   let match
 
   while ((match = regex.exec(xml)) !== null) {
     const [, tag, content] = match
-    // 处理 CDATA
     const cleanContent = content.replace(/^<!\[CDATA\[|\]\]>$/g, '')
-    result[tag] = cleanContent
+    // 尝试嵌套
+    if (tag === 'xml') {
+      return parseWehcatMessageXML(cleanContent)
+    } else {
+      result[tag] = cleanContent
+    }
   }
 
   return result as T
