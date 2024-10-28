@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build",
+    "build": "prisma migrate db push && next build",
     "start": "next start",
     "lint": "next lint",
-    "db:init": "prisma migrate dev --name init",
+    "db:push": "prisma migrate db push",
+    "db:dev": "prisma migrate dev --name ",
     "db:preview": "prisma studio",
     "postinstall": "prisma generate"
   },
