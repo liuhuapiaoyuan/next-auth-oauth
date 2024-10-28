@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "prisma db push && prisma generate && next build",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "vercel-build": "prisma generate --schema=./prisma/schema.vercel.prisma && prisma migrate deploy --schema=./prisma/schema.vercel.prisma && next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma  db push",
