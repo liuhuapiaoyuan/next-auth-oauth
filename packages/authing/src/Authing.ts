@@ -115,7 +115,7 @@ export interface AuthingProfile {
  * @param options
  * @returns
  */
-export default function Authing<P extends AuthingProfile>(
+export function Authing<P extends AuthingProfile>(
   options: OAuthUserConfig<P> & {
     /**
      * 查看应用-配置信息-认证配置-认证地址(点击复制)

@@ -40,13 +40,12 @@ export class AuthService implements IUserService {
           user.salt ?? '',
         )
       : false
-    console.log('sadasd')
     if (!user || !isMatch) {
       throw new CredentialsSignin('账号或者密码错误')
     }
     return {
       id: user.id,
-      name: user.nickname,
+      name: user.username,
       email: user.email!,
       image: user.image,
       emailVerified: user.emailVerified,

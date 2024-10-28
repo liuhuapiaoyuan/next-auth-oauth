@@ -29,9 +29,11 @@
     "url": "git+https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
   },
   "license": "MIC",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "next-auth": "beta"
+  },
   "dependencies": {
-    "wechatmp-kit": "workspace:*"
+    "wechatmp-kit": "*"
   },
   "devDependencies": {}
 }

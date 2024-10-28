@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 完整的授权中心：
 
-## Getting Started
+### 功能清单：
 
-First, run the development server:
+- [ ] 账号、密码注册
+- [ ] 账号、密码登录
+- [ ] 手机、验证码登录
+- [ ] 第三方登录
+- [ ] 账户中心：绑定第三方账号
+- [ ] 账户中心：解除绑定第三方账号
+- [ ] 退出登录
+- [ ] 忘记密码
+- [ ] 账户安全：修改密码
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 自定义页面：
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [ ] 登录页面
+  - [ ] 账号密码登录表单
+  - [ ] 手机、验证码登录表单
+- [ ]注册页面
+  - [ ] 账号密码注册表单
+  - [ ] 手机、验证码注册表单
+- [ ]第三方账号绑定页面
+  - [ ] 组件：`OauthButton`提供第三方账号登录按钮
+  - [ ] 第三方账号绑定表单
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 特性：
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 1. **ServerAction**：使用`ServerAction`可以实现更加灵活的业务逻辑，比如：发送验证码、绑定第三方账号等等。
 
-## Learn More
+1.1 简洁代码，省略`APiRoter`的配置，直接使用`ServerAction`即可。
 
-To learn more about Next.js, take a look at the following resources:
+1.2 灵活，可以自定义`ServerAction`，比如：发送验证码、绑定第三方账号等等。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.3 安全，`ServerAction`的请求是通过`jwt`验证的，可以防止CSRF攻击。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### 2. **next-auth** : 基于`next-auth`的机制，来实现一套完善的账号绑定中心
 
-## Deploy on Vercel
+#### **next-auth-oauth/provider** : 自定义扩展的适合国内的第三方登录组件
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `@next-auth-oauth/wechat`：微信登录
+- `@next-auth-oauth/gitee`：Gitee登录
+- `@next-auth-oauth/authing`：Authing登录
+- `@next-auth-oauth/qq`：QQ登录
+- `@next-auth-oauth/weibo`：weibo登录

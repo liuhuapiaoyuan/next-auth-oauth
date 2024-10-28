@@ -16,11 +16,18 @@ export type BindoAuthAccountInfo = {
 }
 
 export type NextAuthResultType = NextAuthResult & {
+  /**
+   * 列出当前第三方账号的列表
+   */
   oauthProviders: Array<{
     id: string
     name: string
     style: OAuthProviderButtonStyles
   }>
+  /**
+   * 列出当前绑定的第三方账号
+   * @returns
+   */
   listAccount: () => Promise<
     Array<{
       type: string
@@ -29,9 +36,17 @@ export type NextAuthResultType = NextAuthResult & {
       providerAccountId: string
     }>
   >
-  regist: (formData: FormData) => Promise<any>
-  // user: null, bindAccount: false, account: null
-  unBindOauthAccountInfo: () => Promise<BindoAuthAccountInfo>
+  /**
+   * 注册账号
+   * @param formData
+   * @returns
+   */
+  signup: (formData: FormData) => Promise<void>
+  /**
+   *
+   * @returns 获得cookie缓存的第三方账号信息
+   */
+  tempOauthUser: () => Promise<BindoAuthAccountInfo>
 }
 
 export interface DBAdapterUser extends Omit<AdapterUser, 'email'> {

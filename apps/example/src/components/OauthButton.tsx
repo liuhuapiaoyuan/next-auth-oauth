@@ -1,7 +1,7 @@
-import { signIn } from '@/lib/auth/auth'
+import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
+import { SubmitButton } from './SubmitButton'
 
 type OauthButtonProps = {
   id: string
@@ -12,7 +12,7 @@ type OauthButtonProps = {
 }
 
 export function OauthButton(props: OauthButtonProps) {
-  const { name, backgroundColor, icon, id, callbackUrl } = props
+  const { name, id, callbackUrl } = props
   return (
     <form
       key={name}
@@ -42,20 +42,9 @@ export function OauthButton(props: OauthButtonProps) {
         }
       }}
     >
-      <button
-        type="submit"
-        className="bg-[#f4f7fa] p-2 w-[40px] h-[40px] rounded text-foreground hover:text-background hover:bg-[#0c0620] flex items-center justify-center"
-      >
-        <Image
-          style={{ backgroundColor }}
-          className="w-[40px] "
-          src={icon ?? `/providers/${id}.png`}
-          alt={name}
-          width={32}
-          height={32}
-        />
-        {/*     <span>{name}登录</span> */}
-      </button>
+      <SubmitButton type="submit">
+        <span>{name}</span>
+      </SubmitButton>
     </form>
   )
 }

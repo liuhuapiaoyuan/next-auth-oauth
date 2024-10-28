@@ -94,7 +94,7 @@ is_yellow_year_vip	是否为年费黄钻用户 */
  * @param options
  * @returns
  */
-export default function QQ<P extends QQProfile>(
+export function QQ<P extends QQProfile>(
   options: OAuthUserConfig<P> = {},
 ): OAuth2Config<P> {
   const {

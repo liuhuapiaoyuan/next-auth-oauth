@@ -1,4 +1,4 @@
-import { auth } from '@/lib/auth/auth'
+import { auth } from '@/auth'
 import { SignInButton } from '@/components/SignInButton'
 import { SignOutButton } from '@/components/SignOutButton'
 import { Metadata } from 'next'
@@ -43,8 +43,15 @@ export default async function Home() {
             </code>
           </>
         )}
-        <div className="flex gap-4">
+        <div className="flex gap-4 felx-wrap">
           <SignInButton />
+
+          <Link
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-[#2933c2] text-background gap-2 hover:bg-[#175d86] dark:hover:bg-[#175d86] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            href="/auth/signup"
+          >
+            注册账号
+          </Link>
 
           <Link
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-[#2933c2] text-background gap-2 hover:bg-[#175d86] dark:hover:bg-[#175d86] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"

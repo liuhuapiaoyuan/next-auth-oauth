@@ -20,7 +20,8 @@
     "release:gitee": "bun run --filter '@next-auth-oauth/gitee' release ",
     "release:authing": "bun run --filter '@next-auth-oauth/authing' release ",
     "release:qq": "bun run --filter '@next-auth-oauth/qq' release ",
-    "release:wechat": "bun run --filter '@next-auth-oauth/wechat' release "
+    "release:wechat": "bun run --filter '@next-auth-oauth/wechat' release ",
+    "release:providers": "bun run --filter '@next-auth-oauth/*' release "
   },
   "keywords": [],
   "author": "",
@@ -30,8 +31,8 @@
     "@commitlint/config-conventional": "^19.5.0",
     "commitlint": "^19.5.0",
     "prettier": "3.3.3",
-    "eslint": "^8",
-    "eslint-config-prettier": "^9"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

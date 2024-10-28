@@ -71,7 +71,7 @@ export interface GiteeProfile {
  * @param options
  * @returns
  */
-export default function Gitee<P extends GiteeProfile>(
+export function Gitee<P extends GiteeProfile>(
   options: OAuthUserConfig<P> = {},
 ): OAuth2Config<P> {
   const {
@@ -83,7 +83,7 @@ export default function Gitee<P extends GiteeProfile>(
 
   return {
     id: 'gitee',
-    name: 'Gitee登录',
+    name: 'Gitee',
     type: 'oauth',
     style: { logo: '/providers/gitee.jpg', bg: '#fff', text: '#000' },
     checks: checks as ['pkce'],

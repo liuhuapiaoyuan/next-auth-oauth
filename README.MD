@@ -1,17 +1,5 @@
 # 🚀 NextAuth OAuth增强
 
-![next-auth-oauth](https://img.shields.io/npm/v/next-auth-oauth.svg?logo=nodedotjs&label=next-auth-oauth&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fnext-auth-oauth)
-
-![next-auth-oauth/qq](https://img.shields.io/npm/v/@next-auth-oauth/qq?logo=nodedotjs&label=@next-auth-oauth/qq&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/qq)
-
-![next-auth-oauth/weibo](https://img.shields.io/npm/v/@next-auth-oauth/weibo?logo=nodedotjs&label=@next-auth-oauth/weibo&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/weibo)
-
-![next-auth-oauth/gitee](https://img.shields.io/npm/v/@next-auth-oauth/gitee?logo=nodedotjs&label=@next-auth-oauth/gitee&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/gitee)
-
-![next-auth-oauth/authing](https://img.shields.io/npm/v/@next-auth-oauth.svg/authing?logo=nodedotjs&label=@next-auth-oauth/authing&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/authing)
-
-![next-auth-oauth/wechat](https://img.shields.io/npm/v/@next-auth-oauth/wechat.svg?logo=nodedotjs&label=@next-auth-oauth/wechat&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat)
-
 `next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，旨在简化和增强授权登录的处理 🔐。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，让授权流程更加高效和灵活 💪。
 为国人🚩提供更爽的集成： 支持 `微信公众号登录` 🐉、`微信网页登录` 🌐、`Gitee` 登录 📚
 

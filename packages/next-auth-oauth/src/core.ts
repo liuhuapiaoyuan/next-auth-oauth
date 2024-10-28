@@ -45,14 +45,23 @@ export class CredentialsOauth {
   private userService: IUserService
   private authAdapter: Adapter
   private bindPage: string
+  private autoBind: boolean
   constructor(
     userService: IUserService,
     nextAuthAdapter: Adapter,
+    /**
+     * 配置绑定UI
+     */
     bindPage: string = '/auth/bind',
+    /**
+     * 登录过的账号自动绑定
+     */
+    autoBind: boolean = true,
   ) {
     this.userService = userService
     this.authAdapter = nextAuthAdapter
     this.bindPage = bindPage
+    this.autoBind = autoBind
   }
   /**
    * 构建账号密码登录的provider
@@ -62,9 +71,24 @@ export class CredentialsOauth {
   getCredentialsProvider() {
     return credentials({
       credentials: {
-        username: {},
-        password: {},
-        type: {},
+        username: { placeholder: '登录账号' },
+        password: {
+          placeholder: '密码/验证码',
+        },
+        type: {
+          name: 'type',
+          label: '登录方式',
+          type: 'radio',
+          value: 'password',
+          children: '密码登录',
+        },
+        type2: {
+          label: '',
+          name: 'type',
+          type: 'radio',
+          value: 'mobile',
+          children: '手机验证码',
+        },
       },
       authorize: async (credentials) => {
         if (
@@ -92,7 +116,11 @@ export class CredentialsOauth {
     })
   }
 
-  private async signInCallback(params: Parameters<CallbackSignInFunction>[0]) {
+  private async signInCallback(
+    params: Parameters<CallbackSignInFunction>[0],
+    auth: NextAuthResultType['auth'],
+  ) {
+    const authUser = await auth()
     const { user, account } = params
     if (account?.type !== 'oauth' && account?.type !== 'oidc') {
       return true
@@ -102,7 +130,16 @@ export class CredentialsOauth {
         provider: account.provider,
         providerAccountId: account.providerAccountId,
       })
-      if (account && databseUser) {
+
+      if (databseUser) {
+        return true
+      }
+      if (authUser?.user?.id && this.autoBind) {
+        await this.authAdapter.linkAccount?.({
+          ...account,
+          userId: authUser.user.id,
+          type: account?.type as 'oauth',
+        })
         return true
       }
     }
@@ -142,13 +179,16 @@ export class CredentialsOauth {
    * @param config
    * @returns
    */
-  public nextAuth(config: NextAuthConfig): NextAuthResultType {
+  nextAuth(config: NextAuthConfig): NextAuthResultType {
     const nextAuthInstance = NextAuth({
       ...config,
       providers: (config.providers ?? []).concat(this.getCredentialsProvider()),
       callbacks: {
         signIn: async (params) => {
-          const reuslt = await this.signInCallback(params)
+          const reuslt = await this.signInCallback(
+            params,
+            nextAuthInstance.auth,
+          )
           if (
             reuslt === true &&
             typeof config.callbacks?.signIn === 'function'
@@ -191,7 +231,7 @@ export class CredentialsOauth {
      * 注意这是一个ServerAction
      * @param formData
      */
-    const regist = async (formData: FormData) => {
+    const signup = async (formData: FormData) => {
       const { user, bindAccount, account } = await loadBindAccountInfo()
       // 获得账号密码
       const { username, password, redirectTo, ...formUser } =
@@ -233,12 +273,9 @@ export class CredentialsOauth {
     return {
       ...nextAuthInstance,
       oauthProviders,
-      listAccount,
-      regist,
-      /**
-       * 未绑定的临时账户信息
-       */
-      unBindOauthAccountInfo: loadBindAccountInfo,
+      listAccount: listAccount.bind(this),
+      signup,
+      tempOauthUser: loadBindAccountInfo,
     }
   }
 }
@@ -248,6 +285,11 @@ export type AdavanceNextAuthConfig = NextAuthConfig & {
    * 第三方账号首次登录绑定页面
    */
   bindPage?: string
+  /**
+   * 已登录后账号默认是否自动绑定
+   * @default true
+   */
+  autoBind?: boolean
   /**
    * 配置用户数据库服务
    */
@@ -263,12 +305,12 @@ export type AdavanceNextAuthConfig = NextAuthConfig & {
  * @returns
  */
 export function AdavanceNextAuth(config: AdavanceNextAuthConfig) {
-  const { bindPage, userService, ...nextAuthConfig } = config
+  const { bindPage, userService, autoBind, ...nextAuthConfig } = config
   const credentialsProvider = new CredentialsOauth(
     userService,
     config.adapter,
     bindPage,
+    autoBind,
   )
-
   return credentialsProvider.nextAuth(nextAuthConfig)
 }

@@ -137,7 +137,7 @@ type Status = {
  * @param options
  * @returns
  */
-export default function Weibo<P extends WeiboProfile>(
+export function Weibo<P extends WeiboProfile>(
   options: OAuthUserConfig<P> & {} = {},
 ): OAuth2Config<P> {
   const {
