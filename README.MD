@@ -30,9 +30,9 @@
 
 | ![next-auth-oauth/gitee](https://img.shields.io/npm/v/@next-auth-oauth/gitee?logo=nodedotjs&label=@next-auth-oauth/gitee&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/gitee) | 支持通过 Gitee 进行 OAuth 认证的插件。 |
 
-| ![next-auth-oauth/authing](https://img.shields.io/npm/v/@next-auth-oauth.svg/authing?logo=nodedotjs&label=@next-auth-oauth/authing&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/authing) | 支持通过 Authing 进行 OAuth 认证的插件。 |
+| ![next-auth-oauth/authing](https://img.shields.io/npm/v/@next-auth-oauth/authing?logo=nodedotjs&label=@next-auth-oauth/authing&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/authing) | 支持通过 Authing 进行 OAuth 认证的插件。 |
 
-| ![next-auth-oauth/wechat](https://img.shields.io/npm/v/@next-auth-oauth/wechat.svg?logo=nodedotjs&label=@next-auth-oauth/wechat&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat) | 支持通过微信进行 OAuth 认证的插件。 |
+| ![next-auth-oauth/wechat](https://img.shields.io/npm/v/@next-auth-oauth/wechat?logo=nodedotjs&label=@next-auth-oauth/wechat&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat) | 支持通过微信进行 OAuth 认证的插件。 |
 
 ## 特性 ✨
 
