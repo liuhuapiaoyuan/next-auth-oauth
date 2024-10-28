@@ -15,6 +15,25 @@
 `next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，旨在简化和增强授权登录的处理 🔐。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，让授权流程更加高效和灵活 💪。
 为国人🚩提供更爽的集成： 支持 `微信公众号登录` 🐉、`微信网页登录` 🌐、`Gitee` 登录 📚
 
+## 目录
+
+| 包名 | 描述 |
+| ---- | ---- |
+
+|
+![next-auth-oauth](https://img.shields.io/npm/v/next-auth-oauth.svg?logo=nodedotjs&label=next-auth-oauth&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fnext-auth-oauth) | NextAuth 的 OAuth 增强库，提供多种 OAuth 支持。|
+
+| ![next-auth-oauth/qq](https://img.shields.io/npm/v/@next-auth-oauth/qq?logo=nodedotjs&label=@next-auth-oauth/qq&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/qq)
+| 支持通过 QQ 进行 OAuth 认证的插件。 |
+
+| ![next-auth-oauth/weibo](https://img.shields.io/npm/v/@next-auth-oauth/weibo?logo=nodedotjs&label=@next-auth-oauth/weibo&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/weibo) | 支持通过微博进行 OAuth 认证的插件。 |
+
+| ![next-auth-oauth/gitee](https://img.shields.io/npm/v/@next-auth-oauth/gitee?logo=nodedotjs&label=@next-auth-oauth/gitee&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/gitee) | 支持通过 Gitee 进行 OAuth 认证的插件。 |
+
+| ![next-auth-oauth/authing](https://img.shields.io/npm/v/@next-auth-oauth.svg/authing?logo=nodedotjs&label=@next-auth-oauth/authing&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/authing) | 支持通过 Authing 进行 OAuth 认证的插件。 |
+
+| ![next-auth-oauth/wechat](https://img.shields.io/npm/v/@next-auth-oauth/wechat.svg?logo=nodedotjs&label=@next-auth-oauth/wechat&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat) | 支持通过微信进行 OAuth 认证的插件。 |
+
 ## 特性 ✨
 
 - **增强的 `signIn` 登录函数**: 自动处理绑定场景和登录验证，将验证逻辑转发给 `UserService` 🔄
