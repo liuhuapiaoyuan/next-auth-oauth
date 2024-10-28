@@ -1,6 +1,6 @@
 {
   "name": "@next-auth-oauth/weibo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "`next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，用于简化和增强授权登录的处理。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，使得授权流程更加高效和灵活。",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -10,9 +10,9 @@
     "docs"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "release": "rollup -c && npm publish"
+    "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
+    "patch:version": "npm version patch",
+    "release": "bun run build && npm publish && npm version patch"
   },
   "keywords": [
     "nextjs",
@@ -23,9 +23,13 @@
   "author": "liuhuapiaoyuan",
   "repository": {
     "type": "git",
-    "url": "https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
+    "url": "git+https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
   },
   "license": "MIC",
   "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }

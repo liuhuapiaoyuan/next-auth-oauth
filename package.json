@@ -15,7 +15,12 @@
     "release": "bun --filter 'next-auth-oauth' release",
     "dev": "bun --filter '{next-auth-oauth,example}' dev",
     "example:build": "bun --filter '{example}' build",
-    "release:wechatmp-kit": "bun run --filter 'wechatmp-kit' release "
+    "release:wechatmp-kit": "bun run --filter 'wechatmp-kit' release ",
+    "release:weibo": "bun run --filter '@next-auth-oauth/weibo' release ",
+    "release:gitee": "bun run --filter '@next-auth-oauth/gitee' release ",
+    "release:authing": "bun run --filter '@next-auth-oauth/authing' release ",
+    "release:qq": "bun run --filter '@next-auth-oauth/qq' release ",
+    "release:wechat": "bun run --filter '@next-auth-oauth/wechat' release "
   },
   "keywords": [],
   "author": "",
@@ -27,5 +32,8 @@
     "prettier": "3.3.3",
     "eslint": "^8",
     "eslint-config-prettier": "^9"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
