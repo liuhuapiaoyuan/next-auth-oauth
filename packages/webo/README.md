@@ -6,9 +6,9 @@
 import { Weibo } from '@next-auth-oauth/weibo'
 ...
 providers: [
-  WeboAuthProvider({
-    clientId: process.env.WEIBO_CLIENT_ID,
-    clientSecret: process.env.WEIBO_CLIENT_SECRET
+  Weibo({
+    clientId: process.env.AUTH_WEIBO_ID,
+    clientSecret: process.env.AUTH_WEIBO_SECRET
   })
 ]
 ```

@@ -14,11 +14,11 @@ export interface GiteeProfile {
   /** 用户事件 URL */
   events_url: string
   /** 用户粉丝数 */
-  followers: Number
+  followers: number
   /** 用户粉丝 URL */
   followers_url: string
   /** 用户关注数 */
-  following: Number
+  following: number
   /** 用户关注 URL */
   following_url: string
   /** 用户 Gists URL */
@@ -26,7 +26,7 @@ export interface GiteeProfile {
   /** 用户主页 URL */
   html_url: string
   /** 用户 ID */
-  id: Number
+  id: number
   /** 用户登录名 */
   login: string
   /** 用户角色 */
@@ -36,9 +36,9 @@ export interface GiteeProfile {
   /** 用户组织 URL */
   organizations_url: string
   /** 用户公开 Gists 数量 */
-  public_gists: Number
+  public_gists: number
   /** 用户公开仓库数量 */
-  public_repos: Number
+  public_repos: number
   /** 用户收到事件 URL */
   received_events_url: string
   /** 企业备注名 */
@@ -46,7 +46,7 @@ export interface GiteeProfile {
   /** 用户仓库 URL */
   repos_url: string
   /** 用户收藏数 */
-  stared: Number
+  stared: number
   /** 用户收藏 URL */
   starred_url: string
   /** 用户订阅 URL */
@@ -58,7 +58,7 @@ export interface GiteeProfile {
   /** 用户 URL */
   url: string
   /** 用户关注的项目数 */
-  watched: Number
+  watched: number
   /** 用户微博 */
   weibo: string
 }

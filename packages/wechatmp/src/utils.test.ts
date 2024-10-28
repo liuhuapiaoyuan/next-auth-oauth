@@ -88,7 +88,8 @@ test('parseWehcatMessageXML and renderXML should be inverses', () => {
     </xml>
   `
 
-  const parsed = parseWehcatMessageXML(xml)
+  const parsed =
+    parseWehcatMessageXML<Record<string, string | number | object>>(xml)
   const rendered = renderXML(parsed)
   const reparsed = parseWehcatMessageXML(rendered)
 

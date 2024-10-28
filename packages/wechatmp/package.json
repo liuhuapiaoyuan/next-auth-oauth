@@ -1,6 +1,6 @@
 {
   "name": "wechatmp-kit",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "微信公众号工具包",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "wechat",
     "微信公众号",
     "wechatmp",
-    "处理",
+    "消息处理器",
     "token"
   ],
   "author": "liuhuapiaoyuan",

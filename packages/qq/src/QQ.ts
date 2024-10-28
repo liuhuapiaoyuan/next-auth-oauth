@@ -109,7 +109,7 @@ export default function QQ<P extends QQProfile>(
     name: 'QQ登录',
     type: 'oauth',
     style: { logo: '/providers/qq2.svg', brandColor: '#fff', text: '#000' },
-    checks: ['state'],
+    checks: checks as ['state'],
     clientId,
     clientSecret,
     authorization: {
