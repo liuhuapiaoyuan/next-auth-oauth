@@ -1,8 +1,8 @@
 {
   "name": "@next-auth-oauth/qq",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "`next-auth-oauth` 是一个基于 Next.js 和 NextAuth 的增强插件，用于简化和增强授权登录的处理。该插件提供了丰富的功能，包括第三方登录绑定、账户管理等，使得授权流程更加高效和灵活。",
-  "main": "dist/index.esm.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
