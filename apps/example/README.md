@@ -43,3 +43,7 @@
 - `@next-auth-oauth/authing`：Authing登录
 - `@next-auth-oauth/qq`：QQ登录
 - `@next-auth-oauth/weibo`：weibo登录
+
+![账户中心](docs/profile.png)
+![主页](docs/home.png)
+![注册 ](docs/signup.png)
