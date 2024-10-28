@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.4.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.3.0...v1.4.0) (2024-10-28)
+
+
+### Features
+
+* add tests for parseWehcatMessageXML and renderXML functions ([50151b9](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/50151b9a22fb0a6fe847af1c2cd9e84b32e586e5))
+* 大规模重构项目跟结构 ([b4c914c](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/b4c914c06f973b74b5f69f7fee845bc8e08573d2))
+
+
+### Bug Fixes
+
+* **doc:** fix readme ([14566fb](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/14566fbe43a43025f0be93aa2d91788c6fdf29ed))
+* remove temp db ([95d6eb2](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/95d6eb2efa20db8626262e7b1dc5119400874b14))
+* update doc ([ed51527](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/ed5152755a89c7b33e8e4e69db3c190a34f429e2))
+* 修复对xml的处理 ([bcb2e75](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/bcb2e75610f710d875e2181a232b088ac584b64e))
+* 修正入口文件 ([dae6a18](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/dae6a187c09a4f696f159dc6411e6cce267fb84d))
+* 调整发布编号 ([5724f04](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/5724f0494db08346380de90fa1f7baa266f61614))
+
+
+### Performance Improvements
+
+* 优化文档显示 ([64794f1](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/64794f14c09457996c65330c52499b2128aa521f))
+* 调整包结构，独立微信公众号工具 ([e3b1e61](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/e3b1e611e24f4bfad6fbcfa22465cf9c56c635f3))
+
 ## [1.3.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.2.0...v1.3.0) (2024-10-21)
 
 
