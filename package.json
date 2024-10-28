@@ -14,7 +14,7 @@
     "build": "bun --filter 'next-auth-oauth' build",
     "release": "bun --filter 'next-auth-oauth' release",
     "dev": "bun --filter '{next-auth-oauth,example}' dev",
-    "example:build": "bun --filter '{example}' build",
+    "example:build": "bun run --filter '{next-auth-oauth,@next-auth-oauth/gitee,example}' build",
     "release:wechatmp-kit": "bun run --filter 'wechatmp-kit' release ",
     "release:weibo": "bun run --filter '@next-auth-oauth/weibo' release ",
     "release:gitee": "bun run --filter '@next-auth-oauth/gitee' release ",
