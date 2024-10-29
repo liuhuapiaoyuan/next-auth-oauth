@@ -2,6 +2,7 @@ import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from './SubmitButton'
+import { ButtonProps } from './ui/button'
 
 type OauthButtonProps = {
   id: string
@@ -9,11 +10,10 @@ type OauthButtonProps = {
   callbackUrl?: string
   backgroundColor?: string
   icon?: string
-  className?: string
 }
 
-export async function OauthButton(props: OauthButtonProps) {
-  const { id, name, callbackUrl, backgroundColor, className } = props
+export async function OauthButton(props: OauthButtonProps & ButtonProps) {
+  const { id, name, callbackUrl, backgroundColor, ...reset } = props
   return (
     <form
       key={name}
@@ -46,8 +46,8 @@ export async function OauthButton(props: OauthButtonProps) {
       <SubmitButton
         type='submit'
         size='lg'
-        className={className}
         style={{ backgroundColor }}
+        {...reset}
       >
         <span>{name}</span>
       </SubmitButton>

@@ -65,14 +65,17 @@ export default async function ProfilePage() {
                           revalidatePath('/profile')
                         }}
                       >
-                        <SubmitButton className='bg-red-500 hover:bg-red-700'>
+                        <SubmitButton
+                          size='sm'
+                          className='bg-red-500 hover:bg-red-700'
+                        >
                           取消绑定
                         </SubmitButton>
                       </form>
                     </div>
                   </>
                 ) : (
-                  <OauthButton name='点击绑定' id={provider.id} />
+                  <OauthButton size='sm' name='点击绑定' id={provider.id} />
                 )}
               </div>
             )
