@@ -10,8 +10,7 @@
     "lint": "next lint",
     "db:push": "prisma  db push",
     "db:dev": "prisma migrate dev --name ",
-    "db:preview": "prisma studio",
-    "postinstall": "prisma db push && prisma generate"
+    "db:preview": "prisma studio"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.0",
