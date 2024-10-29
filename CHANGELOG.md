@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.1](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.0...v1.4.1) (2024-10-29)
+
+
+### Bug Fixes
+
+* remove debug ([42510dd](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/42510ddea98d50efed1ba06bcc54ad79cee662a4))
+* update script ([8d08e8a](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/8d08e8ab4f69edf3add0a3a04662cd40f57b93a9))
+* 更新package.json` 文件中的构建和数据库推送脚本，修正了命令中的错误。 ([f8b4cb6](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/f8b4cb600a2b8771858c9fe5e5dad0bd2239e984))
+* 本地调整成sqlite ([bd0a191](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/bd0a1913e9c83a55c84ff56e1d0704abb9e629f5))
+* 移除不需要的依赖，调整auth检测代码 ([833fa88](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/833fa88b6d502040cad145ab00c7e76c8a6992e8))
+* 调整脚本，初始化数据库 ([25c7a22](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/25c7a226ddc400659aee54c089fd8053171b380a))
+
+
+### Performance Improvements
+
+* vercel adapter ([f038c1f](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/f038c1fabecef2ac0d1761c12e86988f09ff230e))
+* 大规模重构接口以及文档，重写example ([53c52ad](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/53c52add881a6ec45d8159fad57a66fd32d76ca3))
+
 ## [1.4.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.3.0...v1.4.0) (2024-10-28)
 
 
