@@ -118,4 +118,32 @@ export class AuthService implements IUserService {
       },
     })
   }
+
+  /**
+   * 修改账户密码
+   * @param userId
+   * @param oldPassword
+   * @param newPassword
+   * @returns
+   */
+  async changePass(userId: string, oldPassword: string, newPassword: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    })
+    const isMatch = user
+      ? await this.comparePassword(
+          oldPassword,
+          user.password ?? '',
+          user.salt ?? '',
+        )
+      : false
+    if (!user || !isMatch) {
+      throw new Error('提供的密码错误')
+    }
+    const salt = randomString(16)
+    return prisma.user.update({
+      data: { salt, password: this.encryptPassword(newPassword, salt) },
+      where: { id: userId },
+    })
+  }
 }

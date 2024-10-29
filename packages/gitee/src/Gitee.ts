@@ -85,7 +85,11 @@ export function Gitee<P extends GiteeProfile>(
     id: 'gitee',
     name: 'Gitee',
     type: 'oauth',
-    style: { logo: '/providers/gitee.jpg', bg: '#fff', text: '#000' },
+    style: {
+      logo: '/providers/gitee.jpg',
+      brandColor: '#c71d23',
+      text: '#fff',
+    },
     checks: checks as ['pkce'],
     clientId,
     clientSecret,

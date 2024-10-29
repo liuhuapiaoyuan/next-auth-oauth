@@ -6,6 +6,9 @@ type CallbacksType = NonNullable<NextAuthConfig['callbacks']>
 export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
 export type CallbackSessionInFunction = NonNullable<CallbacksType['session']>
 export type CallbackJwtFunction = NonNullable<CallbacksType['jwt']>
+type Tail<T extends unknown[]> = T extends [unknown, ...infer Rest]
+  ? Rest
+  : never
 
 export type { NextAuthConfig }
 
@@ -41,9 +44,24 @@ export type NextAuthResultType = NextAuthResult & {
    * @param formData
    * @returns
    */
-  signup: (formData: FormData) => Promise<void>
+  signUp: (formData: FormData & { redirectTo?: string }) => Promise<void>
   /**
-   *
+   * 注册账号 并尝试绑定第三方账户
+   * @param formData
+   * @returns
+   */
+  signUpAndBindAccount: (
+    formData: FormData & { redirectTo?: string },
+  ) => Promise<void>
+  /**
+   * 绑定UI：账号表单登录，可以自动读取缓存账号并进行绑定登录
+   */
+  signInAndBindAccount: (
+    options: Parameters<NextAuthResult['signIn']>[1],
+    authorizationParams?: Parameters<NextAuthResult['signIn']>[2],
+  ) => ReturnType<NextAuthResult['signIn']>
+  /**
+   *NextAuthResult['signIn']
    * @returns 获得cookie缓存的第三方账号信息
    */
   tempOauthUser: () => Promise<BindoAuthAccountInfo>

@@ -1,6 +1,10 @@
 // 账号注册
 
-import NextAuth, { type Account, CredentialsSignin } from 'next-auth'
+import NextAuth, {
+  type Account,
+  CredentialsSignin,
+  type NextAuthResult,
+} from 'next-auth'
 import type { Adapter, AdapterUser } from 'next-auth/adapters'
 import type { OAuthProviderButtonStyles, Provider } from 'next-auth/providers'
 import credentials from 'next-auth/providers/credentials'
@@ -25,7 +29,7 @@ async function cleanBindAccountInfo() {
  * 从cookie获得绑定账号信息
  * @returns
  */
-export async function loadBindAccountInfo(): Promise<BindoAuthAccountInfo> {
+export async function loadTempOauthUser(): Promise<BindoAuthAccountInfo> {
   const cookie = await cookies()
   try {
     const account = JSON.parse(
@@ -56,7 +60,7 @@ export class CredentialsOauth {
     /**
      * 登录过的账号自动绑定
      */
-    autoBind: boolean = true,
+    autoBind: boolean = false,
   ) {
     this.userService = userService
     this.authAdapter = nextAuthAdapter
@@ -89,19 +93,23 @@ export class CredentialsOauth {
           value: 'mobile',
           children: '手机验证码',
         },
+        autoBindTempAccount: { type: 'hidden' },
       },
       authorize: async (credentials) => {
         if (
           typeof credentials.username === 'string' &&
           typeof credentials.password === 'string'
         ) {
-          const { bindAccount, account } = await loadBindAccountInfo()
+          const { bindAccount, account } = await loadTempOauthUser()
+          const autoBindAccount =
+            credentials['autoBindTempAccount'] == 'string' &&
+            credentials['autoBindTempAccount'] === 'true'
           const user = await this.userService.login(
             credentials.username,
             credentials.password,
             (credentials.type ?? 'password') as 'password' | 'mobile',
           )
-          if (user && bindAccount && account) {
+          if (autoBindAccount && user && bindAccount && account) {
             await this.authAdapter.linkAccount?.({
               ...account,
               userId: user.id,
@@ -231,10 +239,16 @@ export class CredentialsOauth {
      * 注意这是一个ServerAction
      * @param formData
      */
-    const signup = async (formData: FormData) => {
-      const { user, bindAccount, account } = await loadBindAccountInfo()
+    const signUp = async (formData: FormData) => {
+      const { user, bindAccount, account } = await loadTempOauthUser()
       // 获得账号密码
-      const { username, password, redirectTo, ...formUser } =
+      const {
+        username,
+        autoBindTempAccount,
+        password,
+        redirectTo,
+        ...formUser
+      } =
         // @ts-expect-error formData is FormData
         Object.fromEntries(formData)
       // 创建账号
@@ -243,7 +257,13 @@ export class CredentialsOauth {
         password: password.toString(),
         formData: formUser as { [key: string]: string },
       })
-      if (bindAccount && account && user && adapterUser) {
+      if (
+        autoBindTempAccount === 'true' &&
+        bindAccount &&
+        account &&
+        user &&
+        adapterUser
+      ) {
         await this.authAdapter.linkAccount?.({
           ...account,
           userId: adapterUser.id,
@@ -256,6 +276,16 @@ export class CredentialsOauth {
           redirectTo: redirectTo?.toString(),
         })
       }
+    }
+
+    const signInAndBindAccount: NextAuthResultType['signInAndBindAccount'] =
+      async (options, params) => {
+        options?.append('autoBindTempAccount', 'true')
+        return nextAuthInstance.signIn('credentials', options, params)
+      }
+    const signUpAndBindAccount = async (formData: FormData) => {
+      formData?.append('autoBindTempAccount', 'true')
+      return signUp(formData)
     }
     /**
      * 列出绑定的授权账户列表
@@ -273,9 +303,11 @@ export class CredentialsOauth {
     return {
       ...nextAuthInstance,
       oauthProviders,
+      signUpAndBindAccount: signUpAndBindAccount.bind(this),
       listAccount: listAccount.bind(this),
-      signup,
-      tempOauthUser: loadBindAccountInfo,
+      signUp,
+      signInAndBindAccount,
+      tempOauthUser: loadTempOauthUser,
     }
   }
 }
@@ -287,7 +319,7 @@ export type AdavanceNextAuthConfig = NextAuthConfig & {
   bindPage?: string
   /**
    * 已登录后账号默认是否自动绑定
-   * @default true
+   * @default false
    */
   autoBind?: boolean
   /**

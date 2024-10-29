@@ -7,11 +7,12 @@
   "files": [
     "dist",
     "README.md",
-    "docs"
+    "docs",
+    "src"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
+    "build": "tsc--sourceMap ",
+    "dev": "tsc --sourceMap --watch",
     "release": "tsc && npm publish && npm version patch"
   },
   "keywords": [

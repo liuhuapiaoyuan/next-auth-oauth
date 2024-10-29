@@ -9,10 +9,11 @@ type OauthButtonProps = {
   callbackUrl?: string
   backgroundColor?: string
   icon?: string
+  className?: string
 }
 
-export function OauthButton(props: OauthButtonProps) {
-  const { name, id, callbackUrl } = props
+export async function OauthButton(props: OauthButtonProps) {
+  const { id, name, callbackUrl, backgroundColor, className } = props
   return (
     <form
       key={name}
@@ -42,7 +43,12 @@ export function OauthButton(props: OauthButtonProps) {
         }
       }}
     >
-      <SubmitButton type="submit">
+      <SubmitButton
+        type='submit'
+        size='lg'
+        className={className}
+        style={{ backgroundColor }}
+      >
         <span>{name}</span>
       </SubmitButton>
     </form>

@@ -1,38 +1,50 @@
-import { signup } from '@/auth'
+'use client'
 import { SubmitButton } from '@/components/SubmitButton'
+import { signupAction } from '../action'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 
-export default async function Signup() {
+export default function Signup() {
+  const router = useRouter()
   return (
     <div className="flex flex-col items-center justify-center h-screen p-5">
       <h1 className="p-2  font-bold">Signup Page</h1>
       <form
         action={async (data) => {
-          'use server'
-          return signup(data)
+          return signupAction(data).then(() => {
+            alert('注册成功')
+            router.replace('/auth/signin')
+          })
         }}
         className="flex flex-col gap-5 w-full md:w-[500px] border p-5 "
       >
-        <label className="flex items-center gap-2">
-          <div>账号: </div>
-          <input
-            type="text"
-            className="flex-1 w-1 block border p-2"
+        <div className="grid w-full   gap-1.5">
+          <Label htmlFor="username">账号</Label>
+          <Input
             name="username"
-            required
+            id="username"
+            placeholder="Username/Email/Mobile"
           />
-        </label>
-        <label className="flex items-center gap-2">
-          <span>密码: </span>
-          <input
-            type="text"
-            className="flex-1 w-1 block border p-2"
+        </div>
+        <div className="grid w-full   gap-1.5">
+          <Label htmlFor="password">密码</Label>
+          <Input
             name="password"
-            required
+            id="password"
+            placeholder="password..."
+            type="password"
           />
-        </label>
+        </div>
         <SubmitButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          提交
+          注册账号
         </SubmitButton>
+        <div>
+          <Link href="/auth/signin" className="text-blue-500 underline">
+            直接登录
+          </Link>
+        </div>
       </form>
     </div>
   )

@@ -9,16 +9,17 @@ import Github from 'next-auth/providers/github'
 import { AuthConfig } from './auth.config'
 
 export const authAdapter = PrismaAdapter(prisma)
-
 export const authService = new AuthService()
 export const {
   handlers,
   oauthProviders,
   signIn,
-  signup,
+  signUp,
   signOut,
   auth,
   tempOauthUser,
+  signInAndBindAccount,
+  signUpAndBindAccount,
   listAccount,
 } = AdavanceNextAuth({
   ...AuthConfig,
