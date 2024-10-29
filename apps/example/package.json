@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "prisma db push && prisma generate && next build",
+    "build": "prisma db push && next build",
     "vercel-build": "prisma  db push --schema=./prisma/schema.vercel.prisma && next build",
     "start": "next start",
     "lint": "next lint",
@@ -22,11 +22,11 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "class-variance-authority": "*",
     "clsx": "^2.1.1",
-    "next": "^15",
+    "next": "15.0.1",
     "next-auth": "beta",
     "next-auth-oauth": "^1",
-    "react": "rc",
-    "react-dom": "rc",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
