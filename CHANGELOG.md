@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.3](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.2...v1.4.3) (2024-10-29)
+
+
+### Bug Fixes
+
+* init ([9c423a3](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/9c423a3e239724174018f562c99e3e753eb03933))
+* remove postinstall ([8e779fa](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/8e779fac16b93daa78ee41e2cde88db00fc86420))
+* update example ([6ba2bdb](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/6ba2bdb788783b0c8334c81f2ca3066c74c8057f))
+* 调整react版本号 ([4c7a246](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/4c7a2463b56cc5a1c9ba2fe6a0f8161c8a7056c1))
+
+
+### Performance Improvements
+
+* **doc:** 优化文档显示 ([64b19cd](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/64b19cd3d774c6a7d70e3ae38a47b9a358d2a063))
+* **doc:** 更新demo链接 ([3255745](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/32557450544588768e7637585cce3232023215e1))
+* 优化eslint ([df09882](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/df098823b88e1a444e4ea0e4061fc7bb48eb04b1))
+
 ## [1.4.2](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.1...v1.4.2) (2024-10-29)
 
 
