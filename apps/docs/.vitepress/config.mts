@@ -13,7 +13,7 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       { text: '快速启动', link: '/quickstart' },
-      { text: '文档', link: '/markdown-examples' },
+      { text: '在线Demo', link: 'https://next-auth.ggss.club' },
     ],
     footer: {
       message: 'Released under the MIT License.',
