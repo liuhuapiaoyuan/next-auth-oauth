@@ -11,7 +11,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc--sourceMap ",
+    "build": "tsc --sourceMap ",
     "dev": "tsc --sourceMap --watch",
     "release": "tsc && npm publish && npm version patch"
   },
