@@ -25,6 +25,7 @@ export default defineConfig({
         text: '快速启动',
         items: [
           { text: '使用', link: '/quickstart' },
+          { text: '应用案例', link: '/example' },
           { text: '微信公众号网页登录', link: '/wechat-mp-h5' },
           { text: '微信网页登录', link: '/wehcat-web' },
           { text: '公众号-验证码登录', link: '/wechatmp-captcha' },
