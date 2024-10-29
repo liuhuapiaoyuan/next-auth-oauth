@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.1...v1.4.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* 调整脚本错误 ([32281a7](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/32281a7414d527e30f7e13b8b5af3c50c50e4c4e))
+
 ## [1.4.1](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.0...v1.4.1) (2024-10-29)
 
 
