@@ -1,8 +1,15 @@
+import { auth, signIn } from '@/auth'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
-export default function ProfileLayout(props: PropsWithChildren) {
+export default async function ProfileLayout(props: PropsWithChildren) {
+  const session = await auth()
+  const user = session?.user
+
+  if (!user) {
+    return signIn()
+  }
   return (
     <div className='flex flex-col md:flex-row h-screen w-full'>
       <div className='flex md:flex-col items-center gap-5  p-5'>
