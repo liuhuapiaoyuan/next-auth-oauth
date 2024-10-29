@@ -8,13 +8,6 @@ export type ActionResponse<T = null> = {
   data?: T
 }
 
-export const errorAction: (error: Error) => ActionResponse = (error) => ({
-  error,
-})
-export const successAction: <T>(data: T) => ActionResponse<T> = (data) => ({
-  data,
-})
-
 /**
  * 封装了自动转换Error为ActionResponse的useActionStateFull
  * @param action
