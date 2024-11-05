@@ -3,12 +3,12 @@
 ### 使用示例：
 
 ```javascript
-import { Weibo } from '@next-auth-oauth/wechat'
+import { Wechat } from '@next-auth-oauth/wechat'
 ...
 providers: [
   WeboAuthProvider({
-    clientId: process.env.WEIBO_CLIENT_ID,
-    clientSecret: process.env.WEIBO_CLIENT_SECRET
+    clientId: process.env.AUTH_WECHAT_APP_ID,
+    clientSecret: process.env.AUTH_WECHAT_APP_SECRET
     // default platformType is 'OfficialAccount'
   })
 ]
@@ -19,17 +19,13 @@ providers: [
 ### 使用示例：
 
 ```javascript
-import { Weibo } from '@next-auth-oauth/wechat'
+import { Wechat } from '@next-auth-oauth/wechat'
 ...
 providers: [
   WeboAuthProvider({
-    clientId: process.env.WEIBO_CLIENT_ID,
-    clientSecret: process.env.WEIBO_CLIENT_SECRET,
+    clientId: process.env.AUTH_WECHAT_APP_ID,
+    clientSecret: process.env.AUTH_WECHAT_APP_SECRET,
     platformType: process.env.AUTH_WECHAT_PLATFORM_TYPE //set platformType: WebsiteApp
   })
 ]
 ```
-
-## TODO 未认证/已认证公众号，利用消息验证码登录
-
-## TODO 已认证公众号，利用临时二维码登录
