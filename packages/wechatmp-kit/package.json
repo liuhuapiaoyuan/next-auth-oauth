@@ -1,0 +1,32 @@
+{
+  "name": "wechatmp-kit",
+  "version": "0.1.0",
+  "description": "微信公众号工具包",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "docs"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
+    "patch:version": "npm version patch",
+    "release": "bun run build && npm publish && npm version patch"
+  },
+  "keywords": [
+    "wechat",
+    "微信公众号",
+    "wechatmp",
+    "消息处理器",
+    "token"
+  ],
+  "author": "liuhuapiaoyuan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
+  },
+  "license": "MIC",
+  "peerDependencies": {},
+  "devDependencies": {}
+}
