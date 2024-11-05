@@ -46,6 +46,13 @@
    - **`regist`**: 账户注册函数 📝
    - **`oauthProviders`**: 列出第三方登录提供商 🌐
 
+## TODOS:
+
+- [x] 文档完善，文档网站
+- [x] 案例网站
+- [ ] 封装登录，注册，绑定，账户信息组件库(nextjs)
+- [ ] 封装手机号码发送验证码组件，滑动行为验证组件
+
 ## 快速开始 🚀
 
 ### 安装插件：
@@ -69,7 +76,7 @@ yarn add next-auth-oauth @auth/prisma-adapter next-auth@beta
 ```typescript
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { AdavanceNextAuth } from 'next-auth-oauth'
-import { GitHub, Wechat } from 'next-auth/providers'
+import { GitHub } from 'next-auth/providers'
 import { UserService } from './userService' // 实现 IUserService 接口的服务类
 
 /**
@@ -82,21 +89,28 @@ export const authAdapter = PrismaAdapter(prisma)
  * signIn: 登录函数，增强后可以自动判断绑定场景/登录查经
  * signOut: 登出函数
  * auth: 授权函数
- * listAccount: 获得绑定的第三方数据
- * unBindOauthAccountInfo: 解绑第三方账号
  * handlers: 授权函数的中间件
  * regist: 账户注册函数
+ * 扩展字段：
+ *
  * oauthProviders: 列出第三方登录提供商
+ * signUp: 注册账号
+ * signInAndBindAccount: 登录且绑定第三方账户
+ * signUpAndBindAccount: 注册且绑定第三方账户
+ * listAccount: 获得绑定的第三方数据
+ * tempOauthUser: 获得缓存中的第三方账户
  */
 export const {
-  signIn,
-  signOut,
-  listAccount,
-  unBindOauthAccountInfo,
-  auth,
   handlers,
-  regist,
   oauthProviders,
+  signIn,
+  signUp,
+  signOut,
+  auth,
+  tempOauthUser,
+  signInAndBindAccount,
+  signUpAndBindAccount,
+  listAccount,
 } = AdavanceNextAuth({
   ...AuthConfig,
   providers: [GitHub, Wechat],

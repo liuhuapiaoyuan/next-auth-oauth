@@ -1,0 +1,35 @@
+{
+  "name": "@next-auth-oauth/nextjs",
+  "version": "0.0.1",
+  "description": "作为next-auth-oauth的配套组件，包含一系列的客户端/服务端组件",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "docs"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
+    "patch:version": "npm version patch",
+    "release": "bun run build && npm publish && npm version patch"
+  },
+  "keywords": [
+    "nextjs",
+    "next-auth",
+    "oauth",
+    "授权绑定"
+  ],
+  "author": "liuhuapiaoyuan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuhuapiaoyuan/next-auth-oauth.git"
+  },
+  "license": "MIC",
+  "peerDependencies": {},
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}
