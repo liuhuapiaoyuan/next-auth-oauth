@@ -32,9 +32,6 @@
   "peerDependencies": {
     "next-auth": "beta"
   },
-  "dependencies": {
-    "wechatmp-kit": "*"
-  },
   "devDependencies": {},
   "publishConfig": {
     "access": "public",
