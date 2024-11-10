@@ -118,6 +118,8 @@ export class MessageService {
   }
   /**
    * 解析输入消息
+   * 1: 如果有AES加密，会先解包获得encrypt，然后解包xml
+   * 2: 校验签名
    */
   parserInput(input: string, params: Omit<QueryParams, 'encrypt'>) {
     if (!this.aesMode) {

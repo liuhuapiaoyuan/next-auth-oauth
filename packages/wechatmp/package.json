@@ -10,6 +10,7 @@
     "docs"
   ],
   "scripts": {
+    "dev": "tsc --declaration --emitDeclarationOnly && bun build ./src/index.ts --target=node --outdir=dist --watch",
     "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
     "patch:version": "npm version patch",
     "release": "bun run build && npm publish && npm version patch"
@@ -31,7 +32,8 @@
   },
   "license": "MIC",
   "peerDependencies": {
-    "next-auth": "beta"
+    "next-auth": "beta",
+    "next": "^15"
   },
   "dependencies": {
     "wechatmp-kit": "*"

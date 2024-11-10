@@ -24,6 +24,8 @@
     "next": "15.0.1",
     "next-auth": "beta",
     "next-auth-oauth": "^1",
+    "@next-auth-oauth/wechatmp": "*",
+    "wechatmp-kit": "*",
     "react": "19.0.0-rc-cae764ce-20241025",
     "react-dom": "19.0.0-rc-cae764ce-20241025",
     "tailwind-merge": "^2.5.2"

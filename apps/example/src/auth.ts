@@ -5,10 +5,22 @@ import { prisma } from '@/lib/db'
 import { AuthService } from '@/service/auth.service'
 import { Gitee } from '@next-auth-oauth/gitee'
 import Github from 'next-auth/providers/github'
-
+import Wehcatmp from '@next-auth-oauth/wechatmp'
+import { WechatMpApi } from 'wechatmp-kit'
 import { AuthConfig } from './auth.config'
 
 export const authAdapter = PrismaAdapter(prisma)
+export const wechatMpProvder = Wehcatmp({
+  wechatMpApi: new WechatMpApi({
+    appId: process.env.AUTH_WECHATMP_APPID!,
+    appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
+  }),
+  endpoint: 'http://localhost:3000/api/auth/wechatmp',
+  /**
+   * 通过消息回复
+   */
+  checkType: 'QRCODE',
+})
 export const authService = new AuthService()
 export const {
   handlers,
@@ -23,7 +35,7 @@ export const {
   listAccount,
 } = AdavanceNextAuth({
   ...AuthConfig,
-  providers: [Gitee, Github],
+  providers: [Gitee, Github, wechatMpProvder],
   adapter: authAdapter,
   userService: authService,
   autoBind: true,

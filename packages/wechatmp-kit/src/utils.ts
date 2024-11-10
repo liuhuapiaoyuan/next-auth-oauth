@@ -53,24 +53,3 @@ export function renderXML(data: Record<string, string | number | object>) {
   xmls.push('</xml>')
   return xmls.join('')
 }
-const t1 = parseWehcatMessageXML<
-  Record<string, string | number | object>
->(`<xml>
-  <ToUserName><![CDATA[toUser]]></ToUserName>
-  <FromUserName><![CDATA[fromUser]]></FromUserName>
-  <CreateTime>
-    <A>1348831860</A>
-    <B>1348831860</B>
-  </CreateTime>
-  <MsgType><![CDATA[text]]></MsgType>
-  <Content><![CDATA[this is a test]]></Content>
-  <MsgId>1234567890123456</MsgId>
-  <MsgDataId>xxxx</MsgDataId>
-  <Idx>xxxx</Idx>
-  </xml>
-  `)
-console.log({ t1 })
-const t2 = renderXML(t1)
-console.log({ t2 })
-const t3 = parseWehcatMessageXML(t2)
-console.log({ t3 })
