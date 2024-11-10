@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   cacheDir: './.vitepress/.vite',
   srcDir: '.',
-  base: '/next-auth-oauth/',
+  base: '/',
   title: '🚀next-auth-oauth,一键启动完善登录套件的Nextjs应用 🔐',
   lastUpdated: true,
   description: 'next-auth-oauth，一款符合中国国情的第三方登录集成方案',
