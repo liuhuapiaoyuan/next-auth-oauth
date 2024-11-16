@@ -6,9 +6,6 @@ type CallbacksType = NonNullable<NextAuthConfig['callbacks']>
 export type CallbackSignInFunction = NonNullable<CallbacksType['signIn']>
 export type CallbackSessionInFunction = NonNullable<CallbacksType['session']>
 export type CallbackJwtFunction = NonNullable<CallbacksType['jwt']>
-type Tail<T extends unknown[]> = T extends [unknown, ...infer Rest]
-  ? Rest
-  : never
 
 export type { NextAuthConfig }
 

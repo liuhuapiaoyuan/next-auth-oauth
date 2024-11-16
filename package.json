@@ -29,6 +29,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20",
+    "next": "15.0.3",
     "@commitlint/config-conventional": "^19.5.0",
     "commitlint": "^19.5.0",
     "prettier": "3.3.3",

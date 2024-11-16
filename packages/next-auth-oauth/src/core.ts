@@ -1,10 +1,6 @@
 // 账号注册
 
-import NextAuth, {
-  type Account,
-  CredentialsSignin,
-  type NextAuthResult,
-} from 'next-auth'
+import NextAuth, { type Account, CredentialsSignin } from 'next-auth'
 import type { Adapter, AdapterUser } from 'next-auth/adapters'
 import type { OAuthProviderButtonStyles, Provider } from 'next-auth/providers'
 import credentials from 'next-auth/providers/credentials'
