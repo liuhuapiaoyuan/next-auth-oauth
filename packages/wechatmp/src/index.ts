@@ -89,8 +89,11 @@ export default function WeChatMp<P extends WechatMpProfile>(
     },
     options ?? {},
   )
-  const captchaManager = new CaptchaManager()
-
+  const captchaManager =
+    // @ts-expect-error globalThis
+    globalThis.wechatmpCaptchaManager ?? new CaptchaManager()
+  // @ts-expect-error globalThis
+  globalThis.wechatmpCaptchaManager = captchaManager
   // 验证MESSAGE
   if (checkType === 'MESSAGE' && isBlank(qrcodeImageUrl)) {
     throw new Error('checkType为MESSAGE时，必须配置qrcodeImageUrl')
@@ -221,8 +224,8 @@ export default function WeChatMp<P extends WechatMpProfile>(
         if (valid?.openid) {
           return Response.json({ type: 'success' })
         }
-      } catch (_) {
-        return Response.json({ type: 'fail' })
+      } catch (error) {
+        return Response.json({ type: 'fail', error: JSON.stringify(error) })
       }
       return Response.json({ type: 'checking' })
     }

@@ -61,8 +61,8 @@ export function QrcodePage(params: {
                 if (data.type=='success') {  
                     alert("登录成功");
                     window.location.href = successRedirectUrl; 
-                } else if(data.error=="fail") {
-                    console.log('登录未成功');
+                } else if(data.type=="fail") {
+                    console.log('登录失败');
                     clearInterval(checkLoginStatus);
                 }   
             })
