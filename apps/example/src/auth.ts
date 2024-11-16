@@ -16,11 +16,10 @@ export const wechatMpProvder = Wehcatmp({
     appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
   }),
   endpoint: 'http://localhost:3000/api/auth/wechatmp',
-  /**
-   * 通过消息回复
-   */
-  checkType: 'QRCODE',
+  qrcodeImageUrl:
+    'https://oauth.chanlun.ggss.club/uploads/20240121/3fec8aa97489ad13a734c500038822a3.jpg',
 })
+
 export const authService = new AuthService()
 export const {
   handlers,

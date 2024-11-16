@@ -5,7 +5,7 @@
             "name": "Next.js: debug server-side",
             "type": "node-terminal",
             "request": "launch",
-            "command": "bun run example:dev"
+            "command": "pnpm run  example:dev"
         },
         {
             "name": "Next.js: debug client-side",

@@ -12,7 +12,7 @@
   "scripts": {
     "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
     "patch:version": "npm version patch",
-    "release": "bun run build && npm publish && npm version patch"
+    "release": "pnpm run  build && npm publish && npm version patch"
   },
   "keywords": [
     "nextjs",

@@ -10,10 +10,10 @@
     "docs"
   ],
   "scripts": {
-    "dev": "tsc --declaration --emitDeclarationOnly && bun build ./src/index.ts --target=node --outdir=dist --watch",
-    "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
+    "dev": "tsc --watch",
+    "build": "tsc",
     "patch:version": "npm version patch",
-    "release": "bun run build && npm publish && npm version patch"
+    "release": "pnpm run  build && npm publish && npm version patch"
   },
   "keywords": [
     "nextjs",
