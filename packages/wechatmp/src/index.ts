@@ -89,7 +89,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
     },
     options ?? {},
   )
-  const captchaManager =
+  const captchaManager: CaptchaManager =
     // @ts-expect-error globalThis
     globalThis.wechatmpCaptchaManager ?? new CaptchaManager()
   // @ts-expect-error globalThis
@@ -263,7 +263,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
       FromUserName: message.ToUserName,
       CreateTime: Math.floor(Date.now() / 1000),
       MsgType: 'text',
-      Content: status ? '登录成功' : '登录失败,请重新获得验证码',
+      Content: status ? '👏👏登录成功' : '😭登录失败,请重新获得验证码',
     })
 
     return new Response(result, {

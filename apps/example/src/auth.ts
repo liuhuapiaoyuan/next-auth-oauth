@@ -11,6 +11,9 @@ import { AuthConfig } from './auth.config'
 
 export const authAdapter = PrismaAdapter(prisma)
 export const wechatMpProvder = Wehcatmp({
+  /**
+   * WechatMpApi instance
+   */
   wechatMpApi: new WechatMpApi({
     appId: process.env.AUTH_WECHATMP_APPID!,
     appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
@@ -18,6 +21,7 @@ export const wechatMpProvder = Wehcatmp({
 })
 
 export const authService = new AuthService()
+
 export const {
   handlers,
   oauthProviders,
