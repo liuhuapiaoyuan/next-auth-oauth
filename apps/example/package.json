@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "prisma db push && next build",
-    "vercel-build": "prisma  db push --schema=./prisma/schema.vercel.prisma && next build",
+    "local:build": "prisma db push && next build",
+    "build": "prisma  db push --schema=./prisma/schema.vercel.prisma && next build",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma  db push",

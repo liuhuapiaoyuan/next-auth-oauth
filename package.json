@@ -9,12 +9,12 @@
     "apps/*"
   ],
   "scripts": {
+    "build": "pnpm -r build",
     "docs:dev": "pnpm --filter 'docs' docs:dev",
     "docs:build": "pnpm --filter 'docs' docs:build",
-    "build": "pnpm --filter 'next-auth-oauth' build",
     "release": "pnpm --filter 'next-auth-oauth' release",
     "dev": "pnpm --filter '{next-auth-oauth,example}' dev",
-    "example:build": "pnpm run --filter '{next-auth-oauth,@next-auth-oauth/wechatmp,@next-auth-oauth/gitee,example}' build",
+    "example:build": "pnpm run --filter example build",
     "example:dev": "pnpm run --filter example dev",
     "release:wechatmp-kit": "pnpm run --filter 'wechatmp-kit' release ",
     "release:weibo": "pnpm run --filter '@next-auth-oauth/weibo' release ",

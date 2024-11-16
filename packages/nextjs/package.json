@@ -10,7 +10,7 @@
     "docs"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts  --target=node  --outdir=dist && tsc --declaration --emitDeclarationOnly",
+    "build": "tsc",
     "patch:version": "npm version patch",
     "release": "pnpm run  build && npm publish && npm version patch"
   },

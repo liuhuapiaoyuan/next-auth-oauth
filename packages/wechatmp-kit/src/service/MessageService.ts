@@ -1,14 +1,14 @@
 import crypto from 'crypto'
 import { encryptMessage, randomStr } from './sign'
-import { type WechatMpApi } from '@/WechatMpApi'
+import { type WechatMpApi } from '../WechatMpApi'
 import type {
   ExcryptRequestXML,
   QRCodeApiResult,
   QueryParams,
   RequestXML,
   ResponseXML,
-} from '@/type'
-import { parseWehcatMessageXML, renderXML } from '@/utils'
+} from '../type'
+import { parseWehcatMessageXML, renderXML } from '../utils'
 
 /**
  * 消息服务
