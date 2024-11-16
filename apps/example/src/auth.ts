@@ -15,9 +15,6 @@ export const wechatMpProvder = Wehcatmp({
     appId: process.env.AUTH_WECHATMP_APPID!,
     appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
   }),
-  endpoint: 'http://localhost:3000/api/auth/wechatmp',
-  qrcodeImageUrl:
-    'https://oauth.chanlun.ggss.club/uploads/20240121/3fec8aa97489ad13a734c500038822a3.jpg',
 })
 
 export const authService = new AuthService()

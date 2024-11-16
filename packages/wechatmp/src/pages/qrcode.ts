@@ -28,14 +28,18 @@ export function QrcodePage(params: {
             </div>
            
     <script>
-            new QRCode("qrcode", {
+           ${
+             isLink
+               ? ''
+               : ` new QRCode("qrcode", {
                 text: "${qrcode}",
                 width: 258,
                 height: 258,
                 colorDark : "#000000",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
-              });
+              });`
+           }
             
         // 模拟的API URL，用于检查登录状态
         const checkLoginUrl = '${endpoint}?action=check';

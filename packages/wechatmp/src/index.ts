@@ -85,6 +85,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
         process.env.AUTH_WECHATMP_ENDPOINT ??
         'http://localhost:3000/api/auth/wechatmp',
       checkType: process.env.AUTH_WECHATMP_CHECKTYPE ?? 'MESSAGE',
+      qrcodeImageUrl: process.env.AUTH_WECHATMP_QRCODE_IMAGE_URL,
     },
     options ?? {},
   )
