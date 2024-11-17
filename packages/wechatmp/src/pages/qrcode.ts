@@ -62,7 +62,8 @@ export function QrcodePage(params: {
                     alert("登录成功");
                     window.location.href = successRedirectUrl; 
                 } else if(data.type=="fail") {
-                    console.log('登录失败');
+                    alert("登录成功");
+                    window.history.go(-1);
                 }  else{
                     setTimeout(checkLoginStatus,1000)  
                 }
@@ -71,13 +72,13 @@ export function QrcodePage(params: {
                 console.error('请求过程中出现错误:', error);
             });
         }
+        checkLoginStatus()
             // 倒计时60秒
         let time = 60;
         const timer = setInterval(() => {
             time--;
             if (time === 0) {
                 clearInterval(timer);
-                clearInterval(checkLoginStatus);
                 alert("登录超时，请重新登录");
                 // 返回上一页
                 window.history.go(-1);
