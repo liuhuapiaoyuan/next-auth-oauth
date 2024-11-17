@@ -172,6 +172,9 @@ export default function WeChatMp<P extends WechatMpProfile>(
       }
       return new Response('验证失败', { status: 405 })
     }
+    if (action === 'debug') {
+      return Response.json({ data: captchaManager.list() })
+    }
     if (action === 'qrcode') {
       const code = await captchaManager.generate()
       let imgLink = qrcodeImageUrl!
