@@ -1,4 +1,4 @@
-import { CaptchaManager } from '@next-auth-oauth/wechatmp'
+import { CaptchaManager, MemoryCaptchaManager } from '@next-auth-oauth/wechatmp'
 import { Redis } from '@upstash/redis'
 
 // const redis = new Redis({
@@ -86,13 +86,15 @@ export class RedisCaptchaService implements CaptchaManager {
   }
 }
 
-export const captchaManager = new RedisCaptchaService(
-  new Redis({
-    url: process.env.KV_REST_API_URL,
-    token: process.env.KV_REST_API_TOKEN,
-  }),
-  {
-    expireTime: 60000 * 2,
-    length: 6,
-  },
-)
+export const captchaManager = process.env.KV_REST_API_URL
+  ? new RedisCaptchaService(
+      new Redis({
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN,
+      }),
+      {
+        expireTime: 60000 * 2,
+        length: 6,
+      },
+    )
+  : new MemoryCaptchaManager()
