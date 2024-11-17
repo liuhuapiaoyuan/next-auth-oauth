@@ -16,7 +16,7 @@
     "dev": "pnpm --filter '{next-auth-oauth,example}' dev",
     "example:build": "pnpm run --filter example build",
     "example:dev": "pnpm run --filter example dev",
-    "release:wechatmp-kit": "pnpm run --filter 'wechatmp-kit' release ",
+    "release:wechatmp-kit": "pnpm run --filter wechatmp-kit release ",
     "release:weibo": "pnpm run --filter '@next-auth-oauth/weibo' release ",
     "release:gitee": "pnpm run --filter '@next-auth-oauth/gitee' release ",
     "release:authing": "pnpm run --filter '@next-auth-oauth/authing' release ",

@@ -203,9 +203,12 @@ export default function WeChatMp<P extends WechatMpProfile>(
     const action = link.searchParams.get('action')
     if (action === 'token') {
       const data = await request.formData()
-      const valid = await captchaManager.validCode(
-        data.get('code')?.toString() ?? '',
-      )
+      const valid = await captchaManager
+        .validCode(data.get('code')?.toString() ?? '')
+        .catch(() => {
+          console.log('验证码验证失败' + JSON.stringify(captchaManager.list()))
+          return { openid: null }
+        })
       if (valid?.openid) {
         return Response.json({
           scope: 'openid',

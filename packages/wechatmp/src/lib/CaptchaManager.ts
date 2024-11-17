@@ -90,4 +90,7 @@ export class CaptchaManager<
       }
     }
   }
+  list(): string[] {
+    return Array.from(this.cache.keys())
+  }
 }
