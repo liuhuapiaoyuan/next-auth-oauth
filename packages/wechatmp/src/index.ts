@@ -7,8 +7,11 @@ import type {
   UserinfoEndpointHandler,
 } from 'next-auth/providers'
 import { WechatMpApi } from 'wechatmp-kit'
-import { CaptchaManager } from './lib/CaptchaManager'
+import type { CaptchaManager } from './lib/CaptchaManager'
+import { MemoryCaptchaManager } from './lib/CaptchaManager'
 import { QrcodePage } from './pages/qrcode'
+
+export * from './lib/CaptchaManager'
 
 export type WechatPlatformConfig = {
   /**
@@ -31,6 +34,11 @@ export type WechatPlatformConfig = {
    * 提供二维码创建工具，
    */
   wechatMpApi: WechatMpApi
+
+  /**
+   * 验证码管理器
+   */
+  captchaManager?: CaptchaManager
 
   /**
    * 页面接口，包含:
@@ -79,7 +87,13 @@ function isBlank(str?: string) {
 export default function WeChatMp<P extends WechatMpProfile>(
   options: OAuthUserConfig<P> & WechatPlatformConfig,
 ): OAuth2Config<P> & WechatMpResult {
-  const { wechatMpApi, checkType, endpoint, qrcodeImageUrl } = Object.assign(
+  const {
+    captchaManager: _captchaManager,
+    wechatMpApi,
+    checkType,
+    endpoint,
+    qrcodeImageUrl,
+  } = Object.assign(
     {
       endpoint:
         process.env.AUTH_WECHATMP_ENDPOINT ??
@@ -89,11 +103,9 @@ export default function WeChatMp<P extends WechatMpProfile>(
     },
     options ?? {},
   )
+
   const captchaManager: CaptchaManager =
-    // @ts-expect-error globalThis
-    globalThis.wechatmpCaptchaManager ?? new CaptchaManager()
-  // @ts-expect-error globalThis
-  globalThis.wechatmpCaptchaManager = captchaManager
+    _captchaManager ?? new MemoryCaptchaManager()
   // 验证MESSAGE
   if (checkType === 'MESSAGE' && isBlank(qrcodeImageUrl)) {
     throw new Error('checkType为MESSAGE时，必须配置qrcodeImageUrl')
@@ -206,12 +218,9 @@ export default function WeChatMp<P extends WechatMpProfile>(
     const action = link.searchParams.get('action')
     if (action === 'token') {
       const data = await request.formData()
-      const valid = await captchaManager
-        .validCode(data.get('code')?.toString() ?? '')
-        .catch(() => {
-          console.log('验证码验证失败' + JSON.stringify(captchaManager.list()))
-          return { openid: null }
-        })
+      const valid = await captchaManager.getData(
+        data.get('code')?.toString() ?? '',
+      )
       if (valid?.openid) {
         return Response.json({
           scope: 'openid',
@@ -226,7 +235,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
     } else if (action === 'check') {
       const { code } = await request.json()
       try {
-        const valid = await captchaManager.validCode(code)
+        const valid = await captchaManager.getData(code)
         if (valid?.openid) {
           return Response.json({ type: 'success' })
         }
@@ -262,7 +271,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
       content = message.Content.trim()
     }
 
-    const status = await captchaManager.complted(content, {
+    const status = await captchaManager.updateData(content, {
       openid: message.FromUserName,
     })
     const result = messageServicde.renderMessage({

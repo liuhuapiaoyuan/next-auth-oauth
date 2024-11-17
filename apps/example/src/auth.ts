@@ -8,6 +8,7 @@ import Github from 'next-auth/providers/github'
 import Wehcatmp from '@next-auth-oauth/wechatmp'
 import { WechatMpApi } from 'wechatmp-kit'
 import { AuthConfig } from './auth.config'
+import { captchaManager } from './service/captcha.service'
 
 export const authAdapter = PrismaAdapter(prisma)
 export const wechatMpProvder = Wehcatmp({
@@ -18,6 +19,7 @@ export const wechatMpProvder = Wehcatmp({
     appId: process.env.AUTH_WECHATMP_APPID!,
     appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
   }),
+  captchaManager,
 })
 
 export const authService = new AuthService()

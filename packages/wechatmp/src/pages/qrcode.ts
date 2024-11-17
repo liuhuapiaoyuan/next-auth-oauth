@@ -63,14 +63,14 @@ export function QrcodePage(params: {
                     window.location.href = successRedirectUrl; 
                 } else if(data.type=="fail") {
                     console.log('登录失败');
-                    clearInterval(checkLoginStatus);
-                }   
+                }  else{
+                    setTimeout(checkLoginStatus,1000)  
+                }
             })
             .catch(error => {
                 console.error('请求过程中出现错误:', error);
             });
         }
-        setInterval(checkLoginStatus, 5000);
             // 倒计时60秒
         let time = 60;
         const timer = setInterval(() => {

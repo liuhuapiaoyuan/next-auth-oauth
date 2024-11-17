@@ -10,18 +10,27 @@ export type CaptchaManagerConfig = {
    */
   length: number
 }
-export class CaptchaManager<
+
+export interface CaptchaManager<T = { openid: string; unionid?: string }> {
+  generate(code?: string): Promise<string>
+  updateData(captcha: string, data: T): Promise<boolean>
+  getData(captcha: string): Promise<T | undefined>
+  list(): Promise<string[]>
+}
+
+export class MemoryCaptchaManager<
   T = {
     openid: string
     unionid?: string
   },
-> {
+> implements CaptchaManager<T>
+{
   private options: CaptchaManagerConfig
   private cache: Map<string, { data?: T; expireAt: number }> = new Map()
 
   constructor(options?: CaptchaManagerConfig) {
     this.options = options || {
-      expireTime: 60000,
+      expireTime: 60000 * 2,
       length: 6,
     }
   }
@@ -29,7 +38,7 @@ export class CaptchaManager<
   /**
    * 生成验证码
    */
-  generate(code?: string): string {
+  async generate(code?: string) {
     this.cleanupExpired()
     const captcha =
       code ??
@@ -45,7 +54,7 @@ export class CaptchaManager<
    * @param captcha
    * @param data
    */
-  complted(captcha: string, data: T) {
+  async updateData(captcha: string, data: T) {
     if (this.cache.has(captcha)) {
       const entry = this.cache.get(captcha)
       if (entry && entry.expireAt > Date.now()) {
@@ -60,29 +69,17 @@ export class CaptchaManager<
    * 获取验证码绑定的数据
    * @param captcha
    */
-  data(captcha: string) {
+  async getData(captcha: string) {
     const entry = this.cache.get(captcha)
     if (entry && entry.expireAt > Date.now()) {
       return entry.data
     }
-  }
-  /**
-   * 校验验证码
-   * @param captcha
-   * @returns
-   */
-  async validCode(captcha: string): Promise<T | undefined> {
-    const entry = this.cache.get(captcha)
-    if (entry && entry.expireAt > Date.now()) {
-      return entry.data
-    }
-    throw new Error('验证码不存在')
   }
 
   /**
    * 清理过期的验证码
    */
-  private cleanupExpired(): void {
+  private async cleanupExpired() {
     const now = Date.now()
     for (const [captcha, entry] of this.cache.entries()) {
       if (entry.expireAt <= now) {
@@ -90,7 +87,7 @@ export class CaptchaManager<
       }
     }
   }
-  list(): string[] {
+  async list() {
     return Array.from(this.cache.keys())
   }
 }
