@@ -36,7 +36,7 @@
     "next": "^15"
   },
   "dependencies": {
-    "wechatmp-kit": "*"
+    "wechatmp-kit": "workspace:*"
   },
   "devDependencies": {},
   "publishConfig": {

@@ -87,8 +87,8 @@ importers:
         specifier: ^2.5.2
         version: 2.5.4
       wechatmp-kit:
-        specifier: '*'
-        version: 0.1.0
+        specifier: workspace:*
+        version: link:../../packages/wechatmp-kit
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -172,8 +172,8 @@ importers:
         specifier: beta
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       wechatmp-kit:
-        specifier: '*'
-        version: 0.1.0
+        specifier: workspace:*
+        version: link:../wechatmp-kit
 
   packages/wechatmp-kit: {}
 
@@ -3053,9 +3053,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  wechatmp-kit@0.1.0:
-    resolution: {integrity: sha512-lwmJdTLqhX7wT5RFCY2Y0DxbbDrXavQKmZ4Mz7HQkJO7V5JA6prrd4iqNma8dvhTMm+E7Pda2Rp5xVcH3lwpsw==}
 
   which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
@@ -6200,8 +6197,6 @@ snapshots:
       '@vue/shared': 3.5.12
     optionalDependencies:
       typescript: 5.6.3
-
-  wechatmp-kit@0.1.0: {}
 
   which-boxed-primitive@1.0.2:
     dependencies:

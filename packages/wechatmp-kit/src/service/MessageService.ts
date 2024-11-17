@@ -124,13 +124,13 @@ export class MessageService {
   parserInput(input: string, params: Omit<QueryParams, 'encrypt'>) {
     if (!this.aesMode) {
       if (!this.checkSign(params)) {
-        throw new Error('签名校验失败')
+        throw new Error('消息请求签名校验失败')
       }
       return parseWehcatMessageXML<RequestXML>(input)
     }
     const encryptXML = parseWehcatMessageXML<ExcryptRequestXML>(input).Encrypt
     if (!this.checkSign({ ...params, encrypt: encryptXML })) {
-      throw new Error('签名校验失败')
+      throw new Error('消息包签名校验失败 ')
     }
     const decryptXML = this.decryptXML(encryptXML)
     return parseWehcatMessageXML<RequestXML>(decryptXML)
@@ -147,11 +147,13 @@ export class MessageService {
       return content
     }
     const Encrypt = this.encryptMessage(content)
-    const Nonce = randomStr(16)
-    const TimeStamp = Math.floor(Date.now() / 1000).toString()
+    // 随机数字 0~4294967295
+    const Nonce = Math.floor(Math.random() * 4294967295)
+    const TimeStamp = Math.floor(Date.now() / 1000)
     const tmpArr = [this.token, TimeStamp, Nonce, Encrypt].sort()
     const tmpStr = tmpArr.join('')
     const MsgSignature = crypto.createHash('sha1').update(tmpStr).digest('hex')
+
     return renderXML({
       Encrypt: Encrypt,
       MsgSignature,

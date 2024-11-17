@@ -27,7 +27,7 @@
     "next-auth": "beta",
     "next-auth-oauth": "^1",
     "@next-auth-oauth/wechatmp": "workspace:*",
-    "wechatmp-kit": "*",
+    "wechatmp-kit": "workspace:*",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {

@@ -1,8 +1,12 @@
-import crypto, { randomBytes } from 'crypto'
+import crypto from 'crypto'
 
 export function randomStr(size: number) {
-  const randomBuffer = randomBytes(size)
-  return randomBuffer.toString('hex')
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let str = ''
+  for (let i = 0; i < size; i++) {
+    str += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return str
 }
 
 export function checkSignature(
@@ -18,19 +22,20 @@ export function checkSignature(
   return hash === signature
 }
 
-function base64Encode(input: Buffer): string {
-  return input.toString('base64')
-}
-
 function base64Decode(input: string): Buffer {
   return Buffer.from(input, 'base64')
 }
 
-function padToPKCS7(text: Buffer, keySize: number): Buffer {
-  const paddingSize = keySize - (text.length % keySize)
-  const padding = Buffer.alloc(paddingSize, paddingSize)
-  return Buffer.concat([text, padding])
+function padToPKCS7(buff: Buffer, keySize: number): Buffer {
+  let needPadLen = 32 - (buff.length % 32)
+  if (needPadLen == 0) {
+    needPadLen = keySize
+  }
+  const pad = Buffer.alloc(needPadLen)
+  pad.fill(needPadLen)
+  return Buffer.concat([buff, pad])
 }
+
 function unpadPKCS7(input: Buffer, keySize: number): Buffer {
   let padding = input[input.length - 1]
   if (padding < 1 || padding > keySize) {
@@ -39,23 +44,13 @@ function unpadPKCS7(input: Buffer, keySize: number): Buffer {
 
   return input.subarray(0, input.length - padding)
 }
-function intToNetworkByteOrder(value: number) {
-  const buffer = Buffer.from([
-    (value >>> 24) & 0xff,
-    (value >>> 16) & 0xff,
-    (value >>> 8) & 0xff,
-    value & 0xff,
-  ])
-  return buffer
-}
 
 /**
- * 加密
- * @param encodingAESKey
- * @param randomStr
- * @param msg
- * @param msgLen
- * @param appId
+ * 加解密
+ * @param encodingAESKey  密钥
+ * @param randomStr  随机字符串
+ * @param msg   消息包
+ * @param appId   appid
  * @returns
  */
 export function encryptMessage(
@@ -65,17 +60,24 @@ export function encryptMessage(
   appId: string,
 ): string {
   const aesKey = base64Decode(encodingAESKey + '=')
+  const msgBuffer = Buffer.from(msg, 'utf-8')
+  const msgLength = Buffer.alloc(4)
+  msgLength.writeUInt32BE(msgBuffer.length, 0)
   const fullStr = Buffer.concat([
-    Buffer.from(randomStr),
-    intToNetworkByteOrder(msg.length),
-    Buffer.from(msg),
-    Buffer.from(appId),
+    Buffer.from(randomStr, 'utf-8'),
+    msgLength,
+    msgBuffer,
+    Buffer.from(appId, 'utf-8'),
   ])
   const paddedFullStr = padToPKCS7(fullStr, aesKey.length)
   const iv = aesKey.subarray(0, 16)
   const cipher = crypto.createCipheriv('aes-256-cbc', aesKey, iv)
-  const encrypted = cipher.update(paddedFullStr)
-  return base64Encode(encrypted)
+  cipher.setAutoPadding(false)
+  const cipheredMsg = Buffer.concat([
+    cipher.update(/*encoded*/ paddedFullStr),
+    cipher.final(),
+  ])
+  return cipheredMsg.toString('base64')
 }
 /**
  * 解密消息

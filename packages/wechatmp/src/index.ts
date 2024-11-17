@@ -241,12 +241,13 @@ export default function WeChatMp<P extends WechatMpProfile>(
       return new Response('验证失败', { status: 405 })
     }
     // 获得xml消息报
-    const msg_signature = request.headers.get('msg_signature')
+    const msg_signature = link.searchParams.get('msg_signature')
+    const encrypt_type = link.searchParams.get('encrypt_type')
     const body = await request.text()
     const message = messageServicde.parserInput(body, {
       timestamp,
       nonce,
-      signature: msg_signature ?? signature,
+      signature: (encrypt_type === 'aes' ? msg_signature : signature)!,
     })
     let content = ''
     if (message.EventKey && message.MsgType == 'event') {
@@ -265,7 +266,7 @@ export default function WeChatMp<P extends WechatMpProfile>(
       MsgType: 'text',
       Content: status ? '👏👏登录成功' : '😭登录失败,请重新获得验证码',
     })
-
+    console.log(result)
     return new Response(result, {
       headers: {
         'Content-Type': 'application/xml',

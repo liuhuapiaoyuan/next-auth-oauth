@@ -6,11 +6,6 @@
     "declaration": true,
     "baseUrl": ".",
     "rootDir": "src",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "outDir": "dist"
   },
   "exclude": [
