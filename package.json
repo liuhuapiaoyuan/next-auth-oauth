@@ -22,6 +22,7 @@
     "release:authing": "pnpm run --filter '@next-auth-oauth/authing' release ",
     "release:qq": "pnpm run --filter '@next-auth-oauth/qq' release ",
     "release:wechat": "pnpm run --filter '@next-auth-oauth/wechat' release ",
+    "release:wechatmp": "pnpm run --filter @next-auth-oauth/wechatmp release ",
     "release:providers": "pnpm run --filter '@next-auth-oauth/*' release "
   },
   "keywords": [],
