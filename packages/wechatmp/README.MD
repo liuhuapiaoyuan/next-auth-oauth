@@ -25,6 +25,9 @@ AUTH_WECHATMP_QRCODE_IMAGE_URL=
 ### 2. 实例化并配置到`auth.ts`文件中
 
 ```typescript
+import Wehcatmp from '@next-auth-oauth/wechatmp'
+import { WechatMpApi } from 'wechatmp-kit'
+
 export const wechatMpProvder = Wehcatmp({
   /**
    * WechatMpApi instance
