@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.5.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.3...v1.5.0) (2024-11-18)
+
+
+### Features
+
+* enhance wechatMp provider with additional logging and success message ([6dc80a9](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/6dc80a9314104779801f037449f1ddf3f09defba))
+* update wechatmp-kit and refactor MessageService ([24107ec](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/24107eca61077a2f17f702a0df963ef6d5bf937b))
+* 完成微信公众号登录，支持场景二维码/验证码回复两种登录模式 ([a04a6f2](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/a04a6f25012a0f8c000a607ef397f9ba152d873d))
+
+
+### Bug Fixes
+
+* update any ([63e65c3](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/63e65c3cc11d8afe99aabb9b6e0d72a206342dac))
+* Update package.json ([9e1329c](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/9e1329cb47f5485e0a78a387181b58b20590908f))
+* version update ([a5313a7](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/a5313a7eea5eae726893d01515ee107bc1dc15a9))
+* 修复微信包的一些错误，完善微信登录 ([cbe6165](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/cbe61654a11e981c449acbf8ba34ca447a8f2872))
+* 调整README ([#14](https://github.com/liuhuapiaoyuan/next-auth-oauth/issues/14)) ([9f2bd66](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/9f2bd6632455fa49c4f50c6c6378d52550193fd8))
+* 调整一下参数 ([b24a678](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/b24a678a7bba4988bb20f9ceb427a5b0be7331ab))
+* 调整回调地址 ([2e0e1a9](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/2e0e1a9cbddb8492c572477bdbe0b2d035a5d212))
+* 调整所有脚本发布指令 ([0a0ec8e](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/0a0ec8eeeec18db981dcd649623ba685a4173c70))
+* 调整验证错误 ([0705fa9](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/0705fa90be895bdbae2f80ea722c8a5005ef5524))
+
+
+### Performance Improvements
+
+* doc 调整base 路径 ([dc3e432](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/dc3e4328ed41f2e143413903ee35a45e840b6f7e))
+* 移除bun，改用pnpm ([a04a6f2](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/a04a6f25012a0f8c000a607ef397f9ba152d873d))
+
 ## [1.4.3](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.2...v1.4.3) (2024-10-29)
 
 
