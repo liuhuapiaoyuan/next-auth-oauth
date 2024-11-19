@@ -4,7 +4,7 @@ outline: deep
 
 # 使用微信公众号-验证码登录/场景二维码登录
 
-#### 1. 配置环境变量
+## 1. 配置环境变量
 
 ```bash
 # 微信appid
@@ -24,7 +24,9 @@ AUTH_WECHATMP_QRCODE_IMAGE_URL=
 
 ```
 
-### 2. 实例化并配置到`auth.ts`文件中
+## 2. 实例化并配置到`auth.ts`文件中
+
+- 导入`WechatMpApi`模块 实例化
 
 ```typescript
 import Wehcatmp from '@next-auth-oauth/wechatmp'
@@ -42,12 +44,14 @@ export const wechatMpProvder = Wehcatmp({
 })
 ```
 
+- 配置nextjs的配置文件`auth.ts`中
+
 ```typescript
   providers: [Gitee, Github, wechatMpProvder],
 
 ```
 
-#### 3. 配合 `AUTH_WECHATMP_ENDPOINT` 创建回调路由
+## 3. 配合 `AUTH_WECHATMP_ENDPOINT` 创建回调路由
 
 比如你配置 `AUTH_WECHATMP_ENDPOINT='http://localhost:3000/api/auth/wechatmp'`
 
@@ -58,6 +62,6 @@ import { wechatMpProvder } from '@/auth'
 export const { GET, POST } = wechatMpProvder
 ```
 
-#### 4. 配置微信公众号授权登录
+## 4. 配置微信公众号授权登录
 
 将TOKEN/AES/AUTH_WECHATMP_ENDPOINT 填写到微信公众号后台上
