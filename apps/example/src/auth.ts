@@ -7,9 +7,11 @@ import { Gitee } from '@next-auth-oauth/gitee'
 import Github from 'next-auth/providers/github'
 import Wehcatmp from '@next-auth-oauth/wechatmp'
 import { AuthConfig } from './auth.config'
-
+import { captchaManager } from '@/service/captcha.service'
 export const authAdapter = PrismaAdapter(prisma)
-export const wechatMpProvder = Wehcatmp({})
+export const wechatMpProvder = Wehcatmp({
+  captchaManager,
+})
 
 export const authService = new AuthService()
 
