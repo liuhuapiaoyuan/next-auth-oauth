@@ -26,18 +26,8 @@ AUTH_WECHATMP_QRCODE_IMAGE_URL=
 
 ```typescript
 import Wehcatmp from '@next-auth-oauth/wechatmp'
-import { WechatMpApi } from 'wechatmp-kit'
 
-export const wechatMpProvder = Wehcatmp({
-  /**
-   * WechatMpApi instance
-   */
-  wechatMpApi: new WechatMpApi({
-    appId: process.env.AUTH_WECHATMP_APPID!,
-    appSecret: process.env.AUTH_WECHATMP_APPSECRET!,
-  }),
-  captchaManager,
-})
+export const wechatMpProvder = Wehcatmp({})
 ```
 
 ```typescript
@@ -59,3 +49,5 @@ export const { GET, POST } = wechatMpProvder
 #### 4. 配置微信公众号授权登录
 
 将TOKEN/AES/AUTH_WECHATMP_ENDPOINT 填写到微信公众号后台上
+
+## 更新日志

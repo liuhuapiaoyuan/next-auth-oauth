@@ -1,6 +1,6 @@
 {
   "name": "@next-auth-oauth/wechatmp",
-  "version": "0.1.2",
+  "version": "0.2.2",
   "description": "基于Auth.js的微信公众号验证码登录、二维码扫描登录插件",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

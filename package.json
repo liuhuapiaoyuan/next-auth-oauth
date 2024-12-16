@@ -13,7 +13,7 @@
     "docs:dev": "pnpm --filter 'docs' docs:dev",
     "docs:build": "pnpm --filter 'docs' docs:build",
     "release": "pnpm --filter 'next-auth-oauth' release",
-    "dev": "pnpm --filter '{next-auth-oauth,example}' dev",
+    "dev": "pnpm --filter 'next-auth-oauth,example' dev",
     "example:build": "pnpm run --filter example build",
     "example:dev": "pnpm run --filter example dev",
     "release:wechatmp-kit": "pnpm run --filter wechatmp-kit release ",
@@ -23,6 +23,7 @@
     "release:qq": "pnpm run --filter '@next-auth-oauth/qq' release ",
     "release:wechat": "pnpm run --filter '@next-auth-oauth/wechat' release ",
     "release:wechatmp": "pnpm run --filter @next-auth-oauth/wechatmp release ",
+    "dev:wechatmp": "pnpm run --filter @next-auth-oauth/wechatmp dev ",
     "release:providers": "pnpm run --filter '@next-auth-oauth/*' release "
   },
   "keywords": [],

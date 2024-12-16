@@ -6,48 +6,13 @@ import type {
   TokenEndpointHandler,
   UserinfoEndpointHandler,
 } from 'next-auth/providers'
-import { WechatMpApi } from 'wechatmp-kit'
-import type { CaptchaManager } from './lib/CaptchaManager'
 import { MemoryCaptchaManager } from './lib/CaptchaManager'
-import { QrcodePage } from './pages/qrcode'
+import {
+  WechatMpLoginManager,
+  type WechatMpLoginManagerConfig,
+} from './WehcatMpLoginManger'
 
 export * from './lib/CaptchaManager'
-
-export type WechatPlatformConfig = {
-  /**
-   * 验证类型 "MESSAGE"|"QRCODE"
-   * - MESSAGE 回复消息
-   * - QRCODE 临时二维码
-   * - 默认使用环境变量 AUTH_WECHATMP_CHECKTYPE
-   * @default "MESSAGE"
-   */
-  checkType?: 'MESSAGE' | 'QRCODE'
-
-  /**
-   * ### 一般为**公众号关注二维码**
-   * ##### 用于引导用户扫码关注公众号后，方便发送验证码
-   * ##### 当checkType为MESSAGE时必须配置此参数
-   */
-  qrcodeImageUrl?: string
-  /**
-   * 认证账号必须提供
-   * 提供二维码创建工具，
-   */
-  wechatMpApi: WechatMpApi
-
-  /**
-   * 验证码管理器
-   */
-  captchaManager?: CaptchaManager
-
-  /**
-   * 页面接口，包含:
-   * - 二维码展示页面
-   * - 微信消息回调页面
-   * 默认使用环境变量 AUTH_WECHATMP_ENDPOINT
-   */
-  endpoint?: string
-}
 
 export type WechatMpProfile = {
   /**
@@ -59,24 +24,12 @@ export type WechatMpProfile = {
    */
   unionid: string
 }
-function checkPrint() {
-  // @ts-expect-error printFlag
-  if (global.printFlag === false) {
-    // @ts-expect-error printFlag
-    global.printFlag = true
-    return false
-  }
-  return true
-}
 
 type WechatMpResult = {
   GET: (req: Request) => Promise<Response>
   POST: (req: Request) => Promise<Response>
 }
 
-function isBlank(str?: string) {
-  return str === undefined || str === null || str.trim() === ''
-}
 /**
  * 微信公众号平台(验证码登录)
  * [体验账号申请](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login)
@@ -85,16 +38,25 @@ function isBlank(str?: string) {
  * @returns
  */
 export default function WeChatMp<P extends WechatMpProfile>(
-  options: OAuthUserConfig<P> & WechatPlatformConfig,
+  options: OAuthUserConfig<P> & Partial<WechatMpLoginManagerConfig>,
 ): OAuth2Config<P> & WechatMpResult {
   const {
-    captchaManager: _captchaManager,
-    wechatMpApi,
+    checks: _checks,
+    captchaManager,
     checkType,
     endpoint,
     qrcodeImageUrl,
+    aesKey,
+    token,
+    appId,
+    appSecret,
+    ...reset
   } = Object.assign(
     {
+      captchaManager: new MemoryCaptchaManager(),
+      appId: process.env.AUTH_WECHATMP_APPID ?? 'TEMP',
+      appSecret: process.env.AUTH_WECHATMP_APPSECRET ?? 'TEMP',
+      token: process.env.AUTH_WECHATMP_TOKEN ?? 'TEMP',
       endpoint:
         process.env.AUTH_WECHATMP_ENDPOINT ??
         'http://localhost:3000/api/auth/wechatmp',
@@ -104,48 +66,26 @@ export default function WeChatMp<P extends WechatMpProfile>(
     options ?? {},
   )
 
-  const captchaManager: CaptchaManager =
-    _captchaManager ?? new MemoryCaptchaManager()
-  // 验证MESSAGE
-  if (checkType === 'MESSAGE' && isBlank(qrcodeImageUrl)) {
-    throw new Error('checkType为MESSAGE时，必须配置qrcodeImageUrl')
-  }
-
-  const messageServicde = wechatMpApi.getMessageService(
-    process.env.AUTH_WECHATMP_TOKEN!,
-    process.env.AUTH_WECHATMP_AESKEY!,
-  )
-  //  检验endpoint是否是完整的http
   const endpointUrl = new URL(endpoint)
-
+  const wechatMPLoginManager = new WechatMpLoginManager({
+    captchaManager,
+    checkType,
+    endpoint,
+    qrcodeImageUrl,
+    appId,
+    appSecret,
+    token,
+    aesKey,
+  })
   //   跳转页面，也就是二维码
   const authorization: AuthorizationEndpointHandler = {
     url: endpointUrl.toString(),
     params: {
-      client_id: wechatMpApi.appId,
+      client_id: appId,
       response_type: 'code',
       action: 'qrcode',
     },
   }
-
-  // 从callback中获得state,code 然后进一步获取
-  const token: TokenEndpointHandler = {
-    url: endpoint,
-    params: {
-      action: 'token',
-    },
-  }
-
-  const profile = (profile: WechatMpProfile) => {
-    const openid = profile.unionid ?? profile.openid
-    return {
-      id: openid,
-      name: openid,
-      email: openid + '@wechat.com',
-      raw: profile,
-    }
-  }
-
   /**
    * 账户信息
    * @param tokens
@@ -159,8 +99,17 @@ export default function WeChatMp<P extends WechatMpProfile>(
       refresh_token_expires_at: Date.now(),
     }
   }
-
+  const profile = (profile: WechatMpProfile) => {
+    const openid = profile.unionid ?? profile.openid
+    return {
+      id: openid,
+      name: openid,
+      email: openid + '@wechat.com',
+      raw: profile,
+    }
+  }
   const userinfo: UserinfoEndpointHandler = {
+    //由于next-auth会校验url的合理，这里就随意填写
     url: 'http://localhost:3000/auth/qrcode2',
     async request({ tokens }: { tokens: { access_token: string } }) {
       return {
@@ -169,139 +118,20 @@ export default function WeChatMp<P extends WechatMpProfile>(
     },
   }
 
-  async function GET(request: Request): Promise<Response> {
-    const link = new URL(request.url)
-    const action = link.searchParams.get('action')
-    const redirectUri = link.searchParams.get('redirect_uri')!
-    // 微信消息验证
-    const timestamp = link.searchParams.get('timestamp')
-    const nonce = link.searchParams.get('nonce')
-    const signature = link.searchParams.get('signature')
-    const echo = link.searchParams.get('echostr')
-    if (timestamp && nonce && signature && echo) {
-      if (messageServicde.checkSign({ timestamp, nonce, signature })) {
-        return new Response(echo)
-      }
-      return new Response('验证失败', { status: 405 })
-    }
-    if (action === 'debug') {
-      return Response.json({ data: captchaManager.list() })
-    }
-    if (action === 'qrcode') {
-      const code = await captchaManager.generate()
-      let imgLink = qrcodeImageUrl!
-      if (checkType === 'QRCODE') {
-        const t = await messageServicde.createPermanentQrcode(code)
-        //imgLink = `https://zddydd.com/qrcode/build?label=&logo=0&labelalignment=center&foreground=%23000000&background=%23ffffff&size=300&padding=10&logosize=50&labelfontsize=14&errorcorrection=medium&text=${encodeURI(t.url)}`
-        imgLink = t.url
-      }
-      const html = QrcodePage({
-        checkType,
-        qrcode: imgLink,
-        code,
-        redirectUri,
-        endpoint,
-      })
-      return new Response(html, {
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      })
-    }
-
-    return Response.json({ data: 1 })
-  }
-  async function POST(request: Request): Promise<Response> {
-    // 微信消息验证
-    const link = new URL(request.url)
-
-    const action = link.searchParams.get('action')
-    if (action === 'token') {
-      const data = await request.formData()
-      const valid = await captchaManager.getData(
-        data.get('code')?.toString() ?? '',
-      )
-      if (valid?.openid) {
-        return Response.json({
-          scope: 'openid',
-          access_token: valid.openid,
-          token_type: 'bearer',
-        })
-      }
-      return Response.json({
-        error: 'invalid_grant',
-        error_description: '验证码错误',
-      })
-    } else if (action === 'check') {
-      const { code } = await request.json()
-      try {
-        const valid = await captchaManager.getData(code)
-        if (valid?.openid) {
-          return Response.json({ type: 'success' })
-        }
-      } catch (error) {
-        return Response.json({ type: 'fail', error: JSON.stringify(error) })
-      }
-      return Response.json({ type: 'checking' })
-    }
-
-    const timestamp = link.searchParams.get('timestamp')!
-    const nonce = link.searchParams.get('nonce')!
-    const signature = link.searchParams.get('signature')!
-    const echo = link.searchParams.get('echostr')
-    if (timestamp && nonce && signature && echo) {
-      if (messageServicde.checkSign({ timestamp, nonce, signature })) {
-        return new Response(echo)
-      }
-      return new Response('验证失败', { status: 405 })
-    }
-    // 获得xml消息报
-    const msg_signature = link.searchParams.get('msg_signature')
-    const encrypt_type = link.searchParams.get('encrypt_type')
-    const body = await request.text()
-    const message = messageServicde.parserInput(body, {
-      timestamp,
-      nonce,
-      signature: (encrypt_type === 'aes' ? msg_signature : signature)!,
-    })
-    let content = ''
-    if (message.EventKey && message.MsgType == 'event') {
-      content = message.EventKey.replace('qrscene_', '')
-    } else if (message.MsgType == 'text') {
-      content = message.Content.trim()
-    }
-
-    const status = await captchaManager.updateData(content, {
-      openid: message.FromUserName,
-    })
-    const result = messageServicde.renderMessage({
-      ToUserName: message.FromUserName,
-      FromUserName: message.ToUserName,
-      CreateTime: Math.floor(Date.now() / 1000),
-      MsgType: 'text',
-      Content: status ? '👏👏登录成功' : '😭登录失败,请重新获得验证码',
-    })
-    console.log(result)
-    return new Response(result, {
-      headers: {
-        'Content-Type': 'application/xml',
-      },
-    })
-  }
-
-  if (!checkPrint()) {
-    console.log('[auth.js/微信公众号登录插件]')
-    console.log('请注意以下参数')
-    console.log(`微信端消息回调：${endpoint}`)
-    console.log(`微信端消息验证类型：${options.checkType}`)
+  // 从callback中获得state,code 然后进一步获取
+  const tokenEndpoint: TokenEndpointHandler = {
+    url: endpoint,
+    params: {
+      action: 'token',
+    },
   }
 
   return {
-    GET,
-    POST,
+    GET: (req: Request) => wechatMPLoginManager.handle(req),
+    POST: (req: Request) => wechatMPLoginManager.handle(req),
     account,
-    clientId: wechatMpApi.appId,
-    clientSecret: 'TEMP',
+    clientId: appId,
+    clientSecret: appSecret,
     id: 'wechatmp',
     name: '微信公众号登录',
     type: 'oauth' as const,
@@ -311,9 +141,10 @@ export default function WeChatMp<P extends WechatMpProfile>(
       text: '#000',
     },
     userinfo,
-    checks: ['none'] as ['none'],
-    authorization,
-    token,
     profile,
+    authorization,
+    checks: ['none'] as ['none'],
+    token: tokenEndpoint,
+    ...reset,
   }
 }

@@ -32,6 +32,11 @@ export class RedisCaptchaService implements CaptchaManager {
     }
     this.redis = redis
   }
+  exists(captcha: string): Promise<boolean> {
+    return this.redis
+      .exists(`captcha:${captcha}`)
+      .then((exists) => exists === 1)
+  }
   generate(code?: string): Promise<string> {
     code ??= Math.random()
       .toString()

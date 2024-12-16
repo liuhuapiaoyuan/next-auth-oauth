@@ -1,11 +1,11 @@
 export function QrcodePage(params: {
   checkType: 'QRCODE' | 'MESSAGE'
   qrcode: string
-  endpoint: string
+  checkLoginApi: string
   code: string
   redirectUri: string
 }) {
-  const { qrcode, checkType, endpoint, code, redirectUri } = params
+  const { qrcode, checkType, checkLoginApi, code, redirectUri } = params
   const isLink = checkType == 'MESSAGE'
   return `
         <html>
@@ -42,7 +42,8 @@ export function QrcodePage(params: {
            }
             
         // 模拟的API URL，用于检查登录状态
-        const checkLoginUrl = '${endpoint}?action=check';
+        const checkLoginUrl = '${checkLoginApi}';
+        //?action=check
         // 登录成功后的跳转URL
         const successRedirectUrl = '${redirectUri}?code=${code}';
 
@@ -62,7 +63,7 @@ export function QrcodePage(params: {
                     alert("登录成功");
                     window.location.href = successRedirectUrl; 
                 } else if(data.type=="fail") {
-                    alert("登录成功");
+                    alert("失败，请重新登录");
                     window.history.go(-1);
                 }  else{
                     setTimeout(checkLoginStatus,1000)  
