@@ -58,7 +58,14 @@ export default function WeChat<P extends WeChatProfile>(
     clientId = process.env.AUTH_WECHAT_APP_ID!,
     clientSecret = process.env.AUTH_WECHAT_APP_SECRET!,
     platformType = process.env.AUTH_WECHAT_PLATFORM_TYPE ?? 'OfficialAccount',
-  } = options ?? {}
+  } = Object.assign(
+    {
+      clientId: process.env.AUTH_WECHAT_APP_ID!,
+      clientSecret: process.env.AUTH_WECHAT_APP_SECRET!,
+      platformType: process.env.AUTH_WECHAT_PLATFORM_TYPE ?? 'OfficialAccount',
+    },
+    options,
+  )
 
   if (platformType !== 'OfficialAccount' && platformType !== 'WebsiteApp') {
     throw new AuthError('Invalid WehcatPlatformType')
@@ -89,14 +96,10 @@ export default function WeChat<P extends WeChatProfile>(
     },
     conform: async (response: Response) => {
       const data = await response.json()
-      response = new Response(
-        JSON.stringify({
-          ...data,
-          token_type: 'bearer',
-        }),
-        response,
-      )
-      return response
+      return Response.json({
+        ...data,
+        token_type: 'bearer',
+      })
     },
   }
 

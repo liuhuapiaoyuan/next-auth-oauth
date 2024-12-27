@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "dev": "tsc -w",
     "patch:version": "npm version patch",
     "release": "pnpm run  build && npm publish && npm version patch"
   },
