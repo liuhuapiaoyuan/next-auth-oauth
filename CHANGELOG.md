@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.5.0...v1.6.0) (2024-12-19)
+
+
+### Features
+
+* 重构微信公众号登录，逻辑更加清晰，配置更加方便 ([bba4bbd](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/bba4bbd8a3d761b1138760570a9572af54a685e0))
+
+
+### Bug Fixes
+
+* 修正captchaManager ([c0be2c9](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/c0be2c926fa19367257208150d4aaa12ee685163))
+
 ## [1.5.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.4.3...v1.5.0) (2024-11-18)
 
 
