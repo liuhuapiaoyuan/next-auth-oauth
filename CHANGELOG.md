@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.6.0...v1.7.0) (2024-12-29)
+
+
+### Features
+
+* **packages:** 添加开发脚本并更新版本信息及优化代码 ([d4c0773](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/d4c0773ed958a0ac3e517035fad6a38df2d406e2))
+
 ## [1.6.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.5.0...v1.6.0) (2024-12-19)
 
 
