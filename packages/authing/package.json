@@ -28,7 +28,7 @@
   },
   "license": "MIC",
   "peerDependencies": {
-    "next-auth": "beta"
+    "next-auth": "5.0.0-beta.25"
   },
   "devDependencies": {},
   "publishConfig": {

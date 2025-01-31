@@ -47,9 +47,6 @@ importers:
       '@next-auth-oauth/gitee':
         specifier: '*'
         version: 0.1.3(next-auth@5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))
-      '@next-auth-oauth/wechat':
-        specifier: workspace:*
-        version: link:../../packages/wechat
       '@next-auth-oauth/wechatmp':
         specifier: workspace:*
         version: link:../../packages/wechatmp
@@ -78,7 +75,7 @@ importers:
         specifier: 15.0.3
         version: 15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       next-auth-oauth:
         specifier: ^1
@@ -130,13 +127,13 @@ importers:
   packages/authing:
     dependencies:
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
 
   packages/gitee:
     dependencies:
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
 
   packages/next-auth-oauth:
@@ -145,7 +142,7 @@ importers:
         specifier: ^15
         version: 15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
     devDependencies:
       '@types/node':
@@ -160,13 +157,13 @@ importers:
   packages/qq:
     dependencies:
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
 
   packages/wechat:
     dependencies:
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
 
   packages/wechatmp:
@@ -175,7 +172,7 @@ importers:
         specifier: ^15
         version: 15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       wechatmp-kit:
         specifier: ^0.1
@@ -186,7 +183,7 @@ importers:
   packages/weibo:
     dependencies:
       next-auth:
-        specifier: beta
+        specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.0.3(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
 
 packages:
@@ -3403,7 +3400,7 @@ snapshots:
   '@docsearch/js@3.8.0(@algolia/client-search@5.14.0)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)':
     dependencies:
       '@docsearch/react': 3.8.0(@algolia/client-search@5.14.0)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.17.2)
-      preact: 10.11.3
+      preact: 10.24.3
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
