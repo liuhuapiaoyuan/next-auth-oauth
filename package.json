@@ -25,7 +25,8 @@
     "dev:wechat": "pnpm run --filter @next-auth-oauth/wechat dev ",
     "release:wechatmp": "pnpm run --filter @next-auth-oauth/wechatmp release ",
     "dev:wechatmp": "pnpm run --filter '@next-auth-oauth/wechatmp' dev ",
-    "release:providers": "pnpm run --filter '@next-auth-oauth/*' release "
+    "release:providers": "pnpm run --filter '@next-auth-oauth/*' release ",
+    "release:feishu": "pnpm run --filter '@next-auth-oauth/feishu' release "
   },
   "keywords": [],
   "author": "",
