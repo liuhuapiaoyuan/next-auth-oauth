@@ -16,6 +16,7 @@
 | ![next-auth-oauth/wechatmp](https://img.shields.io/npm/v/@next-auth-oauth/wechatmp?logo=nodedotjs&label=@next-auth-oauth/wechatmp&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechatmp)           | 公众号二维码验证登录、消息回复验证登录                                             |
 | ![next-auth-oauth/nextjs](https://img.shields.io/npm/v/@next-auth-oauth/nextjs?logo=nodedotjs&label=@next-auth-oauth/nextjs&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat)                   | TODO：UI组件，nextjs配套的UI组件                                                   |
 | ![next-auth-oauth/slide-verify](https://img.shields.io/npm/v/@next-auth-oauth/slide-verify?logo=nodedotjs&label=@next-auth-oauth/slide-verify&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/wechat) | TODO：滑动行为验证码                                                               |
+| ![next-auth-oauth/feishu](https://img.shields.io/npm/v/@next-auth-oauth/feishu?logo=nodedotjs&label=@next-auth-oauth/feishu&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@next-auth-oauth/feishu) | 飞书登陆                                                               |
 
 ## 特性 ✨
 
