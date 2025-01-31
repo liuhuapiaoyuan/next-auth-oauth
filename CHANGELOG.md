@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.6.0...v1.7.0) (2025-01-31)
+
+
+### Features
+
+* **packages:** 添加开发脚本并更新版本信息及优化代码 ([d4c0773](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/d4c0773ed958a0ac3e517035fad6a38df2d406e2))
+* 添加飞书登录支持，更新依赖 ([5d22b46](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/5d22b46d20446781c3ec9c402bc52e254d885707))
+
+
+### Bug Fixes
+
+* 修正所有包的 license 字段 ([c7fe77c](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/c7fe77c901313b45a48c1f3676e02b4d00d1b962))
+
 ## [1.6.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.5.0...v1.6.0) (2024-12-19)
 
 
