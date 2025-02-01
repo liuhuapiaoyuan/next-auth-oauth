@@ -33,6 +33,7 @@ export default defineConfig({
           { text: 'Gitee登录', link: '/gitee' },
           { text: 'Authing登录', link: '/authing' },
           { text: 'Weibo登录', link: '/weibo' },
+          { text: '飞书登录', link: '/feishu' },
         ],
       },
       {
