@@ -4,6 +4,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/lib/db'
 import { AuthService } from '@/service/auth.service'
 import { Gitee } from '@next-auth-oauth/gitee'
+import { Feishu } from '@next-auth-oauth/feishu'
 import Github from 'next-auth/providers/github'
 import Wehcatmp from '@next-auth-oauth/wechatmp'
 import { AuthConfig } from './auth.config'
@@ -28,7 +29,7 @@ export const {
   listAccount,
 } = AdavanceNextAuth({
   ...AuthConfig,
-  providers: [Gitee, Github, wechatMpProvder],
+  providers: [Gitee, Github, Feishu, wechatMpProvder],
   adapter: authAdapter,
   userService: authService,
   autoBind: true,

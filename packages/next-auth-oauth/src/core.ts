@@ -97,9 +97,7 @@ export class CredentialsOauth {
           typeof credentials.password === 'string'
         ) {
           const { bindAccount, account } = await loadTempOauthUser()
-          const autoBindAccount =
-            credentials['autoBindTempAccount'] == 'string' &&
-            credentials['autoBindTempAccount'] === 'true'
+          const autoBindAccount = credentials['autoBindTempAccount'] === 'true'
           const user = await this.userService.login(
             credentials.username,
             credentials.password,

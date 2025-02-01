@@ -36,21 +36,26 @@ export interface FeishuProfile {
  *
  * [飞书开通应用](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/authen-v1/login-overview)
  *
+ * 操作流程：
+ * - 创建应用
+ * - 安全设置-重定向URL：http://localhost:3000/api/auth/callback/feishu
  * @param options
  * @returns
  */
-export function Feishu<P extends FeishuProfile>(
-  options: OAuthUserConfig<P> = {},
-): OAuth2Config<P> {
+export function Feishu<
+  P extends {
+    data: FeishuProfile
+  },
+>(options: OAuthUserConfig<P> = {}): OAuth2Config<P> {
   const {
     clientId = process.env.AUTH_FEISHU_ID!,
     clientSecret = process.env.AUTH_FEISHU_SECRET!,
-    checks = ['pkce', 'state'],
+    checks = ['state'],
     ...rest
   } = options
 
   return {
-    id: 'Feishu',
+    id: 'feishu',
     name: '飞书',
     type: 'oauth',
     style: {
@@ -58,33 +63,40 @@ export function Feishu<P extends FeishuProfile>(
       brandColor: '#c71d23',
       text: '#fff',
     },
-    checks: checks as ['pkce'],
+    checks: checks as ['state'],
     clientId,
     clientSecret,
     authorization: {
       url: 'https://accounts.feishu.cn/open-apis/authen/v1/authorize',
       params: {
-        response_type: 'code' 
+        response_type: 'code',
+        scope: '',
       },
     },
     userinfo: {
       url: 'https://open.feishu.cn/open-apis/authen/v1/user_info',
-      request: {
-        headers: {
-          Authorization: 'Bearer {access_token}',
-        },
-      },
     },
     token: {
-      url: 'https://open.feishu.cn/open-apis/authen/v2/oauth/token'
+      url: 'https://open.feishu.cn/open-apis/authen/v2/oauth/token',
+      conform: async (resp: Response) => {
+        const { code, ...json } = await resp.json()
+        if (code !== 0) {
+          console.error('飞书token获取失败')
+        }
+        return Response.json(json)
+      },
     },
-    profile: (profile) => {
+    profile: ({ data: profile }) => {
       return {
         id: profile.user_id,
         name: profile.name ?? profile.en_name,
         username: profile.name ?? profile.en_name,
         email: profile.enterprise_email ?? profile.email,
-        image: profile.avatar_url ?? profile.avatar_big ?? profile.avatar_middle ?? profile.avatar_thumb,
+        image:
+          profile.avatar_url ??
+          profile.avatar_big ??
+          profile.avatar_middle ??
+          profile.avatar_thumb,
       }
     },
     ...rest,
