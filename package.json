@@ -19,7 +19,7 @@
     "release:wechatmp-kit": "pnpm run --filter wechatmp-kit release ",
     "release:weibo": "pnpm run --filter '@next-auth-oauth/weibo' release ",
     "release:gitee": "pnpm run --filter '@next-auth-oauth/gitee' release ",
-    "release:authing": "pnpm run --filter '@next-auth-oauth/authing' release ",
+    "release:authing": "pnpm run --filter @next-auth-oauth/authing release ",
     "release:qq": "pnpm run --filter '@next-auth-oauth/qq' release ",
     "release:wechat": "pnpm run --filter '@next-auth-oauth/wechat' release ",
     "dev:wechat": "pnpm run --filter @next-auth-oauth/wechat dev ",

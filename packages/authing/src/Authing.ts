@@ -1,3 +1,4 @@
+import { AuthError } from 'next-auth'
 import type { OAuthUserConfig, OIDCConfig } from 'next-auth/providers'
 
 export interface AuthingProfile {
@@ -130,7 +131,18 @@ export function Authing<P extends AuthingProfile>(
     checks = ['state'],
     domain = process.env.AUTH_AUTHING_DOMAIN!,
     ...rest
-  } = options
+  } = Object.assign(
+    {
+      domain: process.env.AUTH_AUTHING_DOMAIN!,
+      clientId: process.env.AUTH_AUTHING_ID!,
+      clientSecret: process.env.AUTH_AUTHING_SECRET!,
+    },
+    options,
+  )
+  // 检测domain是否配置
+  if (!domain) {
+    throw new AuthError('Invalid AuthingDomain,like https://xxx.authing.cn')
+  }
 
   return {
     id: 'authing',
