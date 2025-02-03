@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.8.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.7.0...v1.8.0) (2025-02-03)
+
+
+### Features
+
+* add Feishu login support ([56aa165](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/56aa1655c037139bdf99fac6583ee18a6e986c84))
+
+
+### Bug Fixes
+
+* 修复登录并绑定条件判断错误问题 ([ed7c841](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/ed7c8417bdb1224429c3ec132238417817632669))
+* 修复飞书的参数配置问题 ([ed7c841](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/ed7c8417bdb1224429c3ec132238417817632669))
+* 修正authing不能自动读取环境变量的问题 ([3427905](https://github.com/liuhuapiaoyuan/next-auth-oauth/commit/3427905e851ebaafa2a36b35d34cda0cd097e079))
+
 ## [1.7.0](https://github.com/liuhuapiaoyuan/next-auth-oauth/compare/v1.6.0...v1.7.0) (2025-01-31)
 
 
